@@ -1,0 +1,3 @@
+[submodule "themes/hurock"]
+	path = themes/hurock
+	url = https://github.com/TiTi/hurock.git
