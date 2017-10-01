@@ -1,4 +1,4 @@
-baseURL = "http://localhost:1313"
+baseURL = "https://1ttric.github.io"
 languageCode = "en"
 title = "vesey (dot) tech"
 theme = "hugo-nuo"
