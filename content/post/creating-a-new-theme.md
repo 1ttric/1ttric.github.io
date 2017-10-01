@@ -1,5 +1,5 @@
 ---
-title: Creating a New Theeeeme
+title: Creating a New Theme
 author: "Michael Henderson"
 tags: ["Theme", "Hugo"]
 date: 2014-09-28

@@ -23,12 +23,6 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   identifier = "home"
   url = "/"
 
-[[menu.main]]
-  name = "Projects"
-  weight = 20
-  identifier = "projects"
-  url = "/projects"
-
 # Add your own params here
 [params]
   author = "Will Vesey"

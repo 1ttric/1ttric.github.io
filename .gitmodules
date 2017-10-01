@@ -1,3 +1,7 @@
 [submodule "themes/hurock"]
 	path = themes/hurock
 	url = https://github.com/TiTi/hurock.git
+[submodule "public"]
+	path = public
+	url = git@github.com:1ttric/1ttric.github.io.git
+	branch = master

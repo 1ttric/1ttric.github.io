@@ -5,5 +5,3 @@ layout: "links"
 menu: "main"
 weight: 30
 ---
-
-Ritchie and his friends.
