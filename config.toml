@@ -28,7 +28,7 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   author = "Will Vesey"
   avatar = "/img/avatar.jpg"
   seotitle = "vesey (dot) tech"
-  subtitles = ["Halt & catch fire", "Null pointer exception", "lp0 on fire", "PC LOAD LETTER", "Not a typewriter", "418 I'm a teapot", "Abort, Retry, Fail?"]
+  subtitles = ["Halt and catch fire", "Null pointer exception", "lp0 on fire", "PC LOAD LETTER", "Not a typewriter", "418 I'm a teapot", "Abort, Retry, Fail?", "Terminal prompts disabled", "nslookup: can't resolve", "SERVER: 127.0.0.53#53"]
   description = "My personal tech blog"
   paginate = 10
 
