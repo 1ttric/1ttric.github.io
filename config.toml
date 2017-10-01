@@ -28,7 +28,7 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   author = "Will Vesey"
   avatar = "/img/avatar.jpg"
   seotitle = "vesey (dot) tech"
-  subtitles = ["~ Halt & Catch Fire ~"]
+  subtitles = ["Halt & catch fire", "Null pointer exception", "lp0 on fire", "PC LOAD LETTER", "Not a typewriter", "418 I'm a teapot", "Abort, Retry, Fail?"]
   description = "My personal tech blog"
   paginate = 10
 
