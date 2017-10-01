@@ -1,4 +1,4 @@
-baseURL = "https://1ttric.github.io"
+baseURL = "https://vesey.tech"
 languageCode = "en"
 title = "vesey (dot) tech"
 theme = "hugo-nuo"
@@ -28,13 +28,13 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   author = "Will Vesey"
   avatar = "/img/avatar.jpg"
   seotitle = "vesey (dot) tech"
-  subtitle = "~ Halt & Catch Fire ~"
-  description = "Hugo is one of the most popular open-source static site generators. With its amazing speed and flexibility, Hugo makes building websites fun again."
+  subtitles = ["~ Halt & Catch Fire ~"]
+  description = "My personal tech blog"
   paginate = 10
 
   # Choose your social networks
   email = "willvesey2@gmail.com"
-  # github = "github_username"
+  github = "1ttric"
   # twitter = "twitter_username"
   # linkedin = "linkedin_username"
   #  weibo = "weibo_username"
