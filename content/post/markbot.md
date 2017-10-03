@@ -373,3 +373,5 @@ And the response, after the default 10 epochs of training?
     i do n't know what i 'm doing
 
 Overfitting aside, that sure sounds like Mark.
+
+*YMMV*
