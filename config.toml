@@ -14,7 +14,7 @@ canonifyurls = true
 googleAnalytics = "UA-107326162-1"
 
 # Copyright of your post
-copyright = "© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce."
+copyright = "© CC BY-NC 4.0
 
 # Initial site menu, you can extend menu with content.
 [[menu.main]]
@@ -28,7 +28,7 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   author = "Will Vesey"
   avatar = "/img/avatar.jpg"
   seotitle = "vesey (dot) tech"
-  subtitles = ["Halt and catch fire", "Null pointer exception", "lp0 on fire", "PC LOAD LETTER", "Not a typewriter", "418 I'm a teapot", "Abort, Retry, Fail?", "Terminal prompts disabled", "nslookup: can't resolve", "SERVER: 127.0.0.53#53", "Mojibake"]
+  subtitles = ["Halt and catch fire", "Null pointer exception", "lp0 on fire", "PC LOAD LETTER", "Not a typewriter", "418 I'm a teapot", "Abort, Retry, Fail?", "Terminal prompts disabled", "nslookup: can't resolve", "SERVER: 127.0.0.53#53", "Mojibake Madness", "Update .gitignore"]
   description = "My personal tech blog"
   paginate = 10
 
