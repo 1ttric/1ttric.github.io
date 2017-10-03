@@ -14,7 +14,7 @@ canonifyurls = true
 googleAnalytics = "UA-107326162-1"
 
 # Copyright of your post
-copyright = "© CC BY-NC 4.0
+copyright = "© CC BY-NC 4.0"
 
 # Initial site menu, you can extend menu with content.
 [[menu.main]]
