@@ -1,4 +1,4 @@
-baseURL = "https://vesey.tech"
+baseURL = "https://www.vesey.tech"
 languageCode = "en"
 title = "vesey (dot) tech"
 theme = "hugo-nuo"
