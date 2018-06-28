@@ -2,7 +2,3 @@
 	path = themes/hugo-nuo
 	url = https://github.com/laozhu/hugo-nuo.git
 
-[submodule "public"]
-	path = public
-	url = git@github.com:1ttric/1ttric.github.io.git
-	branch = master
