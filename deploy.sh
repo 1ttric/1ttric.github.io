@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
 # Make sure we are building against the most recent version of the site
