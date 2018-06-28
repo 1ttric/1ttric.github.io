@@ -11,4 +11,4 @@ This is my personal blog to document projects I've been working on.
 
 [Have a look at my resume!](https://goo.gl/61gUgH)
 
-... or shoot me an email at ɥɔǝʇ˙ʎǝsǝʌ@llᴉʍ
+WAT or shoot me an email at ɥɔǝʇ˙ʎǝsǝʌ@llᴉʍ
