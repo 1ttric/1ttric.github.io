@@ -1,3 +1,4 @@
+
 baseURL = "https://www.vesey.tech"
 languageCode = "en"
 title = "vesey (dot) tech"
@@ -5,7 +6,7 @@ theme = "hugo-nuo"
 enableRobotsTXT = true
 pygmentsuseclasses = true
 PygmentsCodeFences = true
-canonifyurls = true
+canonifyurls = false
 
 # Disqus Username
 # disqusShortname = "disqus_shortname"
@@ -26,7 +27,7 @@ copyright = "© CC BY-NC 4.0"
 # Add your own params here
 [params]
   author = "Will Vesey"
-  avatar = "/img/avatar.jpg"
+  avatar = "/img/avatar.png
   seotitle = "vesey (dot) tech"
   subtitles = ["Halt and catch fire", "Null pointer exception", "lp0 on fire", "PC LOAD LETTER", "Not a typewriter", "418 I'm a teapot", "Abort, Retry, Fail?", "Terminal prompts disabled", "nslookup: can't resolve", "SERVER: 127.0.0.53#53", "Mojibake Madness", "Update .gitignore"]
   description = "My personal tech blog"
@@ -37,7 +38,7 @@ copyright = "© CC BY-NC 4.0"
   github = "1ttric"
   # twitter = "twitter_username"
   # linkedin = "linkedin_username"
-  #  weibo = "weibo_username"
+  # weibo = "weibo_username"
   # wechat= "/img/qrcode.jpg" # Replace with your wechat qrcode image
   facebook = "will.vesey"
   # google = "googlplus_id_number"
