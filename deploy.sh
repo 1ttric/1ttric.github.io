@@ -12,6 +12,7 @@ hugo -t hugo-nuo
 
 # Commit and push changes to website submodule
 cd public
+git checkout master
 git add .
 msg="rebuilding site `date`"
 if [ $# -eq 1 ]
@@ -22,4 +23,4 @@ git push origin master
 cd ..
 
 # Update the submodule
-#git submodule update
+git submodule update
