@@ -5,7 +5,7 @@ set -e
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
 # Make sure we are building against the most recent version of the site
-git submodule update --init --remote --recursive
+git submodule update --init --recursive
 
 # Build the project.
 hugo -t hugo-nuo
