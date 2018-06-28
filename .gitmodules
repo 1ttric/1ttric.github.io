@@ -6,3 +6,4 @@
 	path = public
 	url = git@github.com:1ttric/1ttric.github.io.git
 	branch = master
+	ignore = dirty
