@@ -22,5 +22,3 @@ git commit -m "$msg"
 git push origin master
 cd ..
 
-# Update the submodule
-git submodule update
