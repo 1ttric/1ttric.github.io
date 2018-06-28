@@ -24,7 +24,8 @@ Storage |PERC H330 integrated controller
 Assigning 2 threads to each VM, consider each of the 4 CPUs has 28 threads
 This server supports Intel Xeon E5-4600 v4 family processors.
 
-Efficiency of CPUs in this family:
+efficiency of CPUs in this family:
+
 Model        |Threads |Recommended customer price |$/thread
 -------------|--------|---------------------------|--------
 E5-4610 v4   |20      |**$1219**                  |**60.95**
