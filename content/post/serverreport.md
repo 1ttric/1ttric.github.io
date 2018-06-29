@@ -1,6 +1,7 @@
 ---
 title: VM host upgrade
 tags: ["hardware", "work"]
+cover: "/images/cover_serverreport.jpg"
 date: 2018-03-10
 ---
 
