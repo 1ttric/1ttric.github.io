@@ -4,14 +4,14 @@ set -e
 
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
+# Remove old files
+rm -rf ./public/*
+
 # Make sure we are building against the most recent version of the site
 git submodule update --init --remote --recursive
 
-# Remove old files
-rm -r ./public/*
-
 # Build the project.
-hugo -t hugo-nuo
+hugo
 
 # Commit and push changes to website submodule
 cd public

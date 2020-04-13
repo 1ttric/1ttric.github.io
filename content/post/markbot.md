@@ -1,6 +1,6 @@
 ---
 title: MarkBot adventures in ML and NLP
-tags: ["Python", "ML", "NLP"]
+tags: ["python", "ML", "NLP"]
 date: 2017-10-02
 ---
 I've always had a love for large datasets and the interesting things one can do with them, so when my roommate sent me his entire Google Hangouts and Facebook chat history, I knew what I had to do.

@@ -1,24 +1,21 @@
-baseURL = "https://vesey.tech/"
+baseURL = "http://example.com/"
 languageCode = "en-us"
-title = "vesey.tech"
+title = "Minimal"
 theme = "minimal"
+disqusShortname = "username" # delete this to disable disqus comments
 googleAnalytics = ""
-staticDir = ["static"]
-
-[markup.goldmark.renderer]
-unsafe = true
 
 [params]
-    author = "Will Vesey"
-    description = "Welcome to my slice of Internet"
+    author = "Calin Tataru"
+    description = "Personal blog theme powered by Hugo"
     githubUsername = "#"
-    accent = "#77448b"
+    accent = "red"
     showBorder = true
     backgroundColor = "white"
     font = "Raleway" # should match the name on Google Fonts!
     highlight = true
     highlightStyle = "default"
-    highlightLanguages = ["python", "go", "haskell", "kotlin", "scala", "swift"]
+    highlightLanguages = ["go", "haskell", "kotlin", "scala", "swift"]
 
 [[menu.main]]
     url = "/"
@@ -45,17 +42,26 @@ unsafe = true
 # The list of available icons can be found at http://fontawesome.io/icons.
 
 [[menu.icon]]
-    url = "mailto:will@vesey.tech"
+    url = "mailto:me@example.com"
     name = "envelope-o"
     weight = 1
 
 [[menu.icon]]
-    url = "https://github.com/1ttric/"
+    url = "https://github.com/username/"
     name = "github"
     weight = 2
 
 [[menu.icon]]
-    url = "https://www.linkedin.com/in/william-vesey-312359135/"
-    name = "linkedin"
+    url = "https://twitter.com/username/"
+    name = "twitter"
     weight = 3
 
+[[menu.icon]]
+    url = "https://www.linkedin.com/in/username/"
+    name = "linkedin"
+    weight = 4
+
+[[menu.icon]]
+    url = "https://www.stackoverflow.com/username/"
+    name = "stack-overflow"
+    weight = 5
