@@ -31,4 +31,4 @@ $(function(){
 });
 ```
 
-_...I <sup> don't <sup> actually <sup> like <sup> [js](http://tinyurl.com/yahs86qg)_
+_...Smaller <sup> and <sup> smaller <sup> and <sup> smaller_
