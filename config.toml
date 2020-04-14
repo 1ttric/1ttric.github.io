@@ -10,6 +10,7 @@ unsafe = true
 
 [params]
     author = "Will Vesey"
+    profilePic = "me.png"
     description = "Welcome to my slice of Internet"
     githubUsername = "#"
     accent = "#77448b"
@@ -39,6 +40,11 @@ unsafe = true
     url = "/project/"
     name = "Projects"
     weight = 4
+
+[[menu.main]]
+    url = "/space/"
+    name = "Space"
+    weight = 5
 
 # Social icons to be shown on the right-hand side of the navigation bar.
 # The "name" field should match the name of the icon in Font Awesome.
