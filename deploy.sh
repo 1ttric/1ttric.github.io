@@ -10,6 +10,7 @@ rm -rf ./public/*
 # Make sure we are building against the most recent version of the site
 git submodule update --init --remote --recursive
 cd public
+git checkout master
 git pull
 cd ..
 
