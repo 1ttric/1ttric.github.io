@@ -64,13 +64,15 @@ I routinely run my copy of Adobe Photoshop via WINE, but Lightroom Classic is mo
 
 Getting the correct incantation to make the software work will be made easier by preparing a Docker image to run Lightroom in a known and reproducible environment.
 
-## Catalog handling
+## Catalog
 
 A Lightroom catalog consists of an `.lrcat` file (actually a SQLite database) and various helper folders with suffixes such as `.lrdata`
 
 The only *mandatory* file here is the catalog itself. The data directories merely serve as a cache to speed up the loading of thumbnails and other data.
 
-So, it should be simple just to bind mount in a directory containing the catalog file and run the app with WINE? Nope.
+## Catalog handling
+
+It should be possible just to bind mount in a directory containing the catalog file and run the containerized app against the catalog with WINE? Nope.
 
 Although Lightroom allows for the loading of images from a networked or otherwise mounted drive, the catalog file itself **must** be located on the host's main volume. This is likely for performance reasons - imagine running a SQLite database
 backed by a highly latent NAS Samba share. Not a use case that needs support.
@@ -93,9 +95,132 @@ In this manner, two directories can be kept continuously in sync by manually cop
 
 Rather than write my own utility to perform this duty, I chose to use [Unison](https://github.com/bcpierce00/unison).
 
+## Remote access
+
+VNC is an excellent solution for remote access - it is a performant protocol with various security features, and many robust clients are available for every major platform.
+
+Integrating a VNC server into a Dockerfile is a bit of a chore - it requires running a virtual framebuffer with *xvfb*, a VNC server, and the app itself.
+
+Luckily, there is an excellent community Dockerized solution for GUI apps: [baseimage-gui](https://hub.docker.com/r/jlesage/baseimage-gui/)
+
+This combines xvfb, VNC server, and HTTP VNC gateway - in the event a Lightroom user cannot use a VNC client, the program is also available via a normal web browser!
+
 ## The Dockerfile
 
-### Requirements
+Let's start with the image dependency definitions.
 
-The specific runtime libraries required by Lightroom Classic 
+Unison is copied from an existing Dockerfile, as the Debian-available package does not install the `unison-fsmonitor` filesystem monitor which is a requirement to enable continuous monitoring.
+
+```bash
+FROM eugenmayer/unison:2.51.2.2 as unison
+
+FROM jlesage/baseimage-gui:debian-9
+
+COPY --from=unison /usr/local/bin/unison /usr/local/bin/unison-fsmonitor /usr/local/bin/
+```
+
+Wine requires some i386-specific packages - and here, some prerequisites are also fetched for the redistributable runtime libraries that will be installed with `winetricks`
+
+```bash
+RUN dpkg --add-architecture i386 && \
+    apt update && \
+    add-pkg curl ca-certificates xvfb cabextract gnupg apt-transport-https && \
+    curl https://dl.winehq.org/wine-builds/winehq.key | apt-key add - && \
+    echo "deb https://dl.winehq.org/wine-builds/debian/ stretch main" >> /etc/apt/sources.list && \
+    apt update && \
+    add-pkg winehq-devel
+```
+
+Pinning a version of winetricks that is not bleeding-edge alleviates [this issue](https://github.com/Winetricks/winetricks/issues/163)
+
+```bash
+RUN curl -o /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/20200412/src/winetricks && \
+    chmod +x /usr/bin/winetricks
+```
+
+Starting a temporary virtual framebuffer is necessary, as some of the runtime library installers need to pop up dialogs during their installation. It's Windows, so of course headless isn't a thing.
+These dependencies were determined through trial and error.
+
+```bash
+RUN mkdir /wine && \
+    Xvfb :1 & \
+    export WINEARCH=win64 WINEPREFIX=/wine WINEDLLOVERRIDES="mscoree,mshtml=" DISPLAY=:1 && \
+    wineboot -i -u && \
+    winetricks -v -q win10 fontsmooth=rgb gdiplus vcrun2015 atmlib msxml4 gdiplus corefonts dotnet40 && \
+    chown -R 1000:1000 /wine
+```
+
+`baseimage-gui` must know how large to make the virtual framebuffer, and must have the specified entrypoint script.
+
+```bash
+ENV DISPLAY_WIDTH=1920 DISPLAY_HEIGHT=1280
+
+COPY startapp.sh /startapp.sh
+```
+
+## The entrypoint script
+
+Let's keep things debuggable and safe during runtime with the following [incantation](https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/)
+
+```bash
+#!/usr/bin/env bash
+
+set -euxo pipefail
+```
+
+An initial sync is done to bring in the catalog from the bind-mounted directory. All Unison commands ignore any of the `.lrdata` directories,
+as these contain hundreds and hundreds of small thumbnail files which drastically slow down all syncing operations, especially at this initial sync.
+
+```bash
+mkdir /tmp/catalog /tmp/unison
+UNISON=/tmp/unison unison /lightroom/catalog /tmp/catalog -batch -auto -repeat watch -ignore 'Name *.lrdata' -logfile /dev/null &
+```
+
+A background job is started to continuously sync the catalog back to the host (and vice versa, though the database shouldn't ever be modified by anything else during operation)
+
+```bash
+mkdir /tmp/catalog /tmp/unison
+UNISON=/tmp/unison unison /lightroom/catalog /tmp/catalog -batch -auto -repeat watch -ignore 'Name *.lrdata' -logfile /dev/null &
+```
+
+This stanza allows the user to optionally mount in an existing Lightroom configuration, so any application settings that are changed can be persisted
+
+```bash
+if [ -d /lightroom/config ]; then
+  mkdir -p "/wine/drive_c/users/app/Application Data/Adobe"
+  ln -s /lightroom/config "/wine/drive_c/users/app/Application Data/Adobe/Lightroom"
+fi
+```
+
+Launch the app!
+
+```bash
+export WINEARCH=win64 WINEPREFIX=/wine WINEDLLOVERRIDES="mscoree,mshtml=" WINEDEBUG="-all"
+wine64 /lightroom/install/Lightroom.exe
+```
+
+After the app exits, wait for any remaining syncing to complete, and then release control back to `baseimage-gui`, which will perform a shutdown of the container.
+
+```bash
+kill -SIGINT $PID_UNISON
+wait $PID_UNISON
+```
+
+## Mount directories
+
+`/lightroom/install`  
+This Dockerfile doesn't come with Lightroom *included*, as that would of course be piracy. Instead, the much more legally viable option is used - mounting in your *own* Lightroom program directory.  
+This directory will likely be found here on a Windows system: `C:\Program Files\Adobe\Adobe Lightroom Classic CC`  
+
+`/lightroom/catalog`  
+A directory containing the user's `.lrcat` file  
+Note that if a new `.lrcat` file is used, 
+
+`/lightroom/config`
+An optional directory which allows you to save the configuration and settings of the Lightroom program itself
+
+## Runtime directories
+
+`/tmp/catalog`  
+This is the directory that the `/lightroom/catalog` directory is synced to, and this is where you must open the catalog file from in the Lightroom user interface.
 

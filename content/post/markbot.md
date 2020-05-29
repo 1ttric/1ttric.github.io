@@ -29,39 +29,41 @@ I've used Python for the sake of brevity and ease of use, here are some of the l
 
 In addition to Mark's Google Hangouts dump, I regularly back up my entire Facebook chat history, which I incorporated.
 
-    print("Loading datasets")
-    with open("/home/will/Desktop/Python/Facebook.pkl","rb") as f: facebook = pickle.loads(f.read())
-    with open("/home/will/Desktop/mark_hangouts.json", "r") as f: hangouts = json.loads(f.read())
-    
-    sentences = []
-    
-    print("Parsing Facebook data")
-    mark_uid = '1750122188'
-    for t, ms in tqdm(facebook["messages"].items()):
-        ms = ms[::-1]
-        for idx, m in enumerate(ms):
-            if not m.text:
-                continue
-            text = m.text
-            if not text:
-                continue
-            is_mark = m.author == mark_uid
-            sentences.append((text, is_mark))
-    
-    print("Parsing Hangouts data")
-    mark_chatid = "116404337397755400265"
-    for t in tqdm(hangouts["conversation_state"]):
-        ms = t["conversation_state"]["event"]
-        for idx, m in enumerate(ms):
-            if "chat_message" not in m or "segment" not in m["chat_message"]["message_content"]:
-                continue
-            text = "\n".join(segment["text"] for segment in m["chat_message"]["message_content"]["segment"] if "text" in segment)
-            if not text:
-                continue
-            is_mark = m["sender_id"]["chat_id"] == mark_chatid
-            sentences.append((text, is_mark))
-    print("Loaded", len(sentences), "sentences")
-    del facebook, hangouts
+```python
+print("Loading datasets")
+with open("/home/will/Desktop/Python/Facebook.pkl","rb") as f: facebook = pickle.loads(f.read())
+with open("/home/will/Desktop/mark_hangouts.json", "r") as f: hangouts = json.loads(f.read())
+
+sentences = []
+
+print("Parsing Facebook data")
+mark_uid = '1750122188'
+for t, ms in tqdm(facebook["messages"].items()):
+    ms = ms[::-1]
+    for idx, m in enumerate(ms):
+        if not m.text:
+            continue
+        text = m.text
+        if not text:
+            continue
+        is_mark = m.author == mark_uid
+        sentences.append((text, is_mark))
+
+print("Parsing Hangouts data")
+mark_chatid = "116404337397755400265"
+for t in tqdm(hangouts["conversation_state"]):
+    ms = t["conversation_state"]["event"]
+    for idx, m in enumerate(ms):
+        if "chat_message" not in m or "segment" not in m["chat_message"]["message_content"]:
+            continue
+        text = "\n".join(segment["text"] for segment in m["chat_message"]["message_content"]["segment"] if "text" in segment)
+        if not text:
+            continue
+        is_mark = m["sender_id"]["chat_id"] == mark_chatid
+        sentences.append((text, is_mark))
+print("Loaded", len(sentences), "sentences")
+del facebook, hangouts
+```
 
 TL;DR: Parsing Google Hangouts JSON is a pain and a half. Also, I tend to throw PEP out the window when it comes to single-use projects like this.
 
@@ -85,19 +87,21 @@ What this code does:
 
 Now let's separate messages into their constituent words, or *tokens*
 
-    print("Tokenizing messages")
-    import collections
-    import nltk
-    
-    sentences = [(s[0].lower(), s[1]) for s in sentences]
-    vocab = collections.defaultdict(lambda: 0)
-    for idx, s in enumerate(tqdm(sentences)):
-        words = nltk.word_tokenize(s[0])
-        sentences[idx] = (words, s[1])
-        for w in words:
-            vocab[w] += 1
-    vocab = dict(vocab)
-    print("{} unfiltered vocabulary words".format(len(vocab)))
+```python
+print("Tokenizing messages")
+import collections
+import nltk
+
+sentences = [(s[0].lower(), s[1]) for s in sentences]
+vocab = collections.defaultdict(lambda: 0)
+for idx, s in enumerate(tqdm(sentences)):
+    words = nltk.word_tokenize(s[0])
+    sentences[idx] = (words, s[1])
+    for w in words:
+        vocab[w] += 1
+vocab = dict(vocab)
+print("{} unfiltered vocabulary words".format(len(vocab)))
+```
 
 What this code does:
 
@@ -119,34 +123,35 @@ By lower-casing the messages, we reduce the vocabulary size, as otherwise "Car" 
 
 Now I need to form (query, response) tuples if this is going to work as a conversational model. This is when we'll use the *is_mark* bool.
 
-    print("Assembling response training data")
-    import random
-    
-    BOS, EOS = "\x00", "\x01"
-    exchanges = []
-    idxs = [idx for idx, s in enumerate(sentences) if s[1] and idx >= CONTEXT_LINES]
-    sentences = [s[0] for s in sentences]
-    #Also perform pruning to remove query/response pairs with uncommon words
-    prune = set([w for w in vocab if vocab[w] < 9])
-    for idx in idxs:
-        exchange = [s for s in sentences[idx-CONTEXT_LINES: idx+1]]
-        exchange[-1] = [BOS] + exchange[-1] + [EOS]
-        if any([w in prune for s in exchange for w in s]):
-            continue
-        else:
-            exchanges.append(exchange)
-    sentences = [s for e in exchanges for s in e]
-    exchanges = [([w for s in e[:-1] for w in s], e[-1]) for e in exchanges]
-    random.shuffle(exchanges)
-    
-    #Now recompute our vocabulary
-    vocab = collections.defaultdict(lambda: 0)
-    for s in sentences:
-        for w in s:
-            vocab[w] += 1
-    vocab = dict(vocab)
-    print("{} query/response pairs\n{} vocabulary words".format(len(exchanges), len(vocab)-2))
+```python
+print("Assembling response training data")
+import random
 
+BOS, EOS = "\x00", "\x01"
+exchanges = []
+idxs = [idx for idx, s in enumerate(sentences) if s[1] and idx >= CONTEXT_LINES]
+sentences = [s[0] for s in sentences]
+#Also perform pruning to remove query/response pairs with uncommon words
+prune = set([w for w in vocab if vocab[w] < 9])
+for idx in idxs:
+    exchange = [s for s in sentences[idx-CONTEXT_LINES: idx+1]]
+    exchange[-1] = [BOS] + exchange[-1] + [EOS]
+    if any([w in prune for s in exchange for w in s]):
+        continue
+    else:
+        exchanges.append(exchange)
+sentences = [s for e in exchanges for s in e]
+exchanges = [([w for s in e[:-1] for w in s], e[-1]) for e in exchanges]
+random.shuffle(exchanges)
+
+#Now recompute our vocabulary
+vocab = collections.defaultdict(lambda: 0)
+for s in sentences:
+    for w in s:
+        vocab[w] += 1
+vocab = dict(vocab)
+print("{} query/response pairs\n{} vocabulary words".format(len(exchanges), len(vocab)-2))
+```
 
 A few things are happening here:
 
@@ -172,15 +177,17 @@ This is what the data looks like now:
 
 Now let's turn these words into numbers!
 
-    #The lower a word's lookup index, the higher its frequency in the corpus
-    import keras
-    from keras.preprocessing.sequence import pad_sequences
-    lookup_table =      {idx: w for idx, w in enumerate(sorted(vocab, key=lambda w: vocab[w])[::-1])}
-    lookup_table.update({w: idx for idx, w in enumerate(sorted(vocab, key=lambda w: vocab[w])[::-1])})
-    X = np.asarray([[lookup_table[w] for w in query] for query in (r[0] for r in exchanges)])
-    Y = np.asarray([[lookup_table[w] for w in response] for response in (r[1] for r in exchanges)])
-    X = pad_sequences(X, SEQUENCE_LEN)
-    Y = pad_sequences(Y, SEQUENCE_LEN, padding="post")
+```python
+#The lower a word's lookup index, the higher its frequency in the corpus
+import keras
+from keras.preprocessing.sequence import pad_sequences
+lookup_table =      {idx: w for idx, w in enumerate(sorted(vocab, key=lambda w: vocab[w])[::-1])}
+lookup_table.update({w: idx for idx, w in enumerate(sorted(vocab, key=lambda w: vocab[w])[::-1])})
+X = np.asarray([[lookup_table[w] for w in query] for query in (r[0] for r in exchanges)])
+Y = np.asarray([[lookup_table[w] for w in response] for response in (r[1] for r in exchanges)])
+X = pad_sequences(X, SEQUENCE_LEN)
+Y = pad_sequences(Y, SEQUENCE_LEN, padding="post")
+```
 
 * Firstly, the lookup table simply maps words to their indexes and back again
 * The X and Y variables now contain the query, response data but in index format, and padded to length
@@ -215,15 +222,17 @@ As you can see, queries are padded at the **beginning** and responses are padded
 
 The fun begins! Now we are going to train with the GloVe algorithm to embed our words into a high dimensional space that encodes semantic content and relationships.
 
-    print("Building vocabulary model")
-    import glove
-    import multiprocessing
-    
-    corpus = glove.Corpus()
-    corpus.fit(sentences, window=10)
-    glove_model = glove.Glove(no_components=WORD_EMBEDDING_COMPONENTS, learning_rate=0.05)
-    glove_model.fit(corpus.matrix, epochs=30, no_threads=multiprocessing.cpu_count(), verbose=True)
-    del sentences    
+```python
+print("Building vocabulary model")
+import glove
+import multiprocessing
+
+corpus = glove.Corpus()
+corpus.fit(sentences, window=10)
+glove_model = glove.Glove(no_components=WORD_EMBEDDING_COMPONENTS, learning_rate=0.05)
+glove_model.fit(corpus.matrix, epochs=30, no_threads=multiprocessing.cpu_count(), verbose=True)
+del sentences    
+```
 
 The model has now been trained on the available sentences and we can do useful things with the resulting word embeddings! But we're not going to. Instead we're going to virtualize my roommate.
 
@@ -231,24 +240,26 @@ The model has now been trained on the available sentences and we can do useful t
 
 We're into the thick of it now. I have adapted a model I found [here](https://github.com/oswaldoludwig/Seq2seq-Chatbot-for-Keras) that implements a sequence-to-sequence architecture.
 
-    print("Building neural chatbot model")
-    optimizer = keras.optimizers.Adam(lr=0.001) 
-    input_context = keras.layers.Input(shape=(SEQUENCE_LEN,), dtype='int32', name='input_context')
-    inputanswer_chunkanswer = keras.layers.Input(shape=(SEQUENCE_LEN,), dtype='int32', name='inputanswer_chunkanswer')
-    LSTM_encoder = keras.layers.LSTM(SENTENCE_EMBEDDING_SIZE, kernel_initializer='lecun_uniform')
-    LSTM_decoder = keras.layers.LSTM(SENTENCE_EMBEDDING_SIZE, kernel_initializer='lecun_uniform')
-    Shared_Embedding = keras.layers.Embedding(output_dim=glove_model.no_components, input_dim=len(vocab), weights=[glove_model.word_vectors.copy()], input_length=SEQUENCE_LEN)
-    word_embedding_context = Shared_Embedding(input_context)
-    context_embedding = LSTM_encoder(word_embedding_context)
-    word_embeddinganswer_chunknswer = Shared_Embedding(inputanswer_chunkanswer)
-    answer_embedding = LSTM_decoder(word_embeddinganswer_chunknswer)
-    merge_layer = keras.layers.concatenate([context_embedding, answer_embedding], axis=1)
-    #We can change the number of neurons in this Dense layer
-    out = keras.layers.Dense(len(vocab)//2, activation="relu")(merge_layer)
-    out = keras.layers.Dense(len(vocab), activation="softmax")(out)
-    keras_model = keras.models.Model(inputs=[input_context, inputanswer_chunkanswer], outputs=[out])
-    keras_model.compile(loss='categorical_crossentropy', optimizer=optimizer)
-    del glove_model
+```python
+print("Building neural chatbot model")
+optimizer = keras.optimizers.Adam(lr=0.001) 
+input_context = keras.layers.Input(shape=(SEQUENCE_LEN,), dtype='int32', name='input_context')
+inputanswer_chunkanswer = keras.layers.Input(shape=(SEQUENCE_LEN,), dtype='int32', name='inputanswer_chunkanswer')
+LSTM_encoder = keras.layers.LSTM(SENTENCE_EMBEDDING_SIZE, kernel_initializer='lecun_uniform')
+LSTM_decoder = keras.layers.LSTM(SENTENCE_EMBEDDING_SIZE, kernel_initializer='lecun_uniform')
+Shared_Embedding = keras.layers.Embedding(output_dim=glove_model.no_components, input_dim=len(vocab), weights=[glove_model.word_vectors.copy()], input_length=SEQUENCE_LEN)
+word_embedding_context = Shared_Embedding(input_context)
+context_embedding = LSTM_encoder(word_embedding_context)
+word_embeddinganswer_chunknswer = Shared_Embedding(inputanswer_chunkanswer)
+answer_embedding = LSTM_decoder(word_embeddinganswer_chunknswer)
+merge_layer = keras.layers.concatenate([context_embedding, answer_embedding], axis=1)
+#We can change the number of neurons in this Dense layer
+out = keras.layers.Dense(len(vocab)//2, activation="relu")(merge_layer)
+out = keras.layers.Dense(len(vocab), activation="softmax")(out)
+keras_model = keras.models.Model(inputs=[input_context, inputanswer_chunkanswer], outputs=[out])
+keras_model.compile(loss='categorical_crossentropy', optimizer=optimizer)
+del glove_model
+```
 
 This graphic gives the general idea - we're feeding in both the query and the response so far into the network to get the next word in the response
 
@@ -281,46 +292,48 @@ At this point, a word looks like this:
 
 We have to do a lot of chunking here because the size of the arrays we're creating is so large that I keep running out of RAM
 
-    chunk_size = X.shape[0] // NUM_CHUNKS
-    for epoch in range(EPOCHS):
-        print("Training epoch {}/{}".format(epoch+1, EPOCHS))
-        try:
-            for chunk_idx, chunk in enumerate(range(0, len(X), chunk_size)):
-                print("Training chunk {}".format(chunk_idx+1))
-                X_chunk = X[chunk: chunk+chunk_size]
-                Y_chunk = Y[chunk: chunk+chunk_size]
-    
-                total_unpadded_len = 0
-                for i, y in enumerate(Y_chunk):
-                    unpadded_len = np.where(y == lookup_table[EOS])[0][0]
-                    total_unpadded_len += unpadded_len + 1
-    
-                context_chunk = np.zeros((total_unpadded_len, SEQUENCE_LEN))
-                answer_chunk = np.zeros((total_unpadded_len, SEQUENCE_LEN))
-                next_word_chunk = np.zeros((total_unpadded_len, len(vocab)))
-    
-                count = 0
-                for i, y in enumerate(Y_chunk):
-                    #Prepare one-hot encoding
-                    answer_partial = np.zeros((1, SEQUENCE_LEN))
-                    limit = np.where(y == lookup_table[EOS])[0][0]
-    
-                    for symbol_idx in range(1, limit+1):
-                        one_hot = np.zeros((1, len(vocab)))
-                        one_hot[0, y[symbol_idx]] = 1
-    
-                        answer_partial[0, -symbol_idx:] = y[0: symbol_idx]
-    
-                        context_chunk[count, :] = X_chunk[i: i+1]
-                        answer_chunk[count, :] = answer_partial
-                        next_word_chunk[count, :] = one_hot
-                        count += 1
-    
-                keras_model.fit([context_chunk, answer_chunk], next_word_chunk, batch_size=BATCH_SIZE, epochs=1)
-                del context_chunk, answer_chunk, next_word_chunk
-    
-        except KeyboardInterrupt:
-            break
+```python
+chunk_size = X.shape[0] // NUM_CHUNKS
+for epoch in range(EPOCHS):
+    print("Training epoch {}/{}".format(epoch+1, EPOCHS))
+    try:
+        for chunk_idx, chunk in enumerate(range(0, len(X), chunk_size)):
+            print("Training chunk {}".format(chunk_idx+1))
+            X_chunk = X[chunk: chunk+chunk_size]
+            Y_chunk = Y[chunk: chunk+chunk_size]
+
+            total_unpadded_len = 0
+            for i, y in enumerate(Y_chunk):
+                unpadded_len = np.where(y == lookup_table[EOS])[0][0]
+                total_unpadded_len += unpadded_len + 1
+
+            context_chunk = np.zeros((total_unpadded_len, SEQUENCE_LEN))
+            answer_chunk = np.zeros((total_unpadded_len, SEQUENCE_LEN))
+            next_word_chunk = np.zeros((total_unpadded_len, len(vocab)))
+
+            count = 0
+            for i, y in enumerate(Y_chunk):
+                #Prepare one-hot encoding
+                answer_partial = np.zeros((1, SEQUENCE_LEN))
+                limit = np.where(y == lookup_table[EOS])[0][0]
+
+                for symbol_idx in range(1, limit+1):
+                    one_hot = np.zeros((1, len(vocab)))
+                    one_hot[0, y[symbol_idx]] = 1
+
+                    answer_partial[0, -symbol_idx:] = y[0: symbol_idx]
+
+                    context_chunk[count, :] = X_chunk[i: i+1]
+                    answer_chunk[count, :] = answer_partial
+                    next_word_chunk[count, :] = one_hot
+                    count += 1
+
+            keras_model.fit([context_chunk, answer_chunk], next_word_chunk, batch_size=BATCH_SIZE, epochs=1)
+            del context_chunk, answer_chunk, next_word_chunk
+
+    except KeyboardInterrupt:
+        break
+```
 
 This code is training the neural network bit by bit so it learns how to converse, given a query and a partial answer.
 
@@ -330,40 +343,42 @@ Now all we have to do is test it!
 
 ### Testing the chatbot!
 
-    print("Testing chatbot")
-    #Helper function to sample an index from an array of probabilities
-    def sample(preds, temperature=1.0):
-        preds = np.asarray(preds).astype('float64')
-        preds = np.log(preds) / temperature
-        exp_preds = np.exp(preds)
-        preds = exp_preds / np.sum(exp_preds)
-        probas = np.random.multinomial(1, preds, 1)
-        return np.argmax(probas)
-    
-    def ask(query, temperature=0.3):
-        print(query)
-        query = np.asarray([lookup_table[w] for w in nltk.word_tokenize(query.lower())])
-        #Pad to length of query sentence
-        query = np.pad(query[-SEQUENCE_LEN:], pad_width=(SEQUENCE_LEN-len(query), 0), mode="constant")
-        query = np.asarray([query])
-    
-        response = np.zeros((1, SEQUENCE_LEN))
-        #Insert BOS marker
-        response[0, -1] = lookup_table[BOS]
-        for k in range(SEQUENCE_LEN - 1):
-            pred = keras_model.predict([query, response])[0]
-            next_token = sample(pred, temperature)
-            #Shift partial answer over one
-            response[0, :-1] = response[0, 1:]
-            response[0, -1] = next_token
-            #Is the model telling us to end the sentence?
-            if next_token == lookup_table[EOS]:
-                break
-    
-        response = " ".join([lookup_table[int(token)] for token in response[0] if token not in (lookup_table[BOS], lookup_table[EOS])])
-        print(response)
-    
-    ask("What is the meaning of life?")
+```python
+print("Testing chatbot")
+#Helper function to sample an index from an array of probabilities
+def sample(preds, temperature=1.0):
+    preds = np.asarray(preds).astype('float64')
+    preds = np.log(preds) / temperature
+    exp_preds = np.exp(preds)
+    preds = exp_preds / np.sum(exp_preds)
+    probas = np.random.multinomial(1, preds, 1)
+    return np.argmax(probas)
+
+def ask(query, temperature=0.3):
+    print(query)
+    query = np.asarray([lookup_table[w] for w in nltk.word_tokenize(query.lower())])
+    #Pad to length of query sentence
+    query = np.pad(query[-SEQUENCE_LEN:], pad_width=(SEQUENCE_LEN-len(query), 0), mode="constant")
+    query = np.asarray([query])
+
+    response = np.zeros((1, SEQUENCE_LEN))
+    #Insert BOS marker
+    response[0, -1] = lookup_table[BOS]
+    for k in range(SEQUENCE_LEN - 1):
+        pred = keras_model.predict([query, response])[0]
+        next_token = sample(pred, temperature)
+        #Shift partial answer over one
+        response[0, :-1] = response[0, 1:]
+        response[0, -1] = next_token
+        #Is the model telling us to end the sentence?
+        if next_token == lookup_table[EOS]:
+            break
+
+    response = " ".join([lookup_table[int(token)] for token in response[0] if token not in (lookup_table[BOS], lookup_table[EOS])])
+    print(response)
+
+ask("What is the meaning of life?")
+```
 
 The sample function allows us to introduce some uncertainty into the reply, so it's not the same every time.
 
