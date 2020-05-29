@@ -208,19 +208,18 @@ wait $PID_UNISON
 
 ## Mount directories
 
-`/lightroom/install`  
+* `/lightroom/install`  
 This Dockerfile doesn't come with Lightroom *included*, as that would of course be piracy. Instead, the much more legally viable option is used - mounting in your *own* Lightroom program directory.  
 This directory will likely be found here on a Windows system: `C:\Program Files\Adobe\Adobe Lightroom Classic CC`  
 
-`/lightroom/catalog`  
-A directory containing the user's `.lrcat` file  
-Note that if a new `.lrcat` file is used, 
+* `/lightroom/catalog`  
+A directory containing the user's `.lrcat` file
 
-`/lightroom/config`
+* `/lightroom/config`
 An optional directory which allows you to save the configuration and settings of the Lightroom program itself
 
 ## Runtime directories
 
-`/tmp/catalog`  
+* `/tmp/catalog`  
 This is the directory that the `/lightroom/catalog` directory is synced to, and this is where you must open the catalog file from in the Lightroom user interface.
 
