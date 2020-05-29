@@ -223,3 +223,10 @@ An optional directory which allows you to save the configuration and settings of
 * `/tmp/catalog`  
 This is the directory that the `/lightroom/catalog` directory is synced to, and this is where you must open the catalog file from in the Lightroom user interface.
 
+# Result
+
+After deploying it on my local Kubernetes cluster and configuring a proper entrypoint, Lightroom is now accessible both over VNC and HTTP from any capable device!
+
+Enabling hardware acceleration (OpenGL) is left as a future exercise, for now.
+
+![Lightroom running in a browser](/images/lightroom-browser.png)
