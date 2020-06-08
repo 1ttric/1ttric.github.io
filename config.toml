@@ -29,7 +29,7 @@ pygmentsCodefences = true
 
 [params]
   author = "Will Vesey"
-  profilePic = "me.png"
+#  profilePic = "me.png"
   description = "Welcome to my slice of Internet"
   githubUsername = "#"
   accent = "#77448b"
