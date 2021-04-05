@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>vcenter on vesey.tech</title>
-    <link>https://1ttric.github.io/tags/vcenter/</link>
+    <link>https://vesey.tech/tags/vcenter/</link>
     <description>Recent content in vcenter on vesey.tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://1ttric.github.io/tags/vcenter/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/vcenter/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fisher</title>
-      <link>https://1ttric.github.io/post/fisher/</link>
+      <link>https://vesey.tech/post/fisher/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/post/fisher/</guid>
+      <guid>https://vesey.tech/post/fisher/</guid>
       <description>Before I moved to California, I lived with some like-minded developers, and we managed to build a pretty useful environment for ourselves.
 We ended up with two server racks totalling about 12 Us of equipment, with high-speed data links, high-density storage, and plenty of blinkenlights.
 Here&amp;rsquo;s a diagram of what we built:</description>

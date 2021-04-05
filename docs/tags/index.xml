@@ -2,188 +2,188 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on vesey.tech</title>
-    <link>https://1ttric.github.io/tags/</link>
+    <link>https://vesey.tech/tags/</link>
     <description>Recent content in Tags on vesey.tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://1ttric.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>adobe</title>
-      <link>https://1ttric.github.io/tags/adobe/</link>
+      <link>https://vesey.tech/tags/adobe/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/adobe/</guid>
+      <guid>https://vesey.tech/tags/adobe/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker</title>
-      <link>https://1ttric.github.io/tags/docker/</link>
+      <link>https://vesey.tech/tags/docker/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/docker/</guid>
+      <guid>https://vesey.tech/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>linux</title>
-      <link>https://1ttric.github.io/tags/linux/</link>
+      <link>https://vesey.tech/tags/linux/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/linux/</guid>
+      <guid>https://vesey.tech/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>vnc</title>
-      <link>https://1ttric.github.io/tags/vnc/</link>
+      <link>https://vesey.tech/tags/vnc/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/vnc/</guid>
+      <guid>https://vesey.tech/tags/vnc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>windows</title>
-      <link>https://1ttric.github.io/tags/windows/</link>
+      <link>https://vesey.tech/tags/windows/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/windows/</guid>
+      <guid>https://vesey.tech/tags/windows/</guid>
       <description></description>
     </item>
     
     <item>
       <title>esxi</title>
-      <link>https://1ttric.github.io/tags/esxi/</link>
+      <link>https://vesey.tech/tags/esxi/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/esxi/</guid>
+      <guid>https://vesey.tech/tags/esxi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hardware</title>
-      <link>https://1ttric.github.io/tags/hardware/</link>
+      <link>https://vesey.tech/tags/hardware/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/hardware/</guid>
+      <guid>https://vesey.tech/tags/hardware/</guid>
       <description></description>
     </item>
     
     <item>
       <title>vcenter</title>
-      <link>https://1ttric.github.io/tags/vcenter/</link>
+      <link>https://vesey.tech/tags/vcenter/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/vcenter/</guid>
+      <guid>https://vesey.tech/tags/vcenter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ML</title>
-      <link>https://1ttric.github.io/tags/ml/</link>
+      <link>https://vesey.tech/tags/ml/</link>
       <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/ml/</guid>
+      <guid>https://vesey.tech/tags/ml/</guid>
       <description></description>
     </item>
     
     <item>
       <title>NLP</title>
-      <link>https://1ttric.github.io/tags/nlp/</link>
+      <link>https://vesey.tech/tags/nlp/</link>
       <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/nlp/</guid>
+      <guid>https://vesey.tech/tags/nlp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>python</title>
-      <link>https://1ttric.github.io/tags/python/</link>
+      <link>https://vesey.tech/tags/python/</link>
       <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/python/</guid>
+      <guid>https://vesey.tech/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>markdown</title>
-      <link>https://1ttric.github.io/tags/markdown/</link>
+      <link>https://vesey.tech/tags/markdown/</link>
       <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/markdown/</guid>
+      <guid>https://vesey.tech/tags/markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mathjax</title>
-      <link>https://1ttric.github.io/tags/mathjax/</link>
+      <link>https://vesey.tech/tags/mathjax/</link>
       <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/mathjax/</guid>
+      <guid>https://vesey.tech/tags/mathjax/</guid>
       <description></description>
     </item>
     
     <item>
       <title>test</title>
-      <link>https://1ttric.github.io/tags/test/</link>
+      <link>https://vesey.tech/tags/test/</link>
       <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/test/</guid>
+      <guid>https://vesey.tech/tags/test/</guid>
       <description></description>
     </item>
     
     <item>
       <title>elasticsearch</title>
-      <link>https://1ttric.github.io/tags/elasticsearch/</link>
+      <link>https://vesey.tech/tags/elasticsearch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/elasticsearch/</guid>
+      <guid>https://vesey.tech/tags/elasticsearch/</guid>
       <description></description>
     </item>
     
     <item>
       <title>go</title>
-      <link>https://1ttric.github.io/tags/go/</link>
+      <link>https://vesey.tech/tags/go/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/go/</guid>
+      <guid>https://vesey.tech/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>kubernetes</title>
-      <link>https://1ttric.github.io/tags/kubernetes/</link>
+      <link>https://vesey.tech/tags/kubernetes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/kubernetes/</guid>
+      <guid>https://vesey.tech/tags/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>react</title>
-      <link>https://1ttric.github.io/tags/react/</link>
+      <link>https://vesey.tech/tags/react/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/react/</guid>
+      <guid>https://vesey.tech/tags/react/</guid>
       <description></description>
     </item>
     
     <item>
       <title>spotify</title>
-      <link>https://1ttric.github.io/tags/spotify/</link>
+      <link>https://vesey.tech/tags/spotify/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/spotify/</guid>
+      <guid>https://vesey.tech/tags/spotify/</guid>
       <description></description>
     </item>
     
     <item>
       <title>websockets</title>
-      <link>https://1ttric.github.io/tags/websockets/</link>
+      <link>https://vesey.tech/tags/websockets/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://1ttric.github.io/tags/websockets/</guid>
+      <guid>https://vesey.tech/tags/websockets/</guid>
       <description></description>
     </item>
     
