@@ -12,4 +12,4 @@ Ever search for that brief phrase in Google but find only unrelated tracks?
 
 That can be enough to drive a person crazy. I wrote a tool that lets you search through your library to find these earworms.
 
-[https://versefind.com](https://versefind.com)
+[https://versefind.vesey.tech](https://versefind.vesey.tech)

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on vesey.tech</title>
+    <link>https://vesey.tech/post/</link>
+    <description>Recent content in Posts on vesey.tech</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 25 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adobe Lightroom as a hosted service?</title>
+      <link>https://vesey.tech/post/lightroom/</link>
+      <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://vesey.tech/post/lightroom/</guid>
+      <description>Background As someone with a significant photo library, I often find myself wishing I could access old photos from the road.
+Although remote file access softwares can let me dive through the basic directories, I often wish I could use my Adobe Lightroom Classic instance to sort and filter the photos so I can find the ones I am looking for without searching.
+The problem is, however, most of the time I only have my phone on me - and Lightroom Classic is a Windows-only product.</description>
+    </item>
+    
+    <item>
+      <title>Fisher</title>
+      <link>https://vesey.tech/post/fisher/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vesey.tech/post/fisher/</guid>
+      <description>Before I moved to California, I lived with some like-minded developers, and we managed to build a pretty useful environment for ourselves.
+We ended up with two server racks totalling about 12 Us of equipment, with high-speed data links, high-density storage, and plenty of blinkenlights.
+Here&amp;rsquo;s a diagram of what we built:</description>
+    </item>
+    
+    <item>
+      <title>MarkBot adventures in ML and NLP</title>
+      <link>https://vesey.tech/post/markbot/</link>
+      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://vesey.tech/post/markbot/</guid>
+      <description>I&amp;rsquo;ve always had a love for large datasets and the interesting things one can do with them, so when my roommate sent me his entire Google Hangouts and Facebook chat history, I knew what I had to do.
+Enter MarkBot Goals In the past, I&amp;rsquo;ve implemented plenty of basic character-level RNNs and trained them on all sorts of text corpora, but this time I wanted to try something different, and utilize word embeddings to try and produce a more coherent Mark-based chatbot.</description>
+    </item>
+    
+    <item>
+      <title>test post please ignore</title>
+      <link>https://vesey.tech/post/testpostpleaseignore/</link>
+      <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://vesey.tech/post/testpostpleaseignore/</guid>
+      <description>I&amp;rsquo;m no good at writing sample / filler text
+ ((MathJax))
+(not MathJax)
+$$MORE\ MathJax$$
+$NO MathJax$
+ Look, a list!
+ foo bar baz  And here&amp;rsquo;s some code! 👍
+$(function(){ $(&amp;#39;div&amp;#39;).html(&amp;#39;I am a div.&amp;#39;); }); &amp;hellip;Smaller and smaller and smaller</description>
+    </item>
+    
+  </channel>
+</rss>

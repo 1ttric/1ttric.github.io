@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kubernetes on vesey.tech</title>
+    <link>https://vesey.tech/tags/kubernetes/</link>
+    <description>Recent content in kubernetes on vesey.tech</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://vesey.tech/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hddcheap</title>
+      <link>https://vesey.tech/project/hddcheap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vesey.tech/project/hddcheap/</guid>
+      <description>For homelabbers, locating cheap, shuckable hard drives is an occasional necessity. Amazon doesn&amp;rsquo;t expose an easy API to allow us to scrape drive data. Hddcheap gives you that live data in an easy-to-read grid format.
+(I&amp;rsquo;ve noticed the camelcamelcamel images will not load if you are on a VPN - they are likely blocking known VPN IPs)
+https://hddcheap.vesey.tech</description>
+    </item>
+    
+    <item>
+      <title>versefind</title>
+      <link>https://vesey.tech/project/versefind/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vesey.tech/project/versefind/</guid>
+      <description>Ever remember a snatch of lyrics from a song you know you have saved in your Spotify library?
+Ever search for that brief phrase in Google but find only unrelated tracks?
+That can be enough to drive a person crazy. I wrote a tool that lets you search through your library to find these earworms.
+https://versefind.vesey.tech</description>
+    </item>
+    
+  </channel>
+</rss>
