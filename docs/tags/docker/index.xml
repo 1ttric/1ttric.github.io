@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>docker on vesey.tech</title>
-    <link>https://vesey.tech/tags/docker/</link>
+    <link>https://1ttric.github.io/tags/docker/</link>
     <description>Recent content in docker on vesey.tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://1ttric.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>hddcheap</title>
-      <link>https://vesey.tech/project/hddcheap/</link>
+      <link>https://1ttric.github.io/project/hddcheap/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://vesey.tech/project/hddcheap/</guid>
+      <guid>https://1ttric.github.io/project/hddcheap/</guid>
       <description>For homelabbers, locating cheap, shuckable hard drives is an occasional necessity. Amazon doesn&amp;rsquo;t expose an easy API to allow us to scrape drive data. Hddcheap gives you that live data in an easy-to-read grid format.
 (I&amp;rsquo;ve noticed the camelcamelcamel images will not load if you are on a VPN - they are likely blocking known VPN IPs)
 https://hddcheap.vesey.tech</description>
@@ -20,10 +20,10 @@ https://hddcheap.vesey.tech</description>
     
     <item>
       <title>versefind</title>
-      <link>https://vesey.tech/project/versefind/</link>
+      <link>https://1ttric.github.io/project/versefind/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://vesey.tech/project/versefind/</guid>
+      <guid>https://1ttric.github.io/project/versefind/</guid>
       <description>Ever remember a snatch of lyrics from a song you know you have saved in your Spotify library?
 Ever search for that brief phrase in Google but find only unrelated tracks?
 That can be enough to drive a person crazy. I wrote a tool that lets you search through your library to find these earworms.
@@ -32,10 +32,10 @@ https://versefind.vesey.tech</description>
     
     <item>
       <title>Adobe Lightroom as a hosted service?</title>
-      <link>https://vesey.tech/post/lightroom/</link>
+      <link>https://1ttric.github.io/post/lightroom/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://vesey.tech/post/lightroom/</guid>
+      <guid>https://1ttric.github.io/post/lightroom/</guid>
       <description>Background As someone with a significant photo library, I often find myself wishing I could access old photos from the road.
 Although remote file access softwares can let me dive through the basic directories, I often wish I could use my Adobe Lightroom Classic instance to sort and filter the photos so I can find the ones I am looking for without searching.
 The problem is, however, most of the time I only have my phone on me - and Lightroom Classic is a Windows-only product.</description>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>mathjax on vesey.tech</title>
-    <link>https://vesey.tech/tags/mathjax/</link>
+    <link>https://1ttric.github.io/tags/mathjax/</link>
     <description>Recent content in mathjax on vesey.tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/mathjax/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://1ttric.github.io/tags/mathjax/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>test post please ignore</title>
-      <link>https://vesey.tech/post/testpostpleaseignore/</link>
+      <link>https://1ttric.github.io/post/testpostpleaseignore/</link>
       <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://vesey.tech/post/testpostpleaseignore/</guid>
+      <guid>https://1ttric.github.io/post/testpostpleaseignore/</guid>
       <description>I&amp;rsquo;m no good at writing sample / filler text
  ((MathJax))
 (not MathJax)

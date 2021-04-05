@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>windows on vesey.tech</title>
-    <link>https://vesey.tech/tags/windows/</link>
+    <link>https://1ttric.github.io/tags/windows/</link>
     <description>Recent content in windows on vesey.tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://1ttric.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Adobe Lightroom as a hosted service?</title>
-      <link>https://vesey.tech/post/lightroom/</link>
+      <link>https://1ttric.github.io/post/lightroom/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://vesey.tech/post/lightroom/</guid>
+      <guid>https://1ttric.github.io/post/lightroom/</guid>
       <description>Background As someone with a significant photo library, I often find myself wishing I could access old photos from the road.
 Although remote file access softwares can let me dive through the basic directories, I often wish I could use my Adobe Lightroom Classic instance to sort and filter the photos so I can find the ones I am looking for without searching.
 The problem is, however, most of the time I only have my phone on me - and Lightroom Classic is a Windows-only product.</description>
