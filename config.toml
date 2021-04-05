@@ -4,6 +4,7 @@ title = "vesey.tech"
 theme = "minimal"
 googleAnalytics = ""
 staticDir = ["static"]
+publishDir = "docs"
 
 pygmentsUseClasses = true
 pygmentsCodefences = true
