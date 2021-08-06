@@ -3,7 +3,7 @@ title: About
 description: Who am I?
 ---
 
-Hello. I'm a full-stack developer from Boston (now California).
+Hello. I'm a full-stack developer from Boston.
 
 I enjoy challenging problems, well-designed archtitecture, and containers!
 
