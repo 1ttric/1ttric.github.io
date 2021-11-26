@@ -68,7 +68,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.82.0" />
+ <meta name="generator" content="Hugo 0.89.4" />
         
 
         
@@ -218,13 +218,13 @@ In this manner, two directories can be kept continuously in sync by manually cop
 <h2 id="the-dockerfile">The Dockerfile</h2>
 <p>Let&rsquo;s start with the image dependency definitions.</p>
 <p>Unison is copied from an existing Dockerfile, as the Debian-available package does not install the <code>unison-fsmonitor</code> filesystem monitor which is a requirement to enable continuous monitoring.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">FROM eugenmayer/unison:2.51.2.2 as unison
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">FROM eugenmayer/unison:2.51.2.2 as unison
 
 FROM jlesage/baseimage-gui:debian-9
 
 COPY --from<span class="o">=</span>unison /usr/local/bin/unison /usr/local/bin/unison-fsmonitor /usr/local/bin/
 </code></pre></div><p>Wine requires some i386-specific packages - and here, some prerequisites are also fetched for the redistributable runtime libraries that will be installed with <code>winetricks</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">RUN dpkg --add-architecture i386 <span class="o">&amp;&amp;</span> <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">RUN dpkg --add-architecture i386 <span class="o">&amp;&amp;</span> <span class="se">\
 </span><span class="se"></span>    apt update <span class="o">&amp;&amp;</span> <span class="se">\
 </span><span class="se"></span>    add-pkg curl ca-certificates xvfb cabextract gnupg apt-transport-https <span class="o">&amp;&amp;</span> <span class="se">\
 </span><span class="se"></span>    curl https://dl.winehq.org/wine-builds/winehq.key <span class="p">|</span> apt-key add - <span class="o">&amp;&amp;</span> <span class="se">\
@@ -232,42 +232,42 @@ COPY --from<span class="o">=</span>unison /usr/local/bin/unison /usr/local/bin/u
 </span><span class="se"></span>    apt update <span class="o">&amp;&amp;</span> <span class="se">\
 </span><span class="se"></span>    add-pkg winehq-devel
 </code></pre></div><p>Pinning a version of winetricks that is not bleeding-edge alleviates <a href="https://github.com/Winetricks/winetricks/issues/163">this issue</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">RUN curl -o /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/20200412/src/winetricks <span class="o">&amp;&amp;</span> <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">RUN curl -o /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/20200412/src/winetricks <span class="o">&amp;&amp;</span> <span class="se">\
 </span><span class="se"></span>    chmod +x /usr/bin/winetricks
 </code></pre></div><p>Starting a temporary virtual framebuffer is necessary, as some of the runtime library installers need to pop up dialogs during their installation. It&rsquo;s Windows, so of course headless isn&rsquo;t a thing.
 These dependencies were determined through trial and error.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">RUN mkdir /wine <span class="o">&amp;&amp;</span> <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">RUN mkdir /wine <span class="o">&amp;&amp;</span> <span class="se">\
 </span><span class="se"></span>    Xvfb :1 <span class="p">&amp;</span> <span class="se">\
 </span><span class="se"></span>    <span class="nb">export</span> <span class="nv">WINEARCH</span><span class="o">=</span>win64 <span class="nv">WINEPREFIX</span><span class="o">=</span>/wine <span class="nv">WINEDLLOVERRIDES</span><span class="o">=</span><span class="s2">&#34;mscoree,mshtml=&#34;</span> <span class="nv">DISPLAY</span><span class="o">=</span>:1 <span class="o">&amp;&amp;</span> <span class="se">\
 </span><span class="se"></span>    wineboot -i -u <span class="o">&amp;&amp;</span> <span class="se">\
 </span><span class="se"></span>    winetricks -v -q win10 <span class="nv">fontsmooth</span><span class="o">=</span>rgb gdiplus vcrun2015 atmlib msxml4 gdiplus corefonts dotnet40 <span class="o">&amp;&amp;</span> <span class="se">\
 </span><span class="se"></span>    chown -R 1000:1000 /wine
 </code></pre></div><p><code>baseimage-gui</code> must know how large to make the virtual framebuffer, and must have the specified entrypoint script.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ENV <span class="nv">DISPLAY_WIDTH</span><span class="o">=</span><span class="m">1920</span> <span class="nv">DISPLAY_HEIGHT</span><span class="o">=</span><span class="m">1280</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ENV <span class="nv">DISPLAY_WIDTH</span><span class="o">=</span><span class="m">1920</span> <span class="nv">DISPLAY_HEIGHT</span><span class="o">=</span><span class="m">1280</span>
 
 COPY startapp.sh /startapp.sh
 </code></pre></div><h2 id="the-entrypoint-script">The entrypoint script</h2>
 <p>Let&rsquo;s keep things debuggable and safe during runtime with the following <a href="https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/">incantation</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span>
 <span class="nb">set</span> -euxo pipefail
 </code></pre></div><p>An initial sync is done to bring in the catalog from the bind-mounted directory. All Unison commands ignore any of the <code>.lrdata</code> directories,
 as these contain hundreds and hundreds of small thumbnail files which drastically slow down all syncing operations, especially at this initial sync.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir /tmp/catalog /tmp/unison
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir /tmp/catalog /tmp/unison
 <span class="nv">UNISON</span><span class="o">=</span>/tmp/unison unison /lightroom/catalog /tmp/catalog -batch -auto -repeat watch -ignore <span class="s1">&#39;Name *.lrdata&#39;</span> -logfile /dev/null <span class="p">&amp;</span>
 </code></pre></div><p>A background job is started to continuously sync the catalog back to the host (and vice versa, though the database shouldn&rsquo;t ever be modified by anything else during operation)</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir /tmp/catalog /tmp/unison
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir /tmp/catalog /tmp/unison
 <span class="nv">UNISON</span><span class="o">=</span>/tmp/unison unison /lightroom/catalog /tmp/catalog -batch -auto -repeat watch -ignore <span class="s1">&#39;Name *.lrdata&#39;</span> -logfile /dev/null <span class="p">&amp;</span>
 </code></pre></div><p>This stanza allows the user to optionally mount in an existing Lightroom configuration, so any application settings that are changed can be persisted</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> -d /lightroom/config <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> -d /lightroom/config <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
   mkdir -p <span class="s2">&#34;/wine/drive_c/users/app/Application Data/Adobe&#34;</span>
   ln -s /lightroom/config <span class="s2">&#34;/wine/drive_c/users/app/Application Data/Adobe/Lightroom&#34;</span>
 <span class="k">fi</span>
 </code></pre></div><p>Launch the app!</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">WINEARCH</span><span class="o">=</span>win64 <span class="nv">WINEPREFIX</span><span class="o">=</span>/wine <span class="nv">WINEDLLOVERRIDES</span><span class="o">=</span><span class="s2">&#34;mscoree,mshtml=&#34;</span> <span class="nv">WINEDEBUG</span><span class="o">=</span><span class="s2">&#34;-all&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">WINEARCH</span><span class="o">=</span>win64 <span class="nv">WINEPREFIX</span><span class="o">=</span>/wine <span class="nv">WINEDLLOVERRIDES</span><span class="o">=</span><span class="s2">&#34;mscoree,mshtml=&#34;</span> <span class="nv">WINEDEBUG</span><span class="o">=</span><span class="s2">&#34;-all&#34;</span>
 wine64 /lightroom/install/Lightroom.exe
 </code></pre></div><p>After the app exits, wait for any remaining syncing to complete, and then release control back to <code>baseimage-gui</code>, which will perform a shutdown of the container.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">kill</span> -SIGINT <span class="nv">$PID_UNISON</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">kill</span> -SIGINT <span class="nv">$PID_UNISON</span>
 <span class="nb">wait</span> <span class="nv">$PID_UNISON</span>
 </code></pre></div><h2 id="mount-directories">Mount directories</h2>
 <ul>

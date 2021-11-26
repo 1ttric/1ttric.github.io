@@ -68,7 +68,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.82.0" />
+ <meta name="generator" content="Hugo 0.89.4" />
         
 
         
@@ -160,13 +160,13 @@
 <h2 id="the-project">The Project</h2>
 <h3 id="parsing">Parsing</h3>
 <p>In addition to Mark&rsquo;s Google Hangouts dump, I regularly back up my entire Facebook chat history, which I incorporated.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;Loading datasets&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Loading datasets&#34;</span><span class="p">)</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;/home/will/Desktop/Python/Facebook.pkl&#34;</span><span class="p">,</span><span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">facebook</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;/home/will/Desktop/mark_hangouts.json&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">hangouts</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 
 <span class="n">sentences</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Parsing Facebook data&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Parsing Facebook data&#34;</span><span class="p">)</span>
 <span class="n">mark_uid</span> <span class="o">=</span> <span class="s1">&#39;1750122188&#39;</span>
 <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">ms</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">facebook</span><span class="p">[</span><span class="s2">&#34;messages&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
     <span class="n">ms</span> <span class="o">=</span> <span class="n">ms</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -179,7 +179,7 @@
         <span class="n">is_mark</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">author</span> <span class="o">==</span> <span class="n">mark_uid</span>
         <span class="n">sentences</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">text</span><span class="p">,</span> <span class="n">is_mark</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Parsing Hangouts data&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Parsing Hangouts data&#34;</span><span class="p">)</span>
 <span class="n">mark_chatid</span> <span class="o">=</span> <span class="s2">&#34;116404337397755400265&#34;</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">hangouts</span><span class="p">[</span><span class="s2">&#34;conversation_state&#34;</span><span class="p">]):</span>
     <span class="n">ms</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s2">&#34;conversation_state&#34;</span><span class="p">][</span><span class="s2">&#34;event&#34;</span><span class="p">]</span>
@@ -191,7 +191,7 @@
             <span class="k">continue</span>
         <span class="n">is_mark</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="s2">&#34;sender_id&#34;</span><span class="p">][</span><span class="s2">&#34;chat_id&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="n">mark_chatid</span>
         <span class="n">sentences</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">text</span><span class="p">,</span> <span class="n">is_mark</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Loaded&#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">),</span> <span class="s2">&#34;sentences&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Loaded&#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">),</span> <span class="s2">&#34;sentences&#34;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">facebook</span><span class="p">,</span> <span class="n">hangouts</span>
 </code></pre></div><p>TL;DR: Parsing Google Hangouts JSON is a pain and a half. Also, I tend to throw PEP out the window when it comes to single-use projects like this.</p>
 <p>What this code does:</p>
@@ -210,7 +210,7 @@
 </code></pre>
 <h3 id="tokenizing">Tokenizing</h3>
 <p>Now let&rsquo;s separate messages into their constituent words, or <em>tokens</em></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;Tokenizing messages&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Tokenizing messages&#34;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">import</span> <span class="nn">nltk</span>
 
@@ -222,7 +222,7 @@
     <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
         <span class="n">vocab</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="n">vocab</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;{} unfiltered vocabulary words&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> unfiltered vocabulary words&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">)))</span>
 </code></pre></div><p>What this code does:</p>
 <ul>
 <li>Lower-cases and tokenizes all the messages</li>
@@ -239,7 +239,7 @@
 </code></pre>
 <h3 id="query-response">Query, Response</h3>
 <p>Now I need to form (query, response) tuples if this is going to work as a conversational model. This is when we&rsquo;ll use the <em>is_mark</em> bool.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;Assembling response training data&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Assembling response training data&#34;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">random</span>
 
 <span class="n">BOS</span><span class="p">,</span> <span class="n">EOS</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;</span><span class="se">\x01</span><span class="s2">&#34;</span>
@@ -265,7 +265,7 @@
     <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
         <span class="n">vocab</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="n">vocab</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;{} query/response pairs</span><span class="se">\n</span><span class="s2">{} vocabulary words&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">exchanges</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> query/response pairs</span><span class="se">\n</span><span class="si">{}</span><span class="s2"> vocabulary words&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">exchanges</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>
 </code></pre></div><p>A few things are happening here:</p>
 <ul>
 <li>(query, response) tuples, or <strong>exchanges</strong>, are prepared</li>
@@ -287,7 +287,7 @@ Like I said, this data merely represents Mark&rsquo;s unique subset of the Engli
 </code></pre>
 <h3 id="converting-to-indices">Converting to Indices</h3>
 <p>Now let&rsquo;s turn these words into numbers!</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#The lower a word&#39;s lookup index, the higher its frequency in the corpus</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#The lower a word&#39;s lookup index, the higher its frequency in the corpus</span>
 <span class="kn">import</span> <span class="nn">keras</span>
 <span class="kn">from</span> <span class="nn">keras.preprocessing.sequence</span> <span class="kn">import</span> <span class="n">pad_sequences</span>
 <span class="n">lookup_table</span> <span class="o">=</span>      <span class="p">{</span><span class="n">idx</span><span class="p">:</span> <span class="n">w</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">vocab</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">vocab</span><span class="p">[</span><span class="n">w</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])}</span>
@@ -302,7 +302,7 @@ Like I said, this data merely represents Mark&rsquo;s unique subset of the Engli
 </li>
 <li>
 <p>The X and Y variables now contain the query, response data but in index format, and padded to length</p>
-<pre><code>&gt;&gt; X 
+<pre tabindex="0"><code>&gt;&gt; X 
 array([
        [  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
           0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
@@ -327,19 +327,19 @@ array([
 <p>As you can see, queries are padded at the <strong>beginning</strong> and responses are padded at the <strong>end</strong>, so you can see that we&rsquo;re going to be feeding it a certain amount of context and expecting some variable amount of response, stopping when we hit the 0&rsquo;s (which represent end-of-sequence markers)</p>
 <h3 id="vectorization">Vectorization</h3>
 <p>The fun begins! Now we are going to train with the GloVe algorithm to embed our words into a high dimensional space that encodes semantic content and relationships.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;Building vocabulary model&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Building vocabulary model&#34;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">glove</span>
 <span class="kn">import</span> <span class="nn">multiprocessing</span>
 
 <span class="n">corpus</span> <span class="o">=</span> <span class="n">glove</span><span class="o">.</span><span class="n">Corpus</span><span class="p">()</span>
 <span class="n">corpus</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">glove_model</span> <span class="o">=</span> <span class="n">glove</span><span class="o">.</span><span class="n">Glove</span><span class="p">(</span><span class="n">no_components</span><span class="o">=</span><span class="n">WORD_EMBEDDING_COMPONENTS</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-<span class="n">glove_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">no_threads</span><span class="o">=</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">(),</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">glove_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">no_threads</span><span class="o">=</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">(),</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">sentences</span>    
 </code></pre></div><p>The model has now been trained on the available sentences and we can do useful things with the resulting word embeddings! But we&rsquo;re not going to. Instead we&rsquo;re going to virtualize my roommate.</p>
 <h3 id="building-the-neural-model">Building the neural model</h3>
 <p>We&rsquo;re into the thick of it now. I have adapted a model I found <a href="https://github.com/oswaldoludwig/Seq2seq-Chatbot-for-Keras">here</a> that implements a sequence-to-sequence architecture.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;Building neural chatbot model&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Building neural chatbot model&#34;</span><span class="p">)</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span> 
 <span class="n">input_context</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">SEQUENCE_LEN</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;input_context&#39;</span><span class="p">)</span>
 <span class="n">inputanswer_chunkanswer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">SEQUENCE_LEN</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;inputanswer_chunkanswer&#39;</span><span class="p">)</span>
@@ -383,12 +383,12 @@ array([
 </code></pre>
 <h3 id="training-the-neural-model">Training the neural model</h3>
 <p>We have to do a lot of chunking here because the size of the arrays we&rsquo;re creating is so large that I keep running out of RAM</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">chunk_size</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="n">NUM_CHUNKS</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">chunk_size</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="n">NUM_CHUNKS</span>
 <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">EPOCHS</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Training epoch {}/{}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">EPOCHS</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Training epoch </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">EPOCHS</span><span class="p">))</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">chunk_idx</span><span class="p">,</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">chunk_size</span><span class="p">)):</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Training chunk {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chunk_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Training chunk </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chunk_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
             <span class="n">X_chunk</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">chunk</span><span class="p">:</span> <span class="n">chunk</span><span class="o">+</span><span class="n">chunk_size</span><span class="p">]</span>
             <span class="n">Y_chunk</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">chunk</span><span class="p">:</span> <span class="n">chunk</span><span class="o">+</span><span class="n">chunk_size</span><span class="p">]</span>
 
@@ -427,7 +427,7 @@ array([
 <p>For example, given the vector arrays for the query string &ldquo;what is your name&rdquo; and partial answer string &ldquo;my name is&rdquo;, it would output a vector that is very close to the vector for the word &ldquo;mark&rdquo; (assuming Mark has answered this question often enough for it to learn that response)</p>
 <p>Now all we have to do is test it!</p>
 <h3 id="testing-the-chatbot">Testing the chatbot!</h3>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;Testing chatbot&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Testing chatbot&#34;</span><span class="p">)</span>
 <span class="c1">#Helper function to sample an index from an array of probabilities</span>
 <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
@@ -438,7 +438,7 @@ array([
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">probas</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">ask</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
     <span class="n">query</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">lookup_table</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">lower</span><span class="p">())])</span>
     <span class="c1">#Pad to length of query sentence</span>
     <span class="n">query</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="o">-</span><span class="n">SEQUENCE_LEN</span><span class="p">:],</span> <span class="n">pad_width</span><span class="o">=</span><span class="p">(</span><span class="n">SEQUENCE_LEN</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">query</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&#34;constant&#34;</span><span class="p">)</span>
@@ -458,7 +458,7 @@ array([
             <span class="k">break</span>
 
     <span class="n">response</span> <span class="o">=</span> <span class="s2">&#34; &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">lookup_table</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">token</span><span class="p">)]</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">lookup_table</span><span class="p">[</span><span class="n">BOS</span><span class="p">],</span> <span class="n">lookup_table</span><span class="p">[</span><span class="n">EOS</span><span class="p">])])</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
 <span class="n">ask</span><span class="p">(</span><span class="s2">&#34;What is the meaning of life?&#34;</span><span class="p">)</span>
 </code></pre></div><p>The sample function allows us to introduce some uncertainty into the reply, so it&rsquo;s not the same every time.</p>
