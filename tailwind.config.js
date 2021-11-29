@@ -9,7 +9,7 @@ module.exports = {
     darkMode: false,
     theme: {
         fontFamily: {
-            "mono": "JetBrainsMonoNL"
+            "mono": "JetBrains Mono"
         },
         // Add base colors to Tailwind CSS
         colors: {

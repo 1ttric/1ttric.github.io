@@ -202,8 +202,7 @@ select { /* 1 */
 Correct the inability to style clickable types in iOS and Safari.
 */
 
-button,
-[type='button'] {
+button {
   -webkit-appearance: button;
 }
 
@@ -478,7 +477,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: JetBrainsMonoNL;
+  font-family: JetBrains Mono;
 }
 
 /**
@@ -545,34 +544,6 @@ video {
 .prose strong {
   color: #EEE8D5;
   font-weight: 600;
-}
-
-.prose ol[type="a"] {
-  --list-counter-style: lower-alpha;
-}
-
-.prose ol[type="a" s] {
-  --list-counter-style: lower-alpha;
-}
-
-.prose ol[type="I"] {
-  --list-counter-style: upper-roman;
-}
-
-.prose ol[type="i"] {
-  --list-counter-style: lower-roman;
-}
-
-.prose ol[type="I" s] {
-  --list-counter-style: upper-roman;
-}
-
-.prose ol[type="i" s] {
-  --list-counter-style: lower-roman;
-}
-
-.prose ol[type="1"] {
-  --list-counter-style: decimal;
 }
 
 .prose ol > li {
@@ -1318,7 +1289,7 @@ video {
 }
 
 .font-mono {
-  font-family: JetBrainsMonoNL;
+  font-family: JetBrains Mono;
 }
 
 .text-sm {
@@ -1355,86 +1326,6 @@ video {
   --tw-ring-color: rgba(59, 130, 246, 0.5);
   --tw-ring-offset-shadow: 0 0 #0000;
   --tw-ring-shadow: 0 0 #0000;
-}
-
-@font-face {
-  font-family: "JetBrainsMonoNL";
-
-  src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-Regular.ttf") format("truetype");
-
-  font-weight: 400;
-
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "JetBrainsMonoNL";
-
-  src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-Medium.ttf") format("truetype");
-
-  font-weight: 500;
-
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "JetBrainsMonoNL";
-
-  src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-SemiBold.ttf") format("truetype");
-
-  font-weight: 600;
-
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "JetBrainsMonoNL";
-
-  src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-Bold.ttf") format("truetype");
-
-  font-weight: 700;
-
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "JetBrainsMonoNL";
-
-  src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-ExtraBold.ttf") format("truetype");
-
-  font-weight: 800;
-
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "JetBrainsMonoNL";
-
-  src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-Light.ttf") format("truetype");
-
-  font-weight: 300;
-
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "JetBrainsMonoNL";
-
-  src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-ExtraLight.ttf") format("truetype");
-
-  font-weight: 200;
-
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "JetBrainsMonoNL";
-
-  src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-Thin.ttf") format("truetype");
-
-  font-weight: 100;
-
-  font-style: normal;
 }
 
 @media (min-width: 640px) {
