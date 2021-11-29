@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "JetBrainsMonoNL";
+    src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "JetBrainsMonoNL";
+    src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "JetBrainsMonoNL";
+    src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "JetBrainsMonoNL";
+    src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "JetBrainsMonoNL";
+    src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "JetBrainsMonoNL";
+    src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "JetBrainsMonoNL";
+    src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-ExtraLight.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "JetBrainsMonoNL";
+    src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/ttf/JetBrainsMonoNL-Thin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+}

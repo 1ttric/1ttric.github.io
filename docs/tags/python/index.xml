@@ -1,21 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>python on vesey.tech</title>
-    <link>https://vesey.tech/tags/python/</link>
-    <description>Recent content in python on vesey.tech</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 02 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/python/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>MarkBot adventures in ML and NLP</title>
-      <link>https://vesey.tech/post/markbot/</link>
-      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://vesey.tech/post/markbot/</guid>
-      <description>I&amp;rsquo;ve always had a love for large datasets and the interesting things one can do with them, so when my roommate sent me his entire Google Hangouts and Facebook chat history, I knew what I had to do.
-Enter MarkBot Goals In the past, I&amp;rsquo;ve implemented plenty of basic character-level RNNs and trained them on all sorts of text corpora, but this time I wanted to try something different, and utilize word embeddings to try and produce a more coherent Mark-based chatbot.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>python on vesey.tech</title><link>https://vesey.tech/tags/python/</link><description>Recent content in python on vesey.tech</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 02 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>MarkBot</title><link>https://vesey.tech/items/markbot/</link><pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate><guid>https://vesey.tech/items/markbot/</guid><description>I&amp;rsquo;ve always had a love for large datasets and the interesting things one can do with them, so when my roommate sent me his entire Google Hangouts and Facebook chat history, I knew what I had to do.
+Enter MarkBot Goals In the past, I&amp;rsquo;ve implemented plenty of basic character-level RNNs and trained them on all sorts of text corpora, but this time I wanted to try something different, and utilize word embeddings to try and produce a more coherent Mark-based chatbot.</description></item></channel></rss>

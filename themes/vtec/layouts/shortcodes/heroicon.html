@@ -1,0 +1,3 @@
+<span style="display: inline-block; margin: 0; width: {{ .Get 1 | default 1 }}rem; height: {{ .Get 1 | default 1 }}rem;">
+{{ readFile ( printf "/node_modules/heroicons/solid/%s.svg" ( .Get 0 ) ) | safeHTML }}
+</span>
