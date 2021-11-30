@@ -1,5 +1,6 @@
 ---
 title: MarkBot
+description: "Training a simple ML model on my roommate's chat history"
 date: 2017-10-02
 tags: ["python", "ML", "NLP"]
 ---

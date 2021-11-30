@@ -1,5 +1,6 @@
 ---
 title: "Adobe Lightroom as a hosted service?"
+description: "Accessing Lightroom CC remotely with Docker and Wine"
 date: 2020-04-25
 tags: ["windows", "adobe", "vnc", "linux", "docker"]
 ---
