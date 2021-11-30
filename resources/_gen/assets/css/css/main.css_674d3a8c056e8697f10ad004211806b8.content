@@ -477,7 +477,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: JetBrains Mono;
+  font-family: JetBrains Mono, mono;
 }
 
 /**
@@ -1289,7 +1289,7 @@ video {
 }
 
 .font-mono {
-  font-family: JetBrains Mono;
+  font-family: JetBrains Mono, mono;
 }
 
 .text-sm {
