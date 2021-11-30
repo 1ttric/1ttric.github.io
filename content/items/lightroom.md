@@ -228,4 +228,4 @@ After deploying it on my local Kubernetes cluster and configuring a proper entry
 
 Enabling hardware acceleration (OpenGL) is left as a future exercise, for now.
 
-![Lightroom running in a browser](/images/lightroom-browser.png)
+![Lightroom running in a browser](/images/lightroom-browser.webp)
