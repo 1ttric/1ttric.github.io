@@ -9,6 +9,7 @@
     "heroicons": "^1.0.5",
     "postcss": "^8.4.1",
     "postcss-cli": "^9.0.2",
+    "postcss-import-url": "^7.0.0",
     "tailwindcss": "^2.2.19"
   }
 }
