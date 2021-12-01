@@ -8,7 +8,7 @@ tags: ["python", "statistics"]
 I am part of a group chat that receives quite a bit of activity every day - given the hundreds of thousands of messages
 sent, I figured there must be some interesting trends that have become apparent. The following is a brief analysis.
 
-Do note that names have been reduced to initials for privacy's sake.
+Do note that names have been reduced to initials for privacy's sake. You can probably still figure out that WV is yours truly 🙂
 
 ## Reaction likelihood
 
