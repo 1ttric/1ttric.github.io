@@ -6,4 +6,6 @@
 <meta name="keywords" content="Will,William,Vesey,website,projects,personal,github,resume,blog,tech"/>
 <title>vesey.tech</title>
 {{ $styles := resources.Get "css/main.css" | postCSS | minify | fingerprint | resources.PostProcess }}
-<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}"/>
+<style>
+{{ $styles.Content }}
+</style>
