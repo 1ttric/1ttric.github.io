@@ -12,15 +12,34 @@
 <main class="w-full h-full p-2 font-mono flex align-center">
 <div class="w-full h-full p-2 font-mono flex flex-col items-center divide-y-2 select-none text-fg1">
 <div class="flex-0 prose-lg max-w-none pb-4">
-<h1>About</h1>
+<h1>Messenger Analytics</h1>
 </div>
 <article class="flex-1 prose max-w-full pt-8 text-fg1">
-<p>Hello. I&rsquo;m a full-stack developer from Boston.</p>
-<p>I enjoy challenging problems, well-designed archtitecture, and containers!</p>
-<p>Find out more at the links below:</p>
-<p><a href=https://docs.google.com/document/d/1llvKvzz8P6FbU1bLYreTmF4s0JDI6hF0j6bN8_2rDps>resume</a></p>
-<p><a href=https://linkedin.com/in/will-vesey-312359135>linkedin</a></p>
-<p><a href=https://github.com/1ttric>github</a></p>
+<p>I am part of a group chat that receives quite a bit of activity every day - given the hundreds of thousands of messages
+sent, I figured there must be some interesting trends that have become apparent. The following is a brief analysis.</p>
+<p>Do note that names have been reduced to initials for privacy&rsquo;s sake.</p>
+<h2 id=reaction-likelihood>Reaction likelihood</h2>
+<p>The first metric I was interested in viewing was a heatmap of the likelihood that one user will react to another user with a given emoji. But it&rsquo;s not quite that simple.</p>
+<p>Some users, as a result of their natural gregariousness, will attract more <em>total</em> reactions, but perhaps not more <em>proportional</em> reactions.</p>
+<p>And, similarly, some users are more predisposed to reacting than others - another factor which must be taken into consideration.</p>
+<p>The matrix produced from each pair of possible user interactions has these two normalization options added, so you can view the data taking into consideration any of these confounding factors.</p>
+<p><a href=https://messenger-analysis.svc.vesey.tech/reactions>Link</a></p>
+<h2 id=message-readability>Message readability</h2>
+<p>Some users may be more predisposed to using fancy words in everyday messages.</p>
+<p>In order to see whether this is true, I&rsquo;ve run the standard Flesch–Kincaid readability metric across all user text.
+Some additional interesting readability metrics are also included.</p>
+<p>The results are displayed in a histogram for ease of viewing the <em>distribution</em> of a user&rsquo;s message readability.</p>
+<p><a href=https://messenger-analysis.svc.vesey.tech/readability>Link</a></p>
+<h2 id=time-of-day>Time of day</h2>
+<p>The times during which users tend to send messages can suggest many different things, including:</p>
+<ul>
+<li>Work schedule</li>
+<li>Sleep hygiene</li>
+<li>Time zone</li>
+<li>University attendance</li>
+</ul>
+<p>I&rsquo;ve included a date slider to view how this metric changes over time. This visualization makes it easy to confirm when someone I know moves time zones!</p>
+<p><a href=https://messenger-analysis.svc.vesey.tech/timeofday>Link</a></p>
 </article>
 </div>
 </main>
