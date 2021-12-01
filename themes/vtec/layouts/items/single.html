@@ -10,13 +10,7 @@
     {{ else }}
     <div class="w-full h-full p-2 font-mono flex flex-col items-center divide-y-2 select-none text-fg1">
         <div class="flex-0 prose-lg max-w-none pb-4">
-            <h1>
-                {{ if .Title }}
-                {{ .Title }}
-                {{ else if .File.BaseFileName }}
-                {{ .File.BaseFileName }}
-                {{ end }}
-            </h1>
+            <h1>{{ .Title | default .File.BaseFileName }}</h1>
         </div>
         <article class="flex-1 prose max-w-full pt-8 text-fg1">
             {{ .Content }}
