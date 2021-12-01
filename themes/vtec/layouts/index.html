@@ -10,7 +10,7 @@
         {{ range .Pages }}
         <div class="relative border border-bg0 p-2 flex justify-between hover:bg-bg4 overflow-hidden select-none"
              style="min-height: 10rem">
-            <div class="flex-0 p-2 flex flex-col justify-between bg-mycol">
+            <div class="flex-1 p-2 flex flex-col justify-between bg-mycol">
                 <a href="{{ .Permalink | safeURL }}" class="flex-0 underline text-lg text-fg1">
                     {{ .File.BaseFileName }}
                 </a>
