@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 /* Customizations to Tailwind Typography */
-.prose > div.highlight > pre.chroma > code {
+.prose  > pre > code {
     white-space: pre-wrap;
-    word-break: break-word
 }
 
 .prose p code {

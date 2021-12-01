@@ -39,6 +39,8 @@ module.exports = {
                             a: {color: theme("colors.fg1.DEFAULT")},
                             code: {color: theme("colors.fg1.DEFAULT")},
                             p: {code: {backgroundColor: theme("colors.bg3.DEFAULT")}},
+                            div: {pre: {backgroundColor: theme("colors.bg1.DEFAULT") + " !important"}},
+                            pre: {backgroundColor: theme("colors.bg1.DEFAULT")},
                         }
                     }
                 }
