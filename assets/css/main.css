@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Customizations to Tailwind Typography */
+.prose > div.highlight > pre.chroma > code {
+    white-space: pre-wrap;
+    word-break: break-word
+}
+
+.prose p code {
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+.prose p code::before {
+    content: "";
+}
+
+.prose p code::after {
+    content: "";
+}
+
+.prose img {
+    width: 100%;
+}
+
+
 @font-face {
     font-family: "JetBrains Mono";
     src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.242/fonts/webfonts/JetBrainsMono-Regular.woff2") format("woff2");

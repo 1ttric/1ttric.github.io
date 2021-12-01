@@ -25,12 +25,9 @@ module.exports = {
         },
         extend: {
             typography: theme => {
-                console.error("deadbeef", theme("colors"))
                 return {
                     DEFAULT: {
                         css: {
-                            "code::before": {content: "''"},
-                            "code::after": {content: "''"},
                             h1: {color: theme("colors.fg1.DEFAULT")},
                             h2: {color: theme("colors.fg1.DEFAULT")},
                             h3: {color: theme("colors.fg1.DEFAULT")},
@@ -41,13 +38,7 @@ module.exports = {
                             strong: {color: theme("colors.fg3.DEFAULT")},
                             a: {color: theme("colors.fg1.DEFAULT")},
                             code: {color: theme("colors.fg1.DEFAULT")},
-                            "div.highlight > pre.chroma": {backgroundColor: theme("colors.bg3.DEFAULT")},
-                            "p code": {
-                                paddingLeft: ".5rem",
-                                paddingRight: ".5rem",
-                                backgroundColor: theme("colors.bg3.DEFAULT")
-                            },
-                            img: {width: "100%"},
+                            p: {code: {backgroundColor: theme("colors.bg3.DEFAULT")}},
                         }
                     }
                 }
