@@ -42,10 +42,6 @@ module.exports = {
                             a: {color: theme("colors.fg1.DEFAULT")},
                             code: {color: theme("colors.fg1.DEFAULT")},
                             "div.highlight > pre.chroma": {backgroundColor: theme("colors.bg3.DEFAULT")},
-                            "div.highlight > pre.chroma > code": {
-                                whiteSpace: "pre-wrap",
-                                wordBreak: "break-word",
-                            },
                             "p code": {
                                 paddingLeft: ".5rem",
                                 paddingRight: ".5rem",

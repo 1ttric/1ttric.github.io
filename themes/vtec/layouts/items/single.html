@@ -8,7 +8,7 @@
     {{ if .Params.Fullpage }}
     {{ .Content }}
     {{ else }}
-    <div class="w-screen h-full p-2 font-mono flex flex-col items-center divide-y-2 select-none text-fg1">
+    <div class="w-full h-full p-2 font-mono flex flex-col items-center divide-y-2 select-none text-fg1">
         <div class="flex-0 prose-lg max-w-none pb-4">
             <h1>
                 {{ if .Title }}
@@ -18,7 +18,7 @@
                 {{ end }}
             </h1>
         </div>
-        <article class="flex-1 prose max-w-none pt-8 text-fg1">
+        <article class="flex-1 prose max-w-full pt-8 text-fg1">
             {{ .Content }}
         </article>
     </div>
