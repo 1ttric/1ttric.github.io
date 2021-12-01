@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 /* Customizations to Tailwind Typography */
-.prose  > pre > code {
-    white-space: pre-wrap;
+.prose pre > code {
+    white-space: pre-wrap !important;
 }
 
 .prose p code {
