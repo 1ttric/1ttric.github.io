@@ -1,0 +1,31 @@
+{
+  "name": "face-recog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@techstark/opencv-js": "^4.5.4-release.1",
+    "@tensorflow/tfjs": "^3.11.0",
+    "@types/lodash": "^4.14.177",
+    "@types/plotly.js": "^1.54.17",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "@types/react-plotly.js": "^2.5.0",
+    "lodash": "^4.17.21",
+    "path-browserify": "^1.0.1",
+    "plotly.js": "^2.7.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-plotly.js": "^2.5.1",
+    "react-webcam": "^6.0.0",
+    "terser-webpack-plugin": "^5.2.5",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1"
+  },
+  "scripts": {
+    "build": "webpack",
+    "serve": "webpack -w"
+  }
+}
