@@ -6,7 +6,6 @@ publishDir = "docs"
 
 [markup]
 [markup.highlight]
-#noClasses = false
 style = "algol"
 [markup.goldmark.renderer]
 unsafe = true
