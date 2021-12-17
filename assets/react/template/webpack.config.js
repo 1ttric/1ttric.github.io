@@ -1,8 +1,15 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: "production",
+    mode: "development",
+    devtool: "inline-source-map",
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "./src/index.html")
+        })
+    ],
     optimization: {
         minimize: true,
         minimizer: [
@@ -33,5 +40,11 @@ module.exports = {
                 loader: "ts-loader"
             }
         ]
-    }
+    },
+    devServer: {
+        static: {
+            directory: path.join(__dirname, "./build"),
+        },
+        compress: true,
+    },
 };
