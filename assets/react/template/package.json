@@ -7,23 +7,19 @@
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "terser-webpack-plugin": "^5.2.5",
-    "ts-loader": "^9.2.6",
-    "typescript": "^4.5.2",
-    "webpack": "^5.64.4",
-    "webpack-cli": "^4.9.1"
+    "react-dom": "^17.0.2"
   },
   "scripts": {
-    "build": "webpack --progress --mode production",
-    "build-watch": "webpack -w --progress --mode production",
-    "serve": "webpack serve --live-reload"
+    "build": "esbuild ./src/index.tsx --bundle --minify --outfile=./build/bundle.js",
+    "build-watch": "esbuild ./src/index.tsx --bundle --minify --watch --outfile=./build/bundle.js",
+    "build-dev": "esbuild ./src/index.tsx --bundle --sourcemap=external --outfile=./build/bundle.js",
+    "build-dev-watch": "esbuild ./src/index.tsx --bundle --sourcemap=external --watch --outfile=./build/bundle.js"
   },
   "devDependencies": {
+    "typescript": "^4.5.2",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
-    "eslint": "^8.4.1",
-    "html-webpack-plugin": "^5.5.0",
-    "webpack-dev-server": "^4.6.0"
+    "esbuild": "^0.14.5",
+    "eslint": "^8.4.1"
   }
 }

@@ -1,4 +1,0 @@
-{{ $app := ( .Get 0 | printf "react/%s/build/bundle.js" | resources.Get ) }}
-<div id="react-app"></div>
-<script src="{{ $app.RelPermalink }}"></script>
-<noscript>You need Javascript to view this content</noscript>

@@ -1,7 +1,6 @@
 baseURL = "https://vesey.tech/"
 languageCode = "en-us"
 title = "vesey.tech"
-theme = "vtec"
 publishDir = "docs"
 
 [markup]

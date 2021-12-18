@@ -2,8 +2,10 @@ import ReactDOM from "react-dom";
 import React, {FC, Suspense, useEffect, useMemo, useState} from "react";
 import {Canvas, useLoader, useThree} from "@react-three/fiber";
 import {Environment, Loader, OrbitControls, Sphere, Torus, useTexture} from "@react-three/drei";
-import {AdditiveBlending, BackSide, CanvasTexture, Color, FrontSide, PMREMGenerator, Texture} from "three";
+import {AdditiveBlending, BackSide, CanvasTexture, Color, FrontSide, MOUSE, PMREMGenerator, Texture} from "three";
 import {EXRLoader} from "three/examples/jsm/loaders/EXRLoader";
+import pLimit from "p-limit";
+import {shuffle} from "lodash";
 
 /**
  * Gets a remote cloudmap texture, stitching tiles together to form an equirectangular full-globe map
@@ -17,19 +19,25 @@ const useCloudTexture = (): Texture => {
         const ctx = document.createElement("canvas").getContext("2d") as CanvasRenderingContext2D;
         ctx.canvas.width = 2 ** ZOOMLEVEL * TILESIZE
         ctx.canvas.height = 2 ** ZOOMLEVEL * TILESIZE
-        // document.getElementById("debug")?.append(ctx.canvas)
+
+        const limit = pLimit(4)
+        const promises: (() => Promise<void>)[] = []
         for (let i = 0; i < 2 ** ZOOMLEVEL; i++) {
             for (let j = 0; j < 2 ** ZOOMLEVEL; j++) {
-                const img = new Image();
-                img.crossOrigin = "anonymous"
-                img.onload = () => {
-                    ctx.filter = 'grayscale(1) invert(1) brightness(5)';
-                    ctx.drawImage(img, i * TILESIZE, j * TILESIZE)
-                    setTexture(new CanvasTexture(ctx.canvas))
-                }
-                img.src = `https://a.sat.owm.io/vane/2.0/weather/CL/${ZOOMLEVEL}/${i}/${j}?appid=9de243494c0b295cca9337e1e96b00e2`
+                promises.push(() => new Promise<void>(res => {
+                    const img = new Image();
+                    img.crossOrigin = "anonymous"
+                    img.onload = () => {
+                        ctx.filter = 'grayscale(1) invert(1) brightness(5)';
+                        ctx.drawImage(img, i * TILESIZE, j * TILESIZE)
+                        setTexture(new CanvasTexture(ctx.canvas))
+                        res()
+                    }
+                    img.src = `https://a.sat.owm.io/vane/2.0/weather/CL/${ZOOMLEVEL}/${i}/${j}?appid=9de243494c0b295cca9337e1e96b00e2`
+                }))
             }
         }
+        shuffle(promises).map(p => limit(p))
     }, [])
 
     return texture
@@ -66,7 +74,8 @@ const applyFilter = (texture: Texture, filter: string): Texture => {
 const App3D: FC = () => {
     const {gl, scene, camera} = useThree()
     const skyMap = useLoader(EXRLoader as any, "/images/earth/starmap_2020_4k.exr") as Texture
-    scene.background = (new PMREMGenerator(gl)).fromEquirectangular(skyMap).texture;
+
+    // scene.background = (new PMREMGenerator(gl)).fromEquirectangular(skyMap).texture;
 
     const [colorMap, bumpMap, specularMap, lightMap] = useTexture([
         "/images/earth/world.200412.3x5400x2700.jpg",
@@ -77,25 +86,26 @@ const App3D: FC = () => {
     const lightMapFiltered = useMemo(() => applyFilter(lightMap, "grayscale(1) contrast(1.2) brightness(0.4)"), [lightMap])
     document.getElementById("debug")?.append(lightMapFiltered.image)
 
-
-    // const skyMap = useLoader(EXRLoader as any, "/images/earth/starmap_2020_4k.exr") as Texture;
-
     const cloudMap = useCloudTexture();
 
     // console.log("using textures", colorMap, bumpMap, specularMap, lightMapFiltered, cloudMap)
 
     return (
         <>
-            <OrbitControls/>
-            {/*<Environment files="/images/earth/starmap_2020_4k.exr"/>*/}
+            <OrbitControls
+                enableDamping
+                minDistance={1.4}
+                maxDistance={1.9}
+                enablePan={false}
+                mouseButtons={{LEFT: MOUSE.ROTATE, RIGHT: MOUSE.ROTATE, MIDDLE: MOUSE.ROTATE}}/>
+            <Sphere args={[500, 32, 64]}>
+                <meshBasicMaterial attach="material" map={skyMap} side={BackSide}/>
+            </Sphere>
 
-            <Torus position={[10, 0, 0]}/>
             <ambientLight intensity={0.01}/>
             <directionalLight intensity={5} position={[1, 0, 0]}/>
 
-            {/*<Sphere args={[500, 32, 64]}>*/}
-            {/*    <meshBasicMaterial attach="material" map={skyMap} side={BackSide}/>*/}
-            {/*</Sphere>*/}
+            {/*<Torus position={[2, 0, 0]}/>*/}
 
             <Sphere name="earth" args={[1, 128, 256]}>
                 <meshPhysicalMaterial
@@ -119,9 +129,9 @@ const App3D: FC = () => {
                     alphaMap={cloudMap}
                 />
             </Sphere>
-            <Sphere name="atmosphere" args={[1.5, 32, 64]}>
+            <Sphere name="atmosphere" args={[1.004, 128, 256]}>
                 <shaderMaterial
-                    // transparent
+                    transparent
                     // uniforms={{
                     //     c: {value: 0},
                     //     p: {value: 6},
@@ -154,13 +164,13 @@ const App3D: FC = () => {
                     varying vec3 vertexNormal;
                     void main() {
                         vertexNormal = normalize(normalMatrix * normal);
-                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 0.9);
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 0.95);
                     }
                     `}
                     fragmentShader={`
                     varying vec3 vertexNormal;
                     void main() {
-                        float intensity = pow(0.6 - dot(vertexNormal, vec3(0, 0, 1.0)), 2.0);
+                        float intensity = pow(0.3 - dot(vertexNormal, vec3(0, 0, 1.0)), 2.0);
                         gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
                     }
                     `}
