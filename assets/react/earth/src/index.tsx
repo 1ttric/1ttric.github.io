@@ -16,38 +16,109 @@ import {
 import pLimit from "p-limit";
 import {shuffle} from "lodash";
 import SunCalc from "suncalc";
+import Jimp from "jimp/browser/lib/jimp";
+import {DateTime} from "luxon";
+
+const jimpToCanvas = (img: Jimp): HTMLCanvasElement => {
+    const ctx = document.createElement("canvas").getContext("2d") as CanvasRenderingContext2D;
+    ctx.canvas.width = img.getWidth();
+    ctx.canvas.height = img.getHeight();
+    ctx.putImageData(new ImageData(
+        Uint8ClampedArray.from(img.bitmap.data),
+        img.bitmap.width,
+        img.bitmap.height
+    ), 0, 0)
+    return ctx.canvas
+}
 
 /**
- * Gets a remote cloudmap texture, stitching tiles together to form an equirectangular full-globe map
+ *  Taken from https://openweathermap.org/weathermap?layer=clouds
  */
-const useCloudTexture = (): Texture => {
+const useOpenWeatherMapCloudTexture = (): Texture => {
     const [texture, setTexture] = useState<Texture>(new CanvasTexture(document.createElement("canvas")));
 
     useEffect(() => {
-        const ZOOMLEVEL = 3
-        const TILESIZE = 256
-        const ctx = document.createElement("canvas").getContext("2d") as CanvasRenderingContext2D;
-        ctx.canvas.width = 2 ** ZOOMLEVEL * TILESIZE
-        ctx.canvas.height = 2 ** ZOOMLEVEL * TILESIZE
+        const asyncFn = async () => {
+            const ZOOMLEVEL = 3
+            const TILESIZE = 256
+            const img = new Jimp(2 ** ZOOMLEVEL * TILESIZE, 2 ** ZOOMLEVEL * TILESIZE)
+            const chunks: [Jimp, number, number][] = [];
 
-        const limit = pLimit(4)
-        const promises: (() => Promise<void>)[] = []
-        for (let i = 0; i < 2 ** ZOOMLEVEL; i++) {
-            for (let j = 0; j < 2 ** ZOOMLEVEL; j++) {
-                promises.push(() => new Promise<void>(res => {
-                    const img = new Image();
-                    img.crossOrigin = "anonymous"
-                    img.onload = () => {
-                        ctx.filter = 'grayscale(1) invert(1) brightness(7)';
-                        ctx.drawImage(img, i * TILESIZE, j * TILESIZE)
-                        setTexture(new CanvasTexture(ctx.canvas))
-                        res()
-                    }
-                    img.src = `https://a.sat.owm.io/vane/2.0/weather/CL/${ZOOMLEVEL}/${i}/${j}?appid=9de243494c0b295cca9337e1e96b00e2`
-                }))
+            const limit = pLimit(4)
+            const promises: (() => Promise<void>)[] = []
+            for (let i = 0; i < 2 ** ZOOMLEVEL; i++) {
+                for (let j = 0; j < 2 ** ZOOMLEVEL; j++) {
+                    promises.push(() => new Promise<void>(res => {
+                        const asyncFn = async () => {
+                            const url = `https://a.sat.owm.io/vane/2.0/weather/CL/${ZOOMLEVEL}/${i}/${j}?appid=9de243494c0b295cca9337e1e96b00e2`
+                            const chunk = await Jimp.read(url)
+                            chunks.push([chunk, i, j])
+                            res()
+                        }
+                        asyncFn().catch(console.error)
+                    }))
+                }
             }
+            await Promise.all(shuffle(promises).map(p => limit(p)))
+
+            for (const [chunk, i, j] of chunks) {
+                img.blit(chunk, i * TILESIZE, j * TILESIZE, 1, 9, 256, 256)
+            }
+            const canvas = jimpToCanvas(img)
+            setTexture(new CanvasTexture(canvas))
         }
-        shuffle(promises).map(p => limit(p))
+        asyncFn().catch(console.error)
+    }, [])
+
+    return texture
+}
+
+/**
+ * Taken from https://www.windy.com/-Clouds-clouds
+ */
+const useWindyCloudTexture = (): Texture => {
+    const [texture, setTexture] = useState<Texture>(new CanvasTexture(document.createElement("canvas")));
+
+    useEffect(() => {
+        const asyncEffect = async () => {
+            const ZOOMLEVEL = 3
+            const TILESIZE = 256
+            const img = new Jimp(2 ** ZOOMLEVEL * TILESIZE, 2 ** ZOOMLEVEL * TILESIZE)
+            const chunks: [Jimp, number, number][] = [];
+            const dateLuxon = DateTime.utc()
+
+            const limit = pLimit(16)
+            const promises: (() => Promise<void>)[] = []
+            for (let i = 0; i < 2 ** ZOOMLEVEL; i++) {
+                for (let j = 0; j < 2 ** ZOOMLEVEL; j++) {
+                    promises.push(() => new Promise<void>(res => {
+                        const asyncFn = async () => {
+                            const url = dateLuxon.toFormat(`'https://ims.windy.com/im/v3.0/forecast/ecmwf-hres/'yyyyLLdd'12/'yyyyLLddHH'/wm_grid_257/${ZOOMLEVEL}/${i}/${j}/cloudsrain-surface.jpg'`)
+                            const chunk = await Jimp.read(url)
+                            chunks.push([chunk, i, j])
+                            res()
+                        }
+                        asyncFn().catch(console.error)
+                    }))
+                }
+            }
+            await Promise.all(shuffle(promises).map(p => limit(p)))
+
+            for (const [chunk, i, j] of chunks) {
+                img.blit(chunk, i * TILESIZE, j * TILESIZE, 1, 9, 256, 256)
+            }
+            img.color([
+                {apply: "green", params: [-256]}
+            ])
+            img.grayscale()
+            img.brightness(0.35)
+            img.contrast(0.8)
+            img.normalize()
+
+            const canvas = jimpToCanvas(img)
+            setTexture(new CanvasTexture(canvas))
+        }
+        asyncEffect().catch(console.error)
     }, [])
 
     return texture
@@ -86,9 +157,7 @@ const applyFilter = (texture: Texture, filter: string): Texture => {
 }
 
 const App3D: FC = () => {
-    const {gl, scene, camera} = useThree()
     const skyMap = useLoader(TextureLoader, "/images/earth/starmap_2020_4k.jpg") as Texture
-
     const [colorMap, bumpMap, specularMap, lightMap] = useTexture([
         "/images/earth/world.200412.3x5400x2700.jpg",
         "/images/earth/earthbump4k.jpg",
@@ -96,7 +165,7 @@ const App3D: FC = () => {
         "/images/earth/earthlights4k.jpg",
     ]) as Texture[];
     const lightMapFiltered = useMemo(() => applyFilter(lightMap, "grayscale(1) contrast(1.2) brightness(0.4)"), [lightMap])
-    const cloudMap = useCloudTexture();
+    const cloudMap = useWindyCloudTexture();
 
     const [sunPosXYZ, setSunPosXYZ] = useState<Vector3>();
 

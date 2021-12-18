@@ -7,11 +7,13 @@
     "@react-three/drei": "^8.3.0",
     "@react-three/fiber": "^7.0.24",
     "@types/lodash": "^4.14.178",
+    "@types/luxon": "^2.0.8",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "@types/suncalc": "^1.8.1",
     "@types/three": "^0.135.0",
     "lodash": "^4.17.21",
+    "luxon": "^2.2.0",
     "p-limit": "^4.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -19,7 +21,7 @@
     "three": "^0.135.0"
   },
   "scripts": {
-    "build": "esbuild ./src/index.tsx --bundle --minify --outfile=./build/bundle.js",
+    "build": "esbuild ./src/index.tsx --bundle --minify --log-limit=0 --outfile=./build/bundle.js",
     "build-watch": "esbuild ./src/index.tsx --bundle --minify --watch --outfile=./build/bundle.js",
     "build-dev": "esbuild ./src/index.tsx --bundle --sourcemap=both --outfile=./build/bundle.js",
     "build-dev-watch": "esbuild ./src/index.tsx --bundle --sourcemap=both --watch --outfile=./build/bundle.js"
