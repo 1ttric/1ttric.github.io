@@ -4,5 +4,4 @@ set -euxo pipefail
 cd "${0%/*}"
 
 cd ..
-yarn
 hugo --minify
