@@ -1,22 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>esxi on vesey.tech</title>
-    <link>https://vesey.tech/tags/esxi/</link>
-    <description>Recent content in esxi on vesey.tech</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 01 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/esxi/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Fisher</title>
-      <link>https://vesey.tech/items/fisher/</link>
-      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://vesey.tech/items/fisher/</guid>
-      <description>In university, I lived with some like-minded developers, and we managed to build a pretty useful environment for ourselves.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>esxi on vesey.tech</title><link>https://vesey.tech/tags/esxi/</link><description>Recent content in esxi on vesey.tech</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 01 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/esxi/index.xml" rel="self" type="application/rss+xml"/><item><title>Fisher</title><link>https://vesey.tech/items/fisher/</link><pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate><guid>https://vesey.tech/items/fisher/</guid><description>In university, I lived with some like-minded developers, and we managed to build a pretty useful environment for ourselves.
 We ended up with two server racks totalling about 12 Us of equipment, with high-speed data links, high-density storage, and plenty of blinkenlights.
-Here&amp;rsquo;s a diagram of what we built:</description>
-    </item>
-    
-  </channel>
-</rss>
+Here&amp;rsquo;s a diagram of what we built:</description></item></channel></rss>
