@@ -1,11 +1,21 @@
 import ReactDOM from "react-dom";
 import React, {FC, Suspense, useEffect, useMemo, useState} from "react";
 import {Canvas, useLoader, useThree} from "@react-three/fiber";
-import {Environment, Loader, OrbitControls, Sphere, Torus, useTexture} from "@react-three/drei";
-import {AdditiveBlending, BackSide, CanvasTexture, Color, FrontSide, MOUSE, PMREMGenerator, Texture} from "three";
-import {EXRLoader} from "three/examples/jsm/loaders/EXRLoader";
+import {Loader, OrbitControls, Sphere, useTexture} from "@react-three/drei";
+import {
+    AdditiveBlending,
+    BackSide,
+    CanvasTexture,
+    Color,
+    FrontSide,
+    MOUSE,
+    Texture,
+    TextureLoader,
+    Vector3
+} from "three";
 import pLimit from "p-limit";
 import {shuffle} from "lodash";
+import SunCalc from "suncalc";
 
 /**
  * Gets a remote cloudmap texture, stitching tiles together to form an equirectangular full-globe map
@@ -43,8 +53,12 @@ const useCloudTexture = (): Texture => {
     return texture
 }
 
+/**
+ * Applies a canvas filter to a texture and returns the modified texture
+ * @param texture
+ * @param filter
+ */
 const applyFilter = (texture: Texture, filter: string): Texture => {
-    // console.log("applying filter to texture", texture, filter)
     const el = texture.image as HTMLImageElement | HTMLCanvasElement;
     const ctx = document.createElement("canvas").getContext("2d") as CanvasRenderingContext2D;
     switch (el.tagName) {
@@ -73,9 +87,7 @@ const applyFilter = (texture: Texture, filter: string): Texture => {
 
 const App3D: FC = () => {
     const {gl, scene, camera} = useThree()
-    const skyMap = useLoader(EXRLoader as any, "/images/earth/starmap_2020_4k.exr") as Texture
-
-    // scene.background = (new PMREMGenerator(gl)).fromEquirectangular(skyMap).texture;
+    const skyMap = useLoader(TextureLoader, "/images/earth/starmap_2020_4k.jpg") as Texture
 
     const [colorMap, bumpMap, specularMap, lightMap] = useTexture([
         "/images/earth/world.200412.3x5400x2700.jpg",
@@ -84,28 +96,36 @@ const App3D: FC = () => {
         "/images/earth/earthlights4k.jpg",
     ]) as Texture[];
     const lightMapFiltered = useMemo(() => applyFilter(lightMap, "grayscale(1) contrast(1.2) brightness(0.4)"), [lightMap])
-    document.getElementById("debug")?.append(lightMapFiltered.image)
-
     const cloudMap = useCloudTexture();
 
-    // console.log("using textures", colorMap, bumpMap, specularMap, lightMapFiltered, cloudMap)
+    const [sunPosXYZ, setSunPosXYZ] = useState<Vector3>();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const sunPos = SunCalc.getPosition(new Date(), 180, 0)
+            setSunPosXYZ(new Vector3(Math.cos(sunPos.azimuth), -Math.sin(sunPos.altitude), Math.sin(sunPos.azimuth)))
+        }, 1000)
+        return () => clearInterval(interval)
+    }, [])
 
     return (
         <>
             <OrbitControls
+                autoRotate
+                autoRotateSpeed={0.1}
                 enableDamping
-                minDistance={1.4}
+                minDistance={1.5}
                 maxDistance={1.9}
                 enablePan={false}
                 mouseButtons={{LEFT: MOUSE.ROTATE, RIGHT: MOUSE.ROTATE, MIDDLE: MOUSE.ROTATE}}/>
-            <Sphere args={[500, 32, 64]}>
+            <Sphere args={[1000, 32, 64]}>
                 <meshBasicMaterial attach="material" map={skyMap} side={BackSide}/>
             </Sphere>
 
             <ambientLight intensity={0.01}/>
-            <directionalLight intensity={5} position={[1, 0, 0]}/>
-
-            {/*<Torus position={[2, 0, 0]}/>*/}
+            {
+                !!sunPosXYZ && <directionalLight intensity={5} position={sunPosXYZ}/>
+            }
 
             <Sphere name="earth" args={[1, 128, 256]}>
                 <meshPhysicalMaterial

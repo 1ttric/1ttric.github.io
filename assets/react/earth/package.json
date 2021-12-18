@@ -9,18 +9,20 @@
     "@types/lodash": "^4.14.178",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "@types/suncalc": "^1.8.1",
     "@types/three": "^0.135.0",
     "lodash": "^4.17.21",
     "p-limit": "^4.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "suncalc": "^1.8.0",
     "three": "^0.135.0"
   },
   "scripts": {
     "build": "esbuild ./src/index.tsx --bundle --minify --outfile=./build/bundle.js",
     "build-watch": "esbuild ./src/index.tsx --bundle --minify --watch --outfile=./build/bundle.js",
-    "build-dev": "esbuild ./src/index.tsx --bundle --sourcemap=external --outfile=./build/bundle.js",
-    "build-dev-watch": "esbuild ./src/index.tsx --bundle --sourcemap=external --watch --outfile=./build/bundle.js"
+    "build-dev": "esbuild ./src/index.tsx --bundle --sourcemap=both --outfile=./build/bundle.js",
+    "build-dev-watch": "esbuild ./src/index.tsx --bundle --sourcemap=both --watch --outfile=./build/bundle.js"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.7.0",
