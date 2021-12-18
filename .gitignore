@@ -1,5 +1,5 @@
-.idea
-.hugo_build.lock
-**/node_modules
-**/*.log
-resources/_gen
+/.idea
+/.hugo_build.lock
+node_modules/
+*.log
+/resources/_gen
