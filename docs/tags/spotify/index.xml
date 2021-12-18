@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>spotify on vesey.tech</title><link>https://vesey.tech/tags/spotify/</link><description>Recent content in spotify on vesey.tech</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 13 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/spotify/index.xml" rel="self" type="application/rss+xml"/><item><title>versefind</title><link>https://vesey.tech/items/versefind/</link><pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate><guid>https://vesey.tech/items/versefind/</guid><description>Ever remember a snatch of lyrics from a song you know you have saved in your Spotify library?
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>spotify on vesey.tech</title>
+    <link>https://vesey.tech/tags/spotify/</link>
+    <description>Recent content in spotify on vesey.tech</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 13 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/spotify/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>versefind</title>
+      <link>https://vesey.tech/items/versefind/</link>
+      <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://vesey.tech/items/versefind/</guid>
+      <description>Ever remember a snatch of lyrics from a song you know you have saved in your Spotify library?
 Ever search for that brief phrase in Google but find only unrelated tracks?
 That can be enough to drive a person crazy. I wrote a tool that lets you search through your library to find these earworms.
-https://versefind.vesey.tech</description></item></channel></rss>
+https://versefind.vesey.tech</description>
+    </item>
+    
+  </channel>
+</rss>
