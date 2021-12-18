@@ -38,7 +38,7 @@ const useCloudTexture = (): Texture => {
                     const img = new Image();
                     img.crossOrigin = "anonymous"
                     img.onload = () => {
-                        ctx.filter = 'grayscale(1) invert(1) brightness(5)';
+                        ctx.filter = 'grayscale(1) invert(1) brightness(7)';
                         ctx.drawImage(img, i * TILESIZE, j * TILESIZE)
                         setTexture(new CanvasTexture(ctx.canvas))
                         res()
