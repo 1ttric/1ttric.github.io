@@ -41,7 +41,7 @@ const useOpenWeatherMapCloudTexture = (): Texture => {
         const asyncFn = async () => {
             const ZOOMLEVEL = 3
             const TILESIZE = 256
-            const img = new Jimp(2 ** ZOOMLEVEL * TILESIZE, 2 ** ZOOMLEVEL * TILESIZE)
+            const img = new Jimp(2 ** ZOOMLEVEL * TILESIZE, 2 ** ZOOMLEVEL * TILESIZE, "#000000")
             const chunks: [Jimp, number, number][] = [];
 
             const limit = pLimit(4)
@@ -62,8 +62,10 @@ const useOpenWeatherMapCloudTexture = (): Texture => {
             await Promise.all(shuffle(promises).map(p => limit(p)))
 
             for (const [chunk, i, j] of chunks) {
-                img.blit(chunk, i * TILESIZE, j * TILESIZE, 1, 9, 256, 256)
+                img.composite(chunk, i * TILESIZE, j * TILESIZE)
             }
+            // img.brightness(0.7)
+            img.normalize()
             const canvas = jimpToCanvas(img)
             setTexture(new CanvasTexture(canvas))
         }
@@ -83,7 +85,7 @@ const useWindyCloudTexture = (): Texture => {
         const asyncEffect = async () => {
             const ZOOMLEVEL = 3
             const TILESIZE = 256
-            const img = new Jimp(2 ** ZOOMLEVEL * TILESIZE, 2 ** ZOOMLEVEL * TILESIZE)
+            const img = new Jimp(2 ** ZOOMLEVEL * TILESIZE, 2 ** ZOOMLEVEL * TILESIZE, "#000000")
             const chunks: [Jimp, number, number][] = [];
             const dateLuxon = DateTime.utc()
 
@@ -105,7 +107,8 @@ const useWindyCloudTexture = (): Texture => {
             await Promise.all(shuffle(promises).map(p => limit(p)))
 
             for (const [chunk, i, j] of chunks) {
-                img.blit(chunk, i * TILESIZE, j * TILESIZE, 1, 9, 256, 256)
+                const croppedChunk = chunk.crop(1, 9, 256, 256)
+                img.composite(croppedChunk, i * TILESIZE, j * TILESIZE)
             }
             img.color([
                 {apply: "green", params: [-256]}
@@ -124,48 +127,26 @@ const useWindyCloudTexture = (): Texture => {
     return texture
 }
 
-/**
- * Applies a canvas filter to a texture and returns the modified texture
- * @param texture
- * @param filter
- */
-const applyFilter = (texture: Texture, filter: string): Texture => {
-    const el = texture.image as HTMLImageElement | HTMLCanvasElement;
-    const ctx = document.createElement("canvas").getContext("2d") as CanvasRenderingContext2D;
-    switch (el.tagName) {
-        case "IMG": {
-            const elImg = el as HTMLImageElement;
-            ctx.canvas.width = elImg.width
-            ctx.canvas.height = elImg.height
-            ctx.filter = filter
-            ctx.drawImage(elImg, 0, 0)
-            break;
-        }
-        case "CANVAS": {
-            const elCanvas = el as HTMLCanvasElement;
-            ctx.canvas.width = elCanvas.width
-            ctx.canvas.height = elCanvas.height
-            ctx.filter = filter
-            ctx.drawImage(elCanvas, 0, 0)
-            break;
-        }
-        default: {
-            throw new Error(`unhandled texture type: ${JSON.stringify(texture)}`)
-        }
-    }
-    return new CanvasTexture(ctx.canvas)
-}
-
 const App3D: FC = () => {
     const skyMap = useLoader(TextureLoader, "/images/earth/starmap_2020_4k.jpg") as Texture
-    const [colorMap, bumpMap, specularMap, lightMap] = useTexture([
+    const [colorMap, bumpMap, specularMap] = useTexture([
         "/images/earth/world.200412.3x5400x2700.jpg",
         "/images/earth/earthbump4k.jpg",
         "/images/earth/earthspec4k-inverted.jpg",
-        "/images/earth/earthlights4k.jpg",
     ]) as Texture[];
-    const lightMapFiltered = useMemo(() => applyFilter(lightMap, "grayscale(1) contrast(1.2) brightness(0.4)"), [lightMap])
-    const cloudMap = useWindyCloudTexture();
+    const [lightMap, setLightMap] = useState(new Texture())
+    useEffect(() => {
+        const asyncEffect = async () => {
+            const img = await Jimp.read("/images/earth/earthlights4k.jpg")
+            img.grayscale()
+            img.contrast(0.2)
+            img.brightness(-0.7)
+            const canvas = jimpToCanvas(img)
+            setLightMap(new CanvasTexture(canvas))
+        }
+        asyncEffect().catch(console.error)
+    }, [])
+    const cloudMap = useOpenWeatherMapCloudTexture();
 
     const [sunPosXYZ, setSunPosXYZ] = useState<Vector3>();
 
@@ -205,7 +186,7 @@ const App3D: FC = () => {
                     displacementScale={0.01}
                     roughnessMap={specularMap}
                     emissive={new Color("#ebe6c2")}
-                    emissiveMap={lightMapFiltered}
+                    emissiveMap={lightMap}
                 />
             </Sphere>
             <Sphere name="clouds" args={[1.002, 128, 256]}>
