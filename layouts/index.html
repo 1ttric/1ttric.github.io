@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    {{ partial "header.html" . }}
+</head>
+<body class="bg-bg2">
+<main class="w-full h-full p-2 font-mono flex align-center">
+    <div class="w-full grid gap-2 grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {{ with .Site.GetPage "/items" }}
+        {{ range .Pages }}
+        <div class="relative border border-bg0 p-2 flex justify-between hover:bg-bg4 overflow-hidden select-none"
+             style="min-height: 10rem">
+            <div class="flex-1 p-2 flex flex-col justify-between bg-mycol">
+                <a href="{{ .Permalink | safeURL }}" class="flex-0 underline text-lg text-fg1">
+                    {{ .File.BaseFileName }}
+                </a>
+                <p class="flex-0 text-sm text-fg1">
+                    {{ if .Date }}
+                    {{ .Date | time.Format "2006-01-02" }}
+                    {{ end }}
+                </p>
+            </div>
+            <div class="flex-1 p-2 flex flex-col justify-end overflow-hidden">
+                <p class="text-right italic text-sm text-fg1">
+                    {{ .Description }}
+                </p>
+            </div>
+        </div>
+        {{ end }}
+        {{ end }}
+    </div>
+</main>
+{{ partial "footer.html" . }}
+</body>
+</html>
+

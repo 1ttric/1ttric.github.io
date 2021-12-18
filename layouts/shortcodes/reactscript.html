@@ -1,0 +1,11 @@
+{{ $app := ( .Get 0 | printf "react/%s/build/bundle.js" | resources.Get ) }}
+<div id="react-app"></div>
+<script src="{{ $app.RelPermalink }}"></script>
+<noscript>
+    <div class="absolute inset-0 w-screen h-screen font-mono flex flex-col justify-center items-center divide-y select-none bg-bg2">
+        <div class="flex-0 prose-lg max-w-none p-4 text-fg1">
+            <h1>JS</h1>
+            <p>Enable Javascript to view this content.</p>
+        </div>
+    </div>
+</noscript>
