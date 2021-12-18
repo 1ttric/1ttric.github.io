@@ -6,7 +6,7 @@ weight: 1
 
 Hello. I'm a full-stack developer from Boston.
 
-I enjoy challenging problems, well-designed archtitecture, and containers!
+I enjoy challenging problems, well-designed archtitecture, and building tech stacks from the hardware up.
 
 Find out more at the links below:
 
