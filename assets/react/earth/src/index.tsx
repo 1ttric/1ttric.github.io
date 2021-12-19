@@ -1,23 +1,14 @@
 import ReactDOM from "react-dom";
-import React, {FC, Suspense, useEffect, useMemo, useState} from "react";
-import {Canvas, useLoader, useThree} from "@react-three/fiber";
+import React, {FC, Suspense, useEffect, useState} from "react";
+import {Canvas} from "@react-three/fiber";
 import {Loader, OrbitControls, Sphere, useTexture} from "@react-three/drei";
-import {
-    AdditiveBlending,
-    BackSide,
-    CanvasTexture,
-    Color,
-    FrontSide,
-    MOUSE,
-    Texture,
-    TextureLoader,
-    Vector3
-} from "three";
+import {AdditiveBlending, BackSide, CanvasTexture, Color, FrontSide, MOUSE, Texture, Vector3} from "three";
 import pLimit from "p-limit";
 import {shuffle} from "lodash";
 import SunCalc from "suncalc";
 import Jimp from "jimp/browser/lib/jimp";
 import {DateTime} from "luxon";
+import {animated, useSpring} from "@react-spring/three";
 
 const jimpToCanvas = (img: Jimp): HTMLCanvasElement => {
     const ctx = document.createElement("canvas").getContext("2d") as CanvasRenderingContext2D;
@@ -34,8 +25,8 @@ const jimpToCanvas = (img: Jimp): HTMLCanvasElement => {
 /**
  *  Taken from https://openweathermap.org/weathermap?layer=clouds
  */
-const useOpenWeatherMapCloudTexture = (): Texture => {
-    const [texture, setTexture] = useState<Texture>(new CanvasTexture(document.createElement("canvas")));
+const useOpenWeatherMapCloudTexture = (): Texture | undefined => {
+    const [texture, setTexture] = useState<Texture>();
 
     useEffect(() => {
         const asyncFn = async () => {
@@ -95,7 +86,7 @@ const useWindyCloudTexture = (): Texture => {
                 for (let j = 0; j < 2 ** ZOOMLEVEL; j++) {
                     promises.push(() => new Promise<void>(res => {
                         const asyncFn = async () => {
-                            const url = dateLuxon.toFormat(`'https://ims.windy.com/im/v3.0/forecast/ecmwf-hres/'yyyyLLdd'12/'yyyyLLddHH'/wm_grid_257/${ZOOMLEVEL}/${i}/${j}/cloudsrain-surface.jpg'`)
+                            const url = dateLuxon.toFormat(`"https://ims.windy.com/im/v3.0/forecast/ecmwf-hres/"yyyyLLdd"12/"yyyyLLddHH"/wm_grid_257/${ZOOMLEVEL}/${i}/${j}/cloudsrain-surface.jpg"`)
                             const chunk = await Jimp.read(url)
                             chunks.push([chunk, i, j])
                             res()
@@ -127,34 +118,30 @@ const useWindyCloudTexture = (): Texture => {
     return texture
 }
 
+const getSunPos = (): Vector3 => {
+    const sunPos = SunCalc.getPosition(new Date(), 180, 0)
+    return new Vector3(Math.cos(sunPos.azimuth), -Math.sin(sunPos.altitude), Math.sin(sunPos.azimuth))
+}
+
 const App3D: FC = () => {
-    const skyMap = useLoader(TextureLoader, "/images/earth/starmap_2020_4k.jpg") as Texture
-    const [colorMap, bumpMap, specularMap] = useTexture([
-        "/images/earth/world.200412.3x5400x2700.jpg",
-        "/images/earth/earthbump4k.jpg",
-        "/images/earth/earthspec4k-inverted.jpg",
+    const [skyMap, colorMap, bumpMap, specularMap, lightMap] = useTexture([
+        "/images/earth/starmap_2020_32k.webp",
+        "/images/earth/world.200411.3x21600x10800.webp",
+        "/images/earth/earthbump4k.webp",
+        "/images/earth/earthspec4k-inverted.webp",
+        "/images/earth/nightearth.webp",
     ]) as Texture[];
-    const [lightMap, setLightMap] = useState(new Texture())
-    useEffect(() => {
-        const asyncEffect = async () => {
-            const img = await Jimp.read("/images/earth/earthlights4k.jpg")
-            img.grayscale()
-            img.contrast(0.2)
-            img.brightness(-0.7)
-            const canvas = jimpToCanvas(img)
-            setLightMap(new CanvasTexture(canvas))
-        }
-        asyncEffect().catch(console.error)
-    }, [])
     const cloudMap = useOpenWeatherMapCloudTexture();
 
-    const [sunPosXYZ, setSunPosXYZ] = useState<Vector3>();
+    const [sunPosXYZ, setSunPosXYZ] = useState<Vector3>(getSunPos());
+    const springs = useSpring({
+        to: {
+            cloudsOpacity: cloudMap ? 1 : 0
+        }
+    })
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            const sunPos = SunCalc.getPosition(new Date(), 180, 0)
-            setSunPosXYZ(new Vector3(Math.cos(sunPos.azimuth), -Math.sin(sunPos.altitude), Math.sin(sunPos.azimuth)))
-        }, 1000)
+        const interval = setInterval(() => setSunPosXYZ(getSunPos()), 1000)
         return () => clearInterval(interval)
     }, [])
 
@@ -173,9 +160,7 @@ const App3D: FC = () => {
             </Sphere>
 
             <ambientLight intensity={0.01}/>
-            {
-                !!sunPosXYZ && <directionalLight intensity={5} position={sunPosXYZ}/>
-            }
+            <directionalLight intensity={5} position={sunPosXYZ}/>
 
             <Sphere name="earth" args={[1, 128, 256]}>
                 <meshPhysicalMaterial
@@ -187,16 +172,18 @@ const App3D: FC = () => {
                     roughnessMap={specularMap}
                     emissive={new Color("#ebe6c2")}
                     emissiveMap={lightMap}
+                    emissiveIntensity={0.2}
                 />
             </Sphere>
             <Sphere name="clouds" args={[1.002, 128, 256]}>
-                <meshStandardMaterial
+                <animated.meshStandardMaterial
                     transparent
+                    opacity={springs.cloudsOpacity}
                     color="white"
                     attach="material"
                     displacementMap={bumpMap}
                     displacementScale={0.01}
-                    alphaMap={cloudMap}
+                    alphaMap={cloudMap ?? new Texture()}
                 />
             </Sphere>
             <Sphere name="atmosphere" args={[1.004, 128, 256]}>
