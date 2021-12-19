@@ -2,6 +2,7 @@
 title: VM host upgrade
 date: 2018-03-10
 tags: ["hardware", "work"]
+draft: true
 ---
 
 This is a report I was tasked to write for work, to spec new parts and potential new builds for the upgrade of an all-SSD VM host
