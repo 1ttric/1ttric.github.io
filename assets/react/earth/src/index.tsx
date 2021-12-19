@@ -253,7 +253,7 @@ const App: FC = () => {
         {/*}}/>*/}
         <Canvas style={{width: "100%", height: "100%"}}
                 gl={{physicallyCorrectLights: true}}>
-            <Suspense fallback={<Text>Earth is loading</Text>}>
+            <Suspense fallback={null}>
                 <App3D/>
             </Suspense>
         </Canvas>
