@@ -186,7 +186,7 @@ const App3D: FC = () => {
                     alphaMap={cloudMap ?? new Texture()}
                 />
             </Sphere>
-            <Sphere name="atmosphere" args={[1.004, 128, 256]}>
+            <Sphere name="atmosphere" args={[1.02, 128, 256]}>
                 <shaderMaterial
                     transparent
                     // uniforms={{
@@ -221,13 +221,13 @@ const App3D: FC = () => {
                     varying vec3 vertexNormal;
                     void main() {
                         vertexNormal = normalize(normalMatrix * normal);
-                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 0.95);
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1);
                     }
                     `}
                     fragmentShader={`
                     varying vec3 vertexNormal;
                     void main() {
-                        float intensity = pow(0.3 - dot(vertexNormal, vec3(0, 0, 1.0)), 2.0);
+                        float intensity = pow(0.3 - dot(vertexNormal, vec3(0, 0, 1.0)), 1.7);
                         gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
                     }
                     `}
