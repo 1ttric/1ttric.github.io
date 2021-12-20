@@ -20,12 +20,21 @@ const App: FC = () => {
         onMouseMove={e => {
             !locked && setCursorPos([e.clientX / window.innerWidth, e.clientY / window.innerHeight])
         }}
+        onTouchMove={e => {
+            !locked && setCursorPos([e.touches[0].clientX / window.innerWidth, e.touches[0].clientY / window.innerHeight])
+        }}
         onWheel={e => {
             !locked && setScrollPos(Math.min(Math.max(0, scrollPos + (e.deltaY > 0 ? -1 : 1)), 100))
         }}
     >
     </div>
 }
+
+document.body.className += " overflow-hidden overscroll-contain"
+const meta = document.createElement("meta");
+meta.name = "viewport";
+meta.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+document.head.appendChild(meta);
 
 
 ReactDOM.render(
