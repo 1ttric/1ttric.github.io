@@ -1,5 +1,5 @@
 {{ $app := ( .Get 0 | printf "react/%s/build/bundle.js" | resources.Get ) }}
-<div class="absolute inset-0 w-screen h-screen bg-bg2" id="react-app"></div>
+<div id="react-app"></div>
 <script src="{{ $app.RelPermalink }}"></script>
 <noscript>
     <div class="absolute inset-0 w-screen h-screen font-mono flex flex-col justify-center items-center divide-y select-none bg-bg2">
