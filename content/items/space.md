@@ -5,7 +5,7 @@ weight: 1
 fullpage: true
 ---
 {{<rawhtml>}}
-<iframe style="position: fixed; top:0; bottom:0; left:0; right:0; height:100%; width:100%; pointer-events: none; border: 0 none transparent;"
+<iframe class="absolute inset-0 w-screen h-screen bg-bg2" style="pointer-events: none"
     src="https://ustream.tv/embed/17074538?controls=false&showtitle=false&volume=0&autoplay=true"
     webkitallowfullscreen
     allowfullscreen>
