@@ -5,6 +5,7 @@ module.exports = {
                 enabled: true,
                 content: [
                     "layouts/**/*.html",
+                    "assets/react/*/src/**/*.tsx",
                     "themes/vtec/layouts/**/*.html",
                 ]
             },
@@ -13,19 +14,19 @@ module.exports = {
                 fontFamily: {
                     "mono": ["JetBrains Mono", "mono"],
                 },
-                // Add base colors to Tailwind CSS
-                colors: {
-                    "bg0": {DEFAULT: "#000000"},
-                    "bg1": {DEFAULT: "#222d31"},
-                    "bg2": {DEFAULT: "#2B2C2B"},
-                    "bg3": {DEFAULT: "#353836"},
-                    "bg4": {DEFAULT: "#444444"},
-
-                    "fg1": {DEFAULT: "#f9faf9"},
-                    "fg2": {DEFAULT: "#FDF6E3"},
-                    "fg3": {DEFAULT: "#EEE8D5"},
-                },
                 extend: {
+                    // Add custom colors to Tailwind CSS
+                    colors: {
+                        "bg0": {DEFAULT: "#000000"},
+                        "bg1": {DEFAULT: "#222d31"},
+                        "bg2": {DEFAULT: "#2B2C2B"},
+                        "bg3": {DEFAULT: "#353836"},
+                        "bg4": {DEFAULT: "#444444"},
+
+                        "fg1": {DEFAULT: "#f9faf9"},
+                        "fg2": {DEFAULT: "#FDF6E3"},
+                        "fg3": {DEFAULT: "#EEE8D5"},
+                    },
                     typography: theme => {
                         return {
                             DEFAULT: {
