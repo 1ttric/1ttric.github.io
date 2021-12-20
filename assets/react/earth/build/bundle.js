@@ -3192,7 +3192,7 @@ void main() {
                         float intensity = pow(0.3 - dot(vertexNormal, vec3(0, 0, 1.0)), 1.7);
                         gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
                     }
-                    `,side:Do,blending:b0})))},eW=()=>Dn.default.createElement("div",{style:{position:"absolute",inset:"0",width:"100vw",height:"100vh"}},Dn.default.createElement(QL,{style:{width:"100%",height:"100%"},gl:{physicallyCorrectLights:!0}},Dn.default.createElement(Dn.Suspense,{fallback:null},Dn.default.createElement($G,null))),Dn.default.createElement(VE,null));p5.default.render(Dn.default.createElement(Dn.default.StrictMode,null,Dn.default.createElement(eW,null)),document.getElementById("react-app"));})();
+                    `,side:Do,blending:b0})))},eW=()=>Dn.default.createElement("div",{className:"absolute inset-0 w-screen h-screen"},Dn.default.createElement(QL,{className:"w-100 h-100",gl:{physicallyCorrectLights:!0}},Dn.default.createElement(Dn.Suspense,{fallback:null},Dn.default.createElement($G,null))),Dn.default.createElement(VE,null));p5.default.render(Dn.default.createElement(Dn.default.StrictMode,null,Dn.default.createElement(eW,null)),document.getElementById("react-app"));})();
 /*
 object-assign
 (c) Sindre Sorhus
