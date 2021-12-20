@@ -1,6 +1,6 @@
 ---
 title: "Color"
-description: "A simple fullpage color picker"
+description: "A simple fullpage color display"
 date: 2021-12-19
 fullpage: true
 ---
