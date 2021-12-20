@@ -3,21 +3,23 @@
 <head>
     {{ partial "header.html" . }}
 </head>
-<body>
 {{ if .Params.Fullpage }}
+<body>
     {{ .Content }}
+</body>
 {{ else }}
-    <main class="bg-bg2 w-full h-full p-2 font-mono flex align-center">
-        <div class="w-full h-full p-2 font-mono flex flex-col items-center divide-y-2 select-none text-fg1">
-            <div class="flex-0 prose-lg max-w-none pb-4">
-                <h1>{{ .Title | default .File.BaseFileName }}</h1>
-            </div>
-            <article class="flex-1 prose max-w-full pt-8 text-fg1">
-                {{ .Content }}
-            </article>
+<body class="bg-bg2">
+<main class="w-full h-full p-2 font-mono flex align-center">
+    <div class="w-full h-full p-2 font-mono flex flex-col items-center divide-y-2 select-none text-fg1">
+        <div class="flex-0 prose-lg max-w-none pb-4">
+            <h1>{{ .Title | default .File.BaseFileName }}</h1>
         </div>
-    </main>
+        <article class="flex-1 prose max-w-full pt-8 text-fg1">
+            {{ .Content }}
+        </article>
+    </div>
+</main>
+</body>
 {{ end }}
 {{ partial "footer.html" . }}
-</body>
 </html>
