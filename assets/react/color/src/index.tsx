@@ -9,8 +9,8 @@ const App: FC = () => {
     const bgColor = `hsl(${Math.round(cursorPos[0] * 360)}, ${Math.round((1 - cursorPos[1]) * 100)}%, ${Math.round(scrollPos)}%)`
     console.log("color", bgColor)
     return <div
-        style={{backgroundColor: bgColor}}
         className="absolute inset-0 w-screen h-screen"
+        style={{backgroundColor: bgColor}}
         onClick={e => {
             const newLocked = !locked
             setLocked(newLocked)

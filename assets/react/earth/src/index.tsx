@@ -240,7 +240,7 @@ const App3D: FC = () => {
 }
 
 const App: FC = () => {
-    return <div style={{position: "absolute", inset: "0", width: "100vw", height: "100vh"}}>
+    return <div className="absolute inset-0 w-screen h-screen">
         {/*<div id="debug" style={{*/}
         {/*    position: "absolute",*/}
         {/*    "left": 0,*/}
@@ -251,7 +251,7 @@ const App: FC = () => {
         {/*    zIndex: "100",*/}
         {/*    backgroundColor: "black"*/}
         {/*}}/>*/}
-        <Canvas style={{width: "100%", height: "100%"}}
+        <Canvas className="w-100 h-100"
                 gl={{physicallyCorrectLights: true}}>
             <Suspense fallback={null}>
                 <App3D/>
