@@ -3,12 +3,10 @@
 <head>
     {{ partial "header.html" . }}
 </head>
-{{ if .Params.Fullpage }}
-<body>
-    {{ .Content }}
-</body>
-{{ else }}
 <body class="bg-bg2">
+{{ if .Params.Fullpage }}
+{{ .Content }}
+{{ else }}
 <main class="w-full h-full p-2 font-mono flex align-center">
     <div class="w-full h-full p-2 font-mono flex flex-col items-center divide-y-2 select-none text-fg1">
         <div class="flex-0 prose-lg max-w-none pb-4">
@@ -19,7 +17,7 @@
         </article>
     </div>
 </main>
-</body>
 {{ end }}
+</body>
 {{ partial "footer.html" . }}
 </html>
