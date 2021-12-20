@@ -1,57 +1,18 @@
-import ReactDOM from "react-dom";
-import React, {FC, useState} from "react";
-
-const App: FC = () => {
-    const [cursorPos, setCursorPos] = useState<[number, number]>([Math.random(), 0.5]);
-    const [scrollPos, setScrollPos] = useState(50)
-    const [locked, setLocked] = useState(false)
-    const [fingerScroll, setFingerScroll] = useState<number | null>(null)
-
-    const bgColor = `hsl(${Math.round(cursorPos[0] * 360)}, ${Math.round((1 - cursorPos[1]) * 100)}%, ${Math.round(scrollPos)}%)`
-    return <div
-        // className="absolute inset-0 w-screen h-screen select-none whitespace-pre-line font-mono text-xs" // For debugging
-        className="absolute inset-0 w-screen h-screen select-none"
-        style={{backgroundColor: bgColor}}
-        onClick={e => {
-            const newLocked = !locked
-            setLocked(newLocked)
-            if (!newLocked) {
-                setCursorPos([e.clientX / window.innerWidth, e.clientY / window.innerHeight])
-            }
-        }}
-        onMouseMove={e => {
-            if (locked) return
-            setCursorPos([e.clientX / window.innerWidth, e.clientY / window.innerHeight])
-        }}
-        onTouchStart={e => {
-            if (e.touches.length == 2) {
-                setFingerScroll((e.touches[0].clientY + e.touches[1].clientY) / 2)
-            }
-        }}
-        onTouchEnd={e => {
-            if (e.touches.length == 0) {
-                setFingerScroll(null)
-            }
-        }}
-        onTouchMove={e => {
-            if (locked) return;
-            if (fingerScroll) {
-                const y0 = fingerScroll
-                const y1 = e.touches[0].clientY
-                const diff = -Math.sign(y1 - y0)
-                setScrollPos(Math.min(Math.max(0, scrollPos + diff), 100))
-                setFingerScroll(y1)
-            } else {
-                setCursorPos([e.touches[0].clientX / window.innerWidth, e.touches[0].clientY / window.innerHeight])
-            }
-        }}
-        onWheel={e => {
-            if (locked) return;
-            setScrollPos(Math.min(Math.max(0, scrollPos + (e.deltaY > 0 ? -1 : 1)), 100))
-        }}
-    >
-    </div>
+type State = {
+    cursorPos: [number, number]
+    scrollPos: number
+    locked: boolean
+    fingerScroll: number | null
 }
+
+const state: State = {
+    cursorPos: [Math.random(), 0.5],
+    scrollPos: 50,
+    locked: false,
+    fingerScroll: null
+};
+
+(window as any).state = state;
 
 document.body.className += " overflow-hidden overscroll-contain"
 const meta = document.createElement("meta");
@@ -59,10 +20,53 @@ meta.name = "viewport";
 meta.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
 document.head.appendChild(meta);
 
+const div = document.createElement("div")
+div.id = "app"
+div.className = "absolute inset-0 w-screen h-screen select-none"
 
-ReactDOM.render(
-    <React.StrictMode>
-        <App/>
-    </React.StrictMode>,
-    document.getElementById("react-app")
-);
+const updateColor = () => {
+    div.style.backgroundColor = `hsl(${Math.round(state.cursorPos[0] * 360)}, ${Math.round((1 - state.cursorPos[1]) * 100)}%, ${Math.round(state.scrollPos)}%)`
+}
+updateColor()
+
+div.onclick = e => {
+    state.locked = !state.locked
+    if (state.locked) return;
+    state.cursorPos = [e.clientX / window.innerWidth, e.clientY / window.innerHeight]
+    updateColor()
+}
+div.onmousemove = e => {
+    if (state.locked) return
+    state.cursorPos = [e.clientX / window.innerWidth, e.clientY / window.innerHeight]
+    updateColor()
+}
+div.ontouchstart = e => {
+    if (e.touches.length == 2) {
+        state.fingerScroll = (e.touches[0].clientY + e.touches[1].clientY) / 2
+    }
+}
+div.ontouchend = e => {
+    if (e.touches.length == 0) {
+        state.fingerScroll = null
+    }
+}
+div.ontouchmove = e => {
+    if (state.locked) return;
+    if (state.fingerScroll) {
+        const y0 = state.fingerScroll
+        const y1 = e.touches[0].clientY
+        const diff = -Math.sign(y1 - y0)
+        state.scrollPos = Math.min(Math.max(0, state.scrollPos + diff), 100)
+        state.fingerScroll = y1
+    } else {
+        state.cursorPos = [e.touches[0].clientX / window.innerWidth, e.touches[0].clientY / window.innerHeight]
+    }
+    updateColor()
+}
+div.onwheel = e => {
+    if (state.locked) return;
+    state.scrollPos = Math.min(Math.max(0, state.scrollPos + (e.deltaY > 0 ? -1 : 1)), 100)
+    updateColor()
+}
+
+document.body.appendChild(div)

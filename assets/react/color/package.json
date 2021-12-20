@@ -3,12 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {
-    "@types/react": "^17.0.37",
-    "@types/react-dom": "^17.0.11",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
+  "dependencies": {},
   "scripts": {
     "build": "esbuild ./src/index.tsx --bundle --minify --outfile=./build/bundle.js",
     "build-watch": "esbuild ./src/index.tsx --bundle --minify --watch --outfile=./build/bundle.js",
