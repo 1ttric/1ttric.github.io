@@ -1,20 +1,15 @@
-import * as convert from "color-convert";
-import {HSL} from "color-convert/conversions";
-
 type State = {
     cursorPos: [number, number]
     scrollPos: number
-    fingerScroll: number | null
     locked: boolean
-    color: HSL
+    fingerScroll: number | null
 }
 
 const state: State = {
     cursorPos: [Math.random(), 0.5],
     scrollPos: 50,
-    fingerScroll: null,
     locked: false,
-    color: [0, 0, 0]
+    fingerScroll: null
 };
 
 (window as any).state = state;
@@ -29,45 +24,14 @@ const div = document.createElement("div")
 div.id = "app"
 div.className = "absolute inset-0 w-screen h-screen select-none"
 
-const setToUrl = () => {
-    const hsl = state.color
-    const hex = convert.hsl.hex(hsl)
-    window.location.hash = hex
+const updateColor = () => {
+    div.style.backgroundColor = `hsl(${Math.round(state.cursorPos[0] * 360)}, ${Math.round((1 - state.cursorPos[1]) * 100)}%, ${Math.round(state.scrollPos)}%)`
 }
-
-const loadFromUrl = (): HSL | undefined => {
-    const hex = window.location.hash;
-    const hsl = convert.hex.hsl(hex)
-    if (!hex || !hsl) {
-        return
-    }
-    return hsl
-}
-
-const updateColor = (newColor?: HSL) => {
-    let hsl: HSL;
-    if (newColor) {
-        hsl = newColor
-    } else {
-        hsl = [
-            Math.round(state.cursorPos[0] * 360),
-            Math.round((1 - state.cursorPos[1]) * 100),
-            Math.round(state.scrollPos)
-        ]
-    }
-    state.color = hsl
-    div.style.backgroundColor = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`
-}
+updateColor()
 
 div.onclick = e => {
     state.locked = !state.locked
-    if (state.locked) {
-        setToUrl()
-        return;
-    }
-    if (window.location.hash) {
-        window.location.hash = ""
-    }
+    if (state.locked) return;
     state.cursorPos = [e.clientX / window.innerWidth, e.clientY / window.innerHeight]
     updateColor()
 }
@@ -105,11 +69,4 @@ div.onwheel = e => {
     updateColor()
 }
 
-const urlColor = loadFromUrl()
-if (urlColor) {
-    updateColor(urlColor)
-    state.locked = true
-} else {
-    updateColor()
-}
 document.body.appendChild(div)
