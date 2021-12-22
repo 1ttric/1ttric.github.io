@@ -12,6 +12,8 @@ import ListOfCurrentUsersPlaylistsResponse = SpotifyApi.ListOfCurrentUsersPlayli
 import PlaylistTrackResponse = SpotifyApi.PlaylistTrackResponse;
 import FuseResult = Fuse.FuseResult;
 
+const ORIGIN = new URL(document.location.href).origin
+
 const generateCodeChallenge = async (codeVerifier: string): Promise<string> => {
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(codeVerifier));
     return btoa(String.fromCharCode(...new Uint8Array(digest)))
@@ -31,7 +33,7 @@ const App: FC = () => {
         url.search = (new URLSearchParams([
             ["client_id", "af0b9b5ccdd345c1bbae76a693a94af1"],
             ["response_type", "code"],
-            ["redirect_uri", "http://127.0.0.1:1313/items/sibdee?callback"],
+            ["redirect_uri", `${ORIGIN}/items/sibdee?callback`],
             ["code_challenge_method", "S256"],
             ["code_challenge", challenge],
             ["scope", "user-library-read"]
@@ -65,7 +67,7 @@ const App: FC = () => {
             body: new URLSearchParams({
                 grant_type: "authorization_code",
                 code: authCode,
-                redirect_uri: "http://127.0.0.1:1313/items/sibdee?callback",
+                redirect_uri: `${ORIGIN}/items/sibdee?callback`,
                 client_id: "af0b9b5ccdd345c1bbae76a693a94af1",
                 code_verifier: verifier
             })
