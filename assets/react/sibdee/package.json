@@ -1,0 +1,32 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@heroicons/react": "^1.0.5",
+    "@types/lodash": "^4.14.178",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "@types/spotify-api": "^0.0.12",
+    "fuse.js": "^6.4.6",
+    "lodash": "^4.17.21",
+    "nanoid": "^3.1.30",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-use": "^17.3.1"
+  },
+  "scripts": {
+    "build": "esbuild ./src/index.tsx --bundle --minify --outfile=./build/bundle.js",
+    "build-watch": "esbuild ./src/index.tsx --bundle --minify --watch --outfile=./build/bundle.js",
+    "build-dev": "esbuild ./src/index.tsx --bundle --sourcemap=external --outfile=./build/bundle.js",
+    "build-dev-watch": "esbuild ./src/index.tsx --bundle --sourcemap=external --watch --outfile=./build/bundle.js"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "esbuild": "^0.14.5",
+    "eslint": "^8.4.1",
+    "typescript": "^4.5.2"
+  }
+}
