@@ -125,8 +125,8 @@ interface SearchScreenProps {
 
 const SearchScreen: FC<SearchScreenProps> = props => {
     const [searchQuery, setSearchQuery] = useState("")
-    const [searchResults, setSearchResults] = useState<FuseResult<TrackObjectFull>[] | null>(null)
     const [allPlaylistTracks, setAllPlaylistTracks] = useState<[PlaylistObjectSimplified, PlaylistTrackObject[]][]>([])
+    const [processedPlaylistTracks, setProcessedPlaylistTracks] = useState<[PlaylistObjectSimplified, PlaylistTrackObject[]][]>([]);
     const [playlistTracksLoading, setPlaylistTracksLoading] = useState(true)
 
     // Gets all the user's playlists
@@ -170,12 +170,13 @@ const SearchScreen: FC<SearchScreenProps> = props => {
         asyncFn().catch(console.error)
     }, [])
 
-    // Fires off search queries when the user types
+    // Processes search queries when the user types
     useDebounce(() => {
         if (!searchQuery) {
-            setSearchResults(null)
+            setProcessedPlaylistTracks([])
             return;
         }
+        console.log("searching!")
         const allTracks = allPlaylistTracks.flatMap(([p, ts]) => ts).map(t => t.track)
         const fuse = new Fuse(allTracks, {
             includeMatches: true,
@@ -183,13 +184,10 @@ const SearchScreen: FC<SearchScreenProps> = props => {
             isCaseSensitive: false,
             keys: ["artists.name", "title"],
         })
-        setSearchResults(fuse.search(searchQuery).slice(0, 100))
-    }, 200, [searchQuery])
+        console.log("searched!")
+        const searchResults = fuse.search(searchQuery).slice(0, 100)
 
-    let playlistTracks: [PlaylistObjectSimplified, PlaylistTrackObject[]][] = [];
-    if (!searchResults) {
-        playlistTracks = allPlaylistTracks
-    } else {
+        let playlistTracks: [PlaylistObjectSimplified, PlaylistTrackObject[]][] = [];
         for (const result of searchResults) {
             for (const [p, ts] of allPlaylistTracks) {
                 const tsFiltered = filter(ts, {track: {id: result.item.id}})
@@ -213,9 +211,10 @@ const SearchScreen: FC<SearchScreenProps> = props => {
                 )
             ])
         }
-        playlistTracks = playlistTracksCollapsed
-    }
+        setProcessedPlaylistTracks(playlistTracksCollapsed)
+    }, 200, [searchQuery])
 
+    const playlistTracks = processedPlaylistTracks.length ? processedPlaylistTracks : allPlaylistTracks
     return (
         <>
             <div className="w-full h-10 p-4 border border-black flex justify-between items-center relative">
@@ -247,11 +246,11 @@ const SearchScreen: FC<SearchScreenProps> = props => {
                                             <LinkIcon className="h-4 w-4"/>
                                         </a>
                                         <span className="flex-0 pl-2">
-                                        {p.name}{searchResults ? "" : ` (${ts.length} tracks)`}
+                                        {p.name}{processedPlaylistTracks.length ? "" : ` (${ts.length} tracks)`}
                                         </span>
                                     </div>
                                     {
-                                        !!searchResults && ts.map((t, idx) => (
+                                        !!processedPlaylistTracks.length && ts.map((t, idx) => (
                                             <div key={idx} className="flex items-center pl-4">
                                                 <a href={t.track.external_urls.spotify} className="flex-0">
                                                     <PlayIcon className="h-4 w-4"/>
