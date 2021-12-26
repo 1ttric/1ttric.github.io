@@ -7,10 +7,8 @@ import Fuse from 'fuse.js'
 import {filter, isEqual, uniqBy, uniqWith} from "lodash";
 import PlaylistObjectSimplified = SpotifyApi.PlaylistObjectSimplified;
 import PlaylistTrackObject = SpotifyApi.PlaylistTrackObject;
-import TrackObjectFull = SpotifyApi.TrackObjectFull;
 import ListOfCurrentUsersPlaylistsResponse = SpotifyApi.ListOfCurrentUsersPlaylistsResponse;
 import PlaylistTrackResponse = SpotifyApi.PlaylistTrackResponse;
-import FuseResult = Fuse.FuseResult;
 
 const ORIGIN = new URL(document.location.href).origin
 
