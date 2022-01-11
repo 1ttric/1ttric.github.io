@@ -100,6 +100,7 @@ const App: FC = () => {
                     ) : (
                         <div className="flex-1 p-2 border border-bg0 flex justify-center">
                             <Webcam
+                                videoConstraints={{facingMode: "environment"}}
                                 ref={webcamRef}
                                 onUserMediaError={() => setError("could not open webcam")}
                                 // style={{position: "absolute", right: "100%"}}
