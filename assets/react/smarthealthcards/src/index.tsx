@@ -109,6 +109,7 @@ const App: FC = () => {
                                     onUserMediaError={() => setError("could not open webcam")}
                                     // style={{position: "absolute", right: "100%"}}
                                     muted
+                                    mirrored
                                     screenshotQuality={1}
                                     screenshotFormat="image/jpeg"
                                 />
