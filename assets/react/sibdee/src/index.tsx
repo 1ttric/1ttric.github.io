@@ -1,9 +1,9 @@
 import ReactDOM from "react-dom";
 import React, {FC, useEffect, useState} from "react";
 import {nanoid} from "nanoid";
-import {useDebounce} from "react-use";
+import {useDebounce, useLocalStorage} from "react-use";
 import {LinkIcon, PlayIcon} from "@heroicons/react/solid";
-import Fuse from 'fuse.js'
+import Fuse from "fuse.js"
 import {filter, isEqual, uniqBy, uniqWith} from "lodash";
 import PlaylistObjectSimplified = SpotifyApi.PlaylistObjectSimplified;
 import PlaylistTrackObject = SpotifyApi.PlaylistTrackObject;
@@ -15,18 +15,17 @@ const ORIGIN = new URL(document.location.href).origin
 const generateCodeChallenge = async (codeVerifier: string): Promise<string> => {
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(codeVerifier));
     return btoa(String.fromCharCode(...new Uint8Array(digest)))
-        .replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
+        .replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_")
 }
 
 const App: FC = () => {
     const [triggerRefresh, setTriggerRefresh] = useState(0)
+    const [verifier] = useLocalStorage("verifier", nanoid(100))
+    const [accessToken, setAccessToken, removeAccessToken] = useLocalStorage("accessToken", "")
 
     const doAuth = async () => {
-        const verifier = nanoid(100)
-        localStorage.setItem("verifier", verifier)
+        if (!verifier) return;
         const challenge = await generateCodeChallenge(verifier)
-        console.log("verifier, challenge", verifier, challenge)
-        localStorage.setItem("verifier", verifier)
         const url = new URL("https://accounts.spotify.com/authorize")
         url.search = (new URLSearchParams([
             ["client_id", "af0b9b5ccdd345c1bbae76a693a94af1"],
@@ -55,7 +54,6 @@ const App: FC = () => {
             console.log("no auth code")
             return
         }
-        const verifier = localStorage.getItem("verifier")
         if (!verifier) {
             console.log("no verifier")
             return
@@ -85,15 +83,13 @@ const App: FC = () => {
             return
         }
         console.log("got access token!", accessToken)
-        localStorage.setItem("accessToken", accessToken)
+        setAccessToken(accessToken)
         document.location.search = ""
     }
 
     useEffect(() => {
         receiveCallback()
     }, [])
-
-    const accessToken = localStorage.getItem("accessToken")
 
     if (!accessToken) {
         return (
@@ -110,7 +106,7 @@ const App: FC = () => {
         <SearchScreen
             accessToken={accessToken}
             onAuthFailed={() => {
-                localStorage.removeItem("accessToken")
+                removeAccessToken()
                 setTriggerRefresh(triggerRefresh + 1)
             }}/>
     </div>
@@ -127,7 +123,7 @@ const SearchScreen: FC<SearchScreenProps> = props => {
     const [processedPlaylistTracks, setProcessedPlaylistTracks] = useState<[PlaylistObjectSimplified, PlaylistTrackObject[]][]>([]);
     const [playlistTracksLoading, setPlaylistTracksLoading] = useState(true)
 
-    // Gets all the user's playlists
+    // Gets all the user"s playlists
     useEffect(() => {
         const asyncFn = async () => {
             const url = new URL("https://api.spotify.com/v1/me/playlists");

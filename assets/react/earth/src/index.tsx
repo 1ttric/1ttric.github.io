@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import React, {FC, Suspense, useEffect, useState} from "react";
-import {Canvas} from "@react-three/fiber";
+import {Canvas, useThree} from "@react-three/fiber";
 import {Loader, OrbitControls, Sphere, Text, useTexture} from "@react-three/drei";
 import {AdditiveBlending, BackSide, CanvasTexture, Color, FrontSide, MOUSE, Texture, Vector3} from "three";
 import pLimit from "p-limit";
@@ -124,6 +124,7 @@ const getSunPos = (): Vector3 => {
 }
 
 const App3D: FC = () => {
+    const {camera} = useThree();
     const [skyMap, colorMap, bumpMap, specularMap, lightMap] = useTexture([
         "/images/earth/starmap_2020_8k.webp",
         "/images/earth/world.200411.3x21600x10800.webp",
@@ -151,8 +152,8 @@ const App3D: FC = () => {
                 autoRotate
                 autoRotateSpeed={0.1}
                 enableDamping
-                minDistance={1.5}
-                maxDistance={1.9}
+                // minDistance={1.5}
+                // maxDistance={1.9}
                 enablePan={false}
                 mouseButtons={{LEFT: MOUSE.ROTATE, RIGHT: MOUSE.ROTATE, MIDDLE: MOUSE.ROTATE}}/>
             <Sphere args={[1000, 32, 64]}>
@@ -186,53 +187,57 @@ const App3D: FC = () => {
                     alphaMap={cloudMap ?? new Texture()}
                 />
             </Sphere>
-            <Sphere name="atmosphere" args={[1.02, 128, 256]}>
+            <Sphere name="atmosphere" args={[1.3, 128, 256]}>
                 <shaderMaterial
                     transparent
-                    // uniforms={{
-                    //     c: {value: 0},
-                    //     p: {value: 6},
-                    //     glowColor: {value: new Color("#7ab8d0")},
-                    //     viewVector: {value: camera.position}
-                    // }}
-                    // vertexShader={`
-                    //     uniform vec3 viewVector;
-                    //     uniform float c;
-                    //     uniform float p;
-                    //     varying float intensity;
-                    //     void main()
-                    //     {
-                    //         vec3 vNormal = normalize( normalMatrix * normal );
-                    //         vec3 vNormel = normalize( normalMatrix * viewVector );
-                    //         intensity = pow( c - dot(vNormal, vNormel), p );
-                    //         gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-                    //     }
-                    // `}
-                    // fragmentShader={`
-                    //     uniform vec3 glowColor;
-                    //     varying float intensity;
-                    //     void main()
-                    //     {
-                    //         vec3 glow = glowColor * intensity;
-                    //         gl_FragColor = vec4( glow, 1.0 );
-                    //     }
-                    // `}
+                    uniforms={{
+                        c: {value: 0.2},
+                        p: {value: 2},
+                        glowColor: {value: new Color("#7ab8d0")},
+                        viewVector: {value: camera.position}
+                    }}
                     vertexShader={`
-                    varying vec3 vertexNormal;
-                    void main() {
-                        vertexNormal = normalize(normalMatrix * normal);
-                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1);
-                    }
+                        uniform vec3 viewVector;
+                        uniform float c;
+                        uniform float p;
+                        varying float intensity;
+                        void main()
+                        {
+                            vec3 vNormal = normalize( normalMatrix * normal );
+                            vec3 vNormel = normalize( normalMatrix * viewVector );
+                            intensity = pow( c - dot(vNormal, vNormel), p );
+                            gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+                        }
                     `}
                     fragmentShader={`
-                    varying vec3 vertexNormal;
-                    void main() {
-                        float intensity = pow(0.3 - dot(vertexNormal, vec3(0, 0, 1.0)), 1.7);
-                        gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
-                    }
+                        uniform vec3 glowColor;
+                        varying float intensity;
+                        void main()
+                        {
+                            vec3 glow = glowColor * intensity;
+                            gl_FragColor = vec4( glow, 1.0 );
+                        }
                     `}
-                    side={FrontSide}
-                    blending={AdditiveBlending}
+
+
+                    // vertexShader={`
+                    // varying vec3 vertexNormal;
+                    // void main() {
+                    //     vertexNormal = normalize(normalMatrix * normal);
+                    //     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1);
+                    // }
+                    // `}
+                    // fragmentShader={`
+                    // varying vec3 vertexNormal;
+                    // void main() {
+                    //     float intensity = pow(0.6 - dot(vertexNormal, vec3(0, 0, 1.0)), 2.0);
+                    //     // gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
+                    //     gl_FragColor = vec4(intensity, intensity, intensity, 1.0);
+                    // }
+                    // `}
+                    // side={FrontSide}
+                    // blending={AdditiveBlending}
+
                 />
             </Sphere>
         </>
