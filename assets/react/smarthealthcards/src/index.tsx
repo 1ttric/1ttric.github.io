@@ -45,7 +45,7 @@ const App: FC = () => {
             try {
                 newData = splitQR(newQr)
             } catch (e) {
-                newError = (e as Error).messagef
+                newError = (e as Error).message
             }
             setQrData(newData)
             setError(newError)
