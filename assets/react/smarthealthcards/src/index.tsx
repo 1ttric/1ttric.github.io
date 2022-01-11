@@ -102,7 +102,7 @@ const App: FC = () => {
                             <p>
                                 Scan a QR code
                             </p>
-                            <div className="flex-1 mt-4 p-4 border border-bg0 flex justify-center">
+                            <div className="flex-1 p-4 border border-bg0 flex justify-center">
                                 <Webcam
                                     videoConstraints={{facingMode: "environment"}}
                                     ref={webcamRef}
