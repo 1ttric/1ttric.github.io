@@ -152,8 +152,8 @@ const App3D: FC = () => {
                 autoRotate
                 autoRotateSpeed={0.1}
                 enableDamping
-                // minDistance={1.5}
-                // maxDistance={1.9}
+                minDistance={1.5}
+                maxDistance={1.9}
                 enablePan={false}
                 mouseButtons={{LEFT: MOUSE.ROTATE, RIGHT: MOUSE.ROTATE, MIDDLE: MOUSE.ROTATE}}/>
             <Sphere args={[1000, 32, 64]}>
@@ -187,11 +187,13 @@ const App3D: FC = () => {
                     alphaMap={cloudMap ?? new Texture()}
                 />
             </Sphere>
-            <Sphere name="atmosphere" args={[1.3, 128, 256]}>
+            <Sphere name="atmosphere" args={[1.03, 128, 256]}>
                 <shaderMaterial
                     transparent
+                    opacity={0.5}
+                    blending={AdditiveBlending}
                     uniforms={{
-                        c: {value: 0.2},
+                        c: {value: 0.5},
                         p: {value: 2},
                         glowColor: {value: new Color("#7ab8d0")},
                         viewVector: {value: camera.position}
