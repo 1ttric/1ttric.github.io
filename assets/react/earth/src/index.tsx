@@ -192,7 +192,7 @@ const App3D: FC = () => {
                 {
                     range(16).map(i => (
                         <Sphere
-                            args={[1.01 + (i / 200), 32, 32]}
+                            args={[1.01 + (i / 500), 32, 32]}
                             rotation={new Euler(0, degToRad(360 * (i / 16)), 0)}>
                             <meshBasicMaterial
                                 transparent
@@ -207,7 +207,7 @@ const App3D: FC = () => {
 }
 
 const App: FC = () => {
-    return <div className="absolute inset-0 w-screen h-screen">
+    return <div className="absolute inset-0 w-screen h-screen overscroll-none">
         {/*<div id="debug" style={{*/}
         {/*    position: "absolute",*/}
         {/*    "left": 0,*/}
