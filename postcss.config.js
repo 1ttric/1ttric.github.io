@@ -1,7 +1,7 @@
 module.exports = {
     plugins: {
         tailwindcss: {
-            purge: {
+            content: {
                 enabled: true,
                 content: [
                     "layouts/**/*.html",
@@ -9,7 +9,6 @@ module.exports = {
                     "themes/vtec/layouts/**/*.html",
                 ]
             },
-            darkMode: false,
             theme: {
                 fontFamily: {
                     "mono": ["JetBrains Mono", "mono"],
@@ -59,9 +58,6 @@ module.exports = {
                         }
                     },
                 },
-            },
-            variants: {
-                extend: {},
             },
             plugins: [
                 require("@tailwindcss/typography"),
