@@ -2,13 +2,14 @@ import ReactDOM from "react-dom";
 import React, {FC, Suspense, useEffect, useState} from "react";
 import {Canvas, useThree} from "@react-three/fiber";
 import {Loader, OrbitControls, Sphere, Text, useTexture} from "@react-three/drei";
-import {AdditiveBlending, BackSide, CanvasTexture, Color, FrontSide, MOUSE, Texture, Vector3} from "three";
+import {AdditiveBlending, BackSide, CanvasTexture, Color, Euler, FrontSide, MOUSE, Texture, Vector3} from "three";
 import pLimit from "p-limit";
-import {shuffle} from "lodash";
+import {range, shuffle} from "lodash";
 import SunCalc from "suncalc";
 import Jimp from "jimp/browser/lib/jimp";
 import {DateTime} from "luxon";
 import {animated, useSpring} from "@react-spring/three";
+import {degToRad} from "three/src/math/MathUtils";
 
 const jimpToCanvas = (img: Jimp): HTMLCanvasElement => {
     const ctx = document.createElement("canvas").getContext("2d") as CanvasRenderingContext2D;
@@ -152,8 +153,8 @@ const App3D: FC = () => {
                 autoRotate
                 autoRotateSpeed={0.1}
                 enableDamping
-                minDistance={1.5}
-                maxDistance={1.9}
+                minDistance={1.2}
+                maxDistance={2.5}
                 enablePan={false}
                 mouseButtons={{LEFT: MOUSE.ROTATE, RIGHT: MOUSE.ROTATE, MIDDLE: MOUSE.ROTATE}}/>
             <Sphere args={[1000, 32, 64]}>
@@ -187,61 +188,20 @@ const App3D: FC = () => {
                     alphaMap={cloudMap ?? new Texture()}
                 />
             </Sphere>
-            <Sphere name="atmosphere" args={[1.03, 128, 256]}>
-                <shaderMaterial
-                    transparent
-                    opacity={0.5}
-                    blending={AdditiveBlending}
-                    uniforms={{
-                        c: {value: 0.5},
-                        p: {value: 2},
-                        glowColor: {value: new Color("#7ab8d0")},
-                        viewVector: {value: camera.position}
-                    }}
-                    vertexShader={`
-                        uniform vec3 viewVector;
-                        uniform float c;
-                        uniform float p;
-                        varying float intensity;
-                        void main()
-                        {
-                            vec3 vNormal = normalize( normalMatrix * normal );
-                            vec3 vNormel = normalize( normalMatrix * viewVector );
-                            intensity = pow( c - dot(vNormal, vNormel), p );
-                            gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-                        }
-                    `}
-                    fragmentShader={`
-                        uniform vec3 glowColor;
-                        varying float intensity;
-                        void main()
-                        {
-                            vec3 glow = glowColor * intensity;
-                            gl_FragColor = vec4( glow, 1.0 );
-                        }
-                    `}
-
-
-                    // vertexShader={`
-                    // varying vec3 vertexNormal;
-                    // void main() {
-                    //     vertexNormal = normalize(normalMatrix * normal);
-                    //     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1);
-                    // }
-                    // `}
-                    // fragmentShader={`
-                    // varying vec3 vertexNormal;
-                    // void main() {
-                    //     float intensity = pow(0.6 - dot(vertexNormal, vec3(0, 0, 1.0)), 2.0);
-                    //     // gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
-                    //     gl_FragColor = vec4(intensity, intensity, intensity, 1.0);
-                    // }
-                    // `}
-                    // side={FrontSide}
-                    // blending={AdditiveBlending}
-
-                />
-            </Sphere>
+            <group name="atmosphere">
+                {
+                    range(16).map(i => (
+                        <Sphere
+                            args={[1.01 + (i / 200), 32, 32]}
+                            rotation={new Euler(0, degToRad(360 * (i / 16)), 0)}>
+                            <meshBasicMaterial
+                                transparent
+                                opacity={0.01}
+                                color="#7ab8d0"/>
+                        </Sphere>
+                    ))
+                }
+            </group>
         </>
     )
 }
