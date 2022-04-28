@@ -127,11 +127,11 @@ const getSunPos = (): Vector3 => {
 const App3D: FC = () => {
     const {camera} = useThree();
     const [skyMap, colorMap, bumpMap, specularMap, lightMap] = useTexture([
-        "/images/earth/starmap_2020_8k.webp",
-        "/images/earth/world.200411.3x21600x10800.webp",
-        "/images/earth/earthbump4k.webp",
-        "/images/earth/earthspec4k-inverted.webp",
-        "/images/earth/VNL_v2_npp_2020_global_vcmslcfg_c202102150000.median_masked.sqrt.full.10k_5k.webp",
+        "/items/earth/starmap_2020_8k.webp",
+        "/items/earth/world.200411.3x21600x10800.webp",
+        "/items/earth/earthbump4k.webp",
+        "/items/earth/earthspec4k-inverted.webp",
+        "/items/earth/VNL_v2_npp_2020_global_vcmslcfg_c202102150000.median_masked.sqrt.full.10k_5k.webp",
     ]) as Texture[];
     const cloudMap = useOpenWeatherMapCloudTexture();
 

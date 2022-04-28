@@ -11,4 +11,4 @@ We ended up with two server racks totalling about 12 Us of equipment, with high-
 
 Here's a diagram of what we built:
 
-![Network diagram](/images/fishnet.svg)
+![Network diagram](/items/fisher/fishnet.svg)
