@@ -5,10 +5,10 @@
   "license": "MIT",
   "dependencies": {},
   "scripts": {
-    "build": "esbuild ./src/index.tsx --bundle --minify --outfile=./build/bundle.js",
-    "build-watch": "esbuild ./src/index.tsx --bundle --minify --watch --outfile=./build/bundle.js",
-    "build-dev": "esbuild ./src/index.tsx --bundle --sourcemap=external --outfile=./build/bundle.js",
-    "build-dev-watch": "esbuild ./src/index.tsx --bundle --sourcemap=external --watch --outfile=./build/bundle.js"
+    "build": "yarn && esbuild ./src/index.ts --bundle --minify --outfile=./build/bundle.js",
+    "build-watch": "yarn && esbuild ./src/index.ts --bundle --minify --watch --outfile=./build/bundle.js",
+    "build-dev": "yarn && esbuild ./src/index.ts --bundle --sourcemap=external --outfile=./build/bundle.js",
+    "build-dev-watch": "yarn && esbuild ./src/index.ts --bundle --sourcemap=external --watch --outfile=./build/bundle.js"
   },
   "devDependencies": {
     "typescript": "^4.5.2",
