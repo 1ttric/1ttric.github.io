@@ -1,6 +1,10 @@
-{{ $app := ( .Get 0 | printf "react/%s/build/bundle.js" | resources.Get ) }}
+{{ $appJs := ( .Get 0 | printf "react/%s/build/bundle.js" | resources.Get ) }}
+{{ $appCss := ( .Get 0 | printf "react/%s/build/bundle.css" | resources.Get ) }}
 <div id="react-app" class="overscroll-none"></div>
-<script src="{{ $app.RelPermalink }}"></script>
+<script src="{{ $appJs.RelPermalink }}"></script>
+{{if $appCss}}
+    <link href="{{ $appCss.RelPermalink }}" rel="stylesheet">
+{{end}}
 <noscript>
     <div class="absolute inset-0 w-screen h-screen font-mono flex flex-col justify-center items-center divide-y select-none bg-bg2">
         <div class="flex-0 prose-lg max-w-none p-4 text-fg1">
