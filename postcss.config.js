@@ -1,14 +1,11 @@
 module.exports = {
     plugins: {
         tailwindcss: {
-            content: {
-                enabled: true,
-                content: [
-                    "layouts/**/*.html",
-                    "assets/react/*/src/**/*.tsx",
-                    "themes/vtec/layouts/**/*.html",
-                ]
-            },
+            content: [
+                "layouts/**/*.html",
+                "assets/react/*/src/**/*.tsx",
+                "themes/vtec/layouts/**/*.html",
+            ],
             theme: {
                 fontFamily: {
                     "mono": ["JetBrains Mono", "mono"],
@@ -24,7 +21,6 @@ module.exports = {
                         "8": "8 8 0%",
                         "9": "9 9 0%",
                     },
-                    // Add custom colors to Tailwind CSS
                     colors: {
                         "bg0": {DEFAULT: "#000000"},
                         "bg1": {DEFAULT: "#222d31"},
