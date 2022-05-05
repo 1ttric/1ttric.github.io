@@ -27,7 +27,7 @@ const App: FC = () => {
                 return
             }
             emulatorRef.current = true
-            const hdaUrl = "//files.svc.vesey.tech/items/linux-wasm/archlinux";
+            const hdaUrl = "//vtec.b-cdn.net/items/linux-wasm/archlinux";
             const emulator = new V86Starter({
                 wasm_fn: async (param: any) => (await WebAssembly.instantiate(await v86WASM, param)).instance.exports,
                 memory_size: 512 * 1024 * 1024,
@@ -35,8 +35,8 @@ const App: FC = () => {
                 screen_container: emulatorContainerRef.current,
                 // bios: {buffer: await seabios},
                 // vga_bios: {buffer: await vgabios},
-                bios: {url: "//files.svc.vesey.tech/items/linux-wasm/bios.bin"},
-                vga_bios: {url: "//files.svc.vesey.tech/items/linux-wasm/vgabios.bin"},
+                bios: {url: "//vtec.b-cdn.net/items/linux-wasm/bios.bin"},
+                vga_bios: {url: "//vtec.b-cdn.net/items/linux-wasm/vgabios.bin"},
                 hda: {
                     url: hdaUrl,
                     async: true,
