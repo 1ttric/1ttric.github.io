@@ -27,7 +27,7 @@ const App: FC = () => {
                 return
             }
             emulatorRef.current = true
-            const hdaUrl = "//vtec.b-cdn.net/items/linux-wasm/archlinux";
+            const hdaUrl = "//vtec.b-cdn.net/items/linux-wasm/archlinux.img";
             const emulator = new V86Starter({
                 wasm_fn: async (param: any) => (await WebAssembly.instantiate(await v86WASM, param)).instance.exports,
                 memory_size: 512 * 1024 * 1024,
