@@ -1,0 +1,41 @@
+{
+  "builders": [
+    {
+      "accelerator": "kvm",
+      "boot_command": [
+        "echo root:root | chpasswd<enter><wait5>",
+        "systemctl start sshd<enter>"
+      ],
+      "boot_wait": "90s",
+      "disk_detect_zeroes": "unmap",
+      "disk_interface": "ide",
+      "disk_size": "4000M",
+      "format": "raw",
+      "headless": true,
+      "iso_checksum": "sha1:2b3a4ee53117619ce7dc79f09451198f39fa4617",
+      "iso_url": "https://mirror.archlinux32.org/archisos/archlinux32-2022.04.03-i686.iso",
+      "memory": 2048,
+      "ssh_password": "root",
+      "ssh_port": 22,
+      "ssh_pty": true,
+      "ssh_timeout": "120s",
+      "ssh_username": "root",
+      "type": "qemu",
+      "vm_name": "archlinux",
+      "vnc_bind_address": "0.0.0.0"
+    }
+  ],
+  "provisioners": [
+    {
+      "override": {
+        "qemu": {
+          "scripts": [
+            "provision-base.sh"
+          ]
+        }
+      },
+      "type": "shell"
+    }
+  ]
+}
+
