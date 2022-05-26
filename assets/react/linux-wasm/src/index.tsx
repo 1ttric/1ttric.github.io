@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useRef} from "react";
+import React, {FC, ReactElement, useEffect, useLayoutEffect, useRef, useState} from "react";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import {V86Starter} from "v86";
@@ -7,6 +7,7 @@ import {V86Starter} from "v86";
 import {seabios, v86WASM, vgabios} from "v86/build/binaries";
 import {createRoot} from "react-dom/client";
 import {Terminal} from "xterm";
+import {useMeasure, useResizeObserver} from "@react-hookz/web";
 
 
 // TODO: Rice startup speed:
@@ -14,11 +15,23 @@ import {Terminal} from "xterm";
 // TODO: Use squashfs?
 
 const App: FC = () => {
+    const emulatorContainerParentRef = useRef<HTMLDivElement>(null);
     const emulatorContainerRef = useRef<HTMLDivElement>(null);
     const emulatorRef = useRef<V86Starter>();
+    const [emulatorContainerParentWidthPx, setEmulatorContainerParentWidthPx] = useState(800)
+    const [emulatorContainerParentHeightPx, setEmulatorContainerParentHeightPx] = useState(600)
 
     const terminalContainerRef = useRef<HTMLDivElement>(null);
     const terminalRef = useRef<Terminal>();
+
+    useResizeObserver(
+        emulatorContainerParentRef,
+        entry => {
+            setEmulatorContainerParentWidthPx(entry.contentBoxSize[0].inlineSize)
+            setEmulatorContainerParentHeightPx(entry.contentBoxSize[0].blockSize)
+        },
+        true
+    )
 
     // Populates emulatorRef when emulatorContainerRef changes
     useEffect(() => {
@@ -101,15 +114,39 @@ const App: FC = () => {
     //     fileReader.readAsArrayBuffer(file);
     // }
 
+
+    const txtWidthChars = 80;
+    const txtHeightChars = 25;
+
+    const fontSizePx = parseFloat(
+        getComputedStyle(
+            document.querySelector("body") as Element
+        ).fontSize
+    )
+
+    const newFontWidthPx = emulatorContainerParentWidthPx / txtWidthChars * 1.6
+    const newFontHeightPx = emulatorContainerParentHeightPx / txtHeightChars * 0.7
+
+    const newFontSizePx = Math.min(newFontHeightPx, newFontWidthPx)
+
+    console.log(`container width ${emulatorContainerParentWidthPx}, scaling ${newFontWidthPx}`)
+    console.log(`container height ${emulatorContainerParentHeightPx}, scaling ${newFontHeightPx}`)
+    console.log(`font size scaled from ${fontSizePx} to ${newFontSizePx}`)
+
     return (
         <div className="absolute inset-0 w-screen h-screen overscroll-none flex flex-col justify-center items-center">
-            <div className="overflow-hidden">
+            <div className="w-full h-full overflow-hidden flex justify-center items-center"
+                 ref={emulatorContainerParentRef}>
                 <div className="bg-bg0" ref={emulatorContainerRef}>
-                    <div className="whitespace-pre text-sm font-mono leading-4 select-none"></div>
+                    <div className="whitespace-pre font-mono select-none"
+                         style={{
+                             fontSize: `${newFontSizePx}px`, lineHeight: `${newFontSizePx * 1.25}px`
+                         }}>
+                    </div>
                     <canvas onClick={() => emulatorRef.current?.lock_mouse()}></canvas>
                 </div>
             </div>
-            <div className="mt-4 p-2 outline outline-1">
+            <div className="flex-0 my-8 p-2 outline outline-1">
                 <div className="overflow-hidden" ref={terminalContainerRef}/>
             </div>
         </div>

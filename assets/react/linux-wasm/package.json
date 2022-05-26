@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@react-hookz/web": "^14.2.2",
     "@types/react-dom": "^18.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
