@@ -5,10 +5,12 @@
   "license": "MIT",
   "dependencies": {
     "@heroicons/react": "^1.0.5",
+    "@types/crypto-js": "^4.1.1",
     "@types/lodash": "^4.14.178",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "@types/spotify-api": "^0.0.12",
+    "crypto-js": "^4.1.1",
     "fuse.js": "^6.4.6",
     "lodash": "^4.17.21",
     "nanoid": "^3.1.30",

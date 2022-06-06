@@ -1,10 +1,12 @@
 import ReactDOM from "react-dom";
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, Suspense, useEffect, useState} from "react";
 import {nanoid} from "nanoid";
 import {useDebounce, useLocalStorage} from "react-use";
 import {LinkIcon, PlayIcon} from "@heroicons/react/solid";
 import Fuse from "fuse.js"
 import {filter, isEqual, uniqBy, uniqWith} from "lodash";
+import Base64url from "crypto-js/enc-base64url";
+import sha256 from "crypto-js/sha256";
 import PlaylistObjectSimplified = SpotifyApi.PlaylistObjectSimplified;
 import PlaylistTrackObject = SpotifyApi.PlaylistTrackObject;
 import ListOfCurrentUsersPlaylistsResponse = SpotifyApi.ListOfCurrentUsersPlaylistsResponse;
@@ -12,20 +14,16 @@ import PlaylistTrackResponse = SpotifyApi.PlaylistTrackResponse;
 
 const ORIGIN = new URL(document.location.href).origin
 
-const generateCodeChallenge = async (codeVerifier: string): Promise<string> => {
-    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(codeVerifier));
-    return btoa(String.fromCharCode(...new Uint8Array(digest)))
-        .replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_")
-}
-
 const App: FC = () => {
     const [triggerRefresh, setTriggerRefresh] = useState(0)
     const [verifier] = useLocalStorage("verifier", nanoid(100))
     const [accessToken, setAccessToken, removeAccessToken] = useLocalStorage("accessToken", "")
 
     const doAuth = async () => {
-        if (!verifier) return;
-        const challenge = await generateCodeChallenge(verifier)
+        if (!verifier) {
+            return;
+        }
+        const challenge = Base64url.stringify(sha256(verifier))
         const url = new URL("https://accounts.spotify.com/authorize")
         url.search = (new URLSearchParams([
             ["client_id", "af0b9b5ccdd345c1bbae76a693a94af1"],
@@ -77,18 +75,18 @@ const App: FC = () => {
             console.log("resp wrong scope")
             return
         }
-        const accessToken = respBody["access_token"]
-        if (!accessToken) {
+        const newAccessToken = respBody["access_token"]
+        if (!newAccessToken) {
             console.log("resp had no access token")
             return
         }
-        console.log("got access token!", accessToken)
-        setAccessToken(accessToken)
+        console.log("got access token!", newAccessToken)
+        setAccessToken(newAccessToken)
         document.location.search = ""
     }
 
     useEffect(() => {
-        receiveCallback()
+        receiveCallback().catch(console.error)
     }, [])
 
     if (!accessToken) {
@@ -170,7 +168,6 @@ const SearchScreen: FC<SearchScreenProps> = props => {
             setProcessedPlaylistTracks([])
             return;
         }
-        console.log("searching!")
         const allTracks = allPlaylistTracks.flatMap(([p, ts]) => ts).map(t => t.track)
         const fuse = new Fuse(allTracks, {
             includeMatches: true,
@@ -178,7 +175,6 @@ const SearchScreen: FC<SearchScreenProps> = props => {
             isCaseSensitive: false,
             keys: ["artists.name", "title"],
         })
-        console.log("searched!")
         const searchResults = fuse.search(searchQuery).slice(0, 100)
 
         let playlistTracks: [PlaylistObjectSimplified, PlaylistTrackObject[]][] = [];
