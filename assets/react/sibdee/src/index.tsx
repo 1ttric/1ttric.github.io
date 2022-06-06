@@ -15,6 +15,7 @@ import PlaylistTrackResponse = SpotifyApi.PlaylistTrackResponse;
 const ORIGIN = new URL(document.location.href).origin
 
 const App: FC = () => {
+    const [error, setError] = useState("")
     const [triggerRefresh, setTriggerRefresh] = useState(0)
     const [verifier] = useLocalStorage("verifier", nanoid(100))
     const [accessToken, setAccessToken, removeAccessToken] = useLocalStorage("accessToken", "")
@@ -44,17 +45,14 @@ const App: FC = () => {
         }
         const callbackError = urlParams.get("error")
         if (callbackError) {
-            console.log("callback error", callbackError)
-            return
+            throw new Error("callback error: " + callbackError)
         }
         const authCode = urlParams.get("code")
         if (!authCode) {
-            console.log("no auth code")
-            return
+            throw new Error("no auth code")
         }
         if (!verifier) {
-            console.log("no verifier")
-            return
+            throw new Error("no verifier")
         }
         const resp = await fetch("https://accounts.spotify.com/api/token", {
             method: "post",
@@ -68,26 +66,35 @@ const App: FC = () => {
         })
         const respBody = await resp.json()
         if (respBody.error) {
-            console.log("response error", respBody.error, respBody.error_description)
-            return
+            throw new Error(`response error: ${respBody.error}\n${respBody.error_description}`)
         }
         if (respBody.scope !== "user-library-read") {
-            console.log("resp wrong scope")
-            return
+            throw new Error("response has wrong scope")
         }
         const newAccessToken = respBody["access_token"]
         if (!newAccessToken) {
-            console.log("resp had no access token")
-            return
+            throw new Error("response has no access token")
         }
-        console.log("got access token!", newAccessToken)
         setAccessToken(newAccessToken)
+
+        // TODO: use history.replaceState here
         document.location.search = ""
     }
 
     useEffect(() => {
-        receiveCallback().catch(console.error)
+        receiveCallback().catch(e => setError(e))
     }, [])
+
+    if (error) {
+        return (
+            <div className="flex flex-col items-center justify-center p-8 w-screen h-screen font-mono">
+                <div className="flex-0 text-red-600">Error</div>
+                <div className="flex-0 whitespace-pre text-red-600 text-xs w-full overflow-scroll">
+                    {error}
+                </div>
+            </div>
+        )
+    }
 
     if (!accessToken) {
         return (
@@ -121,7 +128,7 @@ const SearchScreen: FC<SearchScreenProps> = props => {
     const [processedPlaylistTracks, setProcessedPlaylistTracks] = useState<[PlaylistObjectSimplified, PlaylistTrackObject[]][]>([]);
     const [playlistTracksLoading, setPlaylistTracksLoading] = useState(true)
 
-    // Gets all the user"s playlists
+    // Gets all the user's playlists
     useEffect(() => {
         const asyncFn = async () => {
             const url = new URL("https://api.spotify.com/v1/me/playlists");
