@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
-import React, {FC, Suspense, useEffect, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import {nanoid} from "nanoid";
-import {useDebounce, useLocalStorage} from "react-use";
+import {useDebounce, useSessionStorage} from "react-use";
 import {LinkIcon, PlayIcon} from "@heroicons/react/solid";
 import Fuse from "fuse.js"
 import {filter, isEqual, uniqBy, uniqWith} from "lodash";
@@ -16,9 +16,8 @@ const ORIGIN = new URL(document.location.href).origin
 
 const App: FC = () => {
     const [error, setError] = useState("")
-    const [triggerRefresh, setTriggerRefresh] = useState(0)
-    const [verifier] = useLocalStorage("verifier", nanoid(100))
-    const [accessToken, setAccessToken, removeAccessToken] = useLocalStorage("accessToken", "")
+    const [verifier] = useSessionStorage("verifier", nanoid(100))
+    const [accessToken, setAccessToken] = useSessionStorage("accessToken", "")
 
     const doAuth = async () => {
         if (!verifier) {
@@ -110,10 +109,7 @@ const App: FC = () => {
     return <div className="flex flex-col justify-start items-stretch w-screen h-screen p-4 font-mono">
         <SearchScreen
             accessToken={accessToken}
-            onAuthFailed={() => {
-                removeAccessToken()
-                setTriggerRefresh(triggerRefresh + 1)
-            }}/>
+            onAuthFailed={() => setAccessToken("")}/>
     </div>
 }
 
