@@ -19,8 +19,9 @@ Some users, as a result of their natural gregariousness, will attract more *tota
 And, similarly, some users are more predisposed to reacting than others - another factor which must be taken into consideration.
 
 The matrix produced from each pair of possible user interactions has these two normalization options added, so you can view the data taking into consideration any of these confounding factors.
-
-[Link](https://messenger-analysis.svc.vesey.tech/reactions)
+<div style="display: flex; justify-content: center;">
+<iframe src="https://messenger-analysis.svc.vesey.tech/reactions" style="width: 630px; height:770px; background-color: white;"></iframe>
+</div>
 
 ## Message readability
 
@@ -31,7 +32,9 @@ Some additional interesting readability metrics are also included.
 
 The results are displayed in a histogram for ease of viewing the *distribution* of a user's message readability.
 
-[Link](https://messenger-analysis.svc.vesey.tech/readability)
+<div style="display: flex; justify-content: center;">
+<iframe src="https://messenger-analysis.svc.vesey.tech/readability" style="width: 610px; height:850px; background-color: white;"></iframe>
+</div>
 
 ## Time of day
 
@@ -43,4 +46,6 @@ The times during which users tend to send messages can suggest many different th
 
 I've included a date slider to view how this metric changes over time. This visualization makes it easy to confirm when someone I know moves time zones!
 
-[Link](https://messenger-analysis.svc.vesey.tech/timeofday)
+<div style="display: flex; justify-content: center;">
+<iframe src="https://messenger-analysis.svc.vesey.tech/timeofday" style="width: 620px; height:720px; background-color: white;"></iframe>
+</div>
