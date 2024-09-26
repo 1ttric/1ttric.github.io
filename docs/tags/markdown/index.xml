@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>markdown on vesey.tech</title>
+    <title>Markdown on vesey.tech</title>
     <link>https://vesey.tech/tags/markdown/</link>
-    <description>Recent content in markdown on vesey.tech</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Markdown on vesey.tech</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://vesey.tech/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>test post please ignore</title>
       <link>https://vesey.tech/items/testpostpleaseignore/</link>
       <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/testpostpleaseignore/</guid>
-      <description>I&amp;rsquo;m no good at writing sample / filler text
-((MathJax))
-(not MathJax)
-$$MORE\ MathJax$$
-$NO MathJax$
-Look, a list!
-foo bar baz And here&amp;rsquo;s some code! 👍
-$(function(){ $(&amp;#39;div&amp;#39;).html(&amp;#39;I am a div.&amp;#39;); }); &amp;hellip;Smaller and smaller and smaller</description>
+      <description>&lt;p&gt;I&amp;rsquo;m no good at writing sample / filler text&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;((MathJax))&lt;/p&gt;&#xA;&lt;p&gt;(not MathJax)&lt;/p&gt;&#xA;&lt;p&gt;$$MORE\ MathJax$$&lt;/p&gt;&#xA;&lt;p&gt;$NO MathJax$&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Look, a list!&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;foo&lt;/li&gt;&#xA;&lt;li&gt;bar&lt;/li&gt;&#xA;&lt;li&gt;baz&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;And here&amp;rsquo;s some code! 👍&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$(&lt;span style=&#34;font-weight:bold;font-style:italic;text-decoration:underline&#34;&gt;function&lt;/span&gt;(){&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  $(&lt;span style=&#34;color:#666;font-style:italic&#34;&gt;&amp;#39;div&amp;#39;&lt;/span&gt;).html(&lt;span style=&#34;color:#666;font-style:italic&#34;&gt;&amp;#39;I am a div.&amp;#39;&lt;/span&gt;);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;&amp;hellip;Smaller &lt;sup&gt; and &lt;sup&gt; smaller &lt;sup&gt; and &lt;sup&gt; smaller&lt;/em&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

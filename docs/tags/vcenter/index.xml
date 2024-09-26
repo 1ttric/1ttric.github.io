@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>vcenter on vesey.tech</title>
+    <title>Vcenter on vesey.tech</title>
     <link>https://vesey.tech/tags/vcenter/</link>
-    <description>Recent content in vcenter on vesey.tech</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Vcenter on vesey.tech</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/vcenter/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://vesey.tech/tags/vcenter/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fisher</title>
       <link>https://vesey.tech/items/fisher/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/fisher/</guid>
-      <description>In university, I lived with some like-minded developers, and we managed to build a pretty useful environment for ourselves.
-We ended up with two server racks totalling about 12 Us of equipment, with high-speed data links, high-density storage, and plenty of blinkenlights.
-Here&amp;rsquo;s a diagram of what we built:</description>
+      <description>&lt;p&gt;In university, I lived with some like-minded developers, and we managed to build a pretty useful environment for ourselves.&lt;/p&gt;&#xA;&lt;p&gt;We ended up with two server racks totalling about 12 Us of equipment, with high-speed data links, high-density storage, and plenty of blinkenlights.&lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s a diagram of what we built:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vesey.tech/items/fisher/fishnet.svg&#34; alt=&#34;Network diagram&#34;&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

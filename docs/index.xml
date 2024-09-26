@@ -4,158 +4,107 @@
     <title>vesey.tech</title>
     <link>https://vesey.tech/</link>
     <description>Recent content on vesey.tech</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://vesey.tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://vesey.tech/items/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/about/</guid>
-      <description>Hello. I&amp;rsquo;m a full-stack developer from Boston.
-I enjoy challenging problems, well-designed archtitecture, and building tech stacks from the hardware up.
-Find out more at the links below:
-resume
-linkedin
-github</description>
+      <description>&lt;p&gt;Hello. I&amp;rsquo;m a full-stack developer from Boston.&lt;/p&gt;&#xA;&lt;p&gt;I enjoy challenging problems, well-designed archtitecture, and building tech stacks from the hardware up.&lt;/p&gt;&#xA;&lt;p&gt;Find out more at the links below:&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://docs.google.com/document/d/1llvKvzz8P6FbU1bLYreTmF4s0JDI6hF0j6bN8_2rDps&#34;&gt;resume&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://linkedin.com/in/will-vesey-312359135&#34;&gt;linkedin&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/1ttric&#34;&gt;github&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Space</title>
       <link>https://vesey.tech/items/space/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/space/</guid>
-      <description> </description>
+      <description>&lt;iframe class=&#34;absolute inset-0 w-screen h-screen bg-bg2&#34; style=&#34;pointer-events: none&#34;&#xA;    src=&#34;https://ustream.tv/embed/17074538?controls=false&amp;showtitle=false&amp;volume=0&amp;autoplay=true&#34;&#xA;    webkitallowfullscreen&#xA;    allowfullscreen&gt;&#xA;&lt;/iframe&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://vesey.tech/items/linux-wasm/</link>
       <pubDate>Wed, 06 Apr 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/linux-wasm/</guid>
-      <description>--- Enable Javascript to view this content.</description>
+      <description>&lt;div id=&#34;react-app&#34; class=&#34;overscroll-none&#34;&gt;&lt;/div&gt;&#xA;&lt;script src=&#34;https://vesey.tech/react/linux-wasm/build/bundle.js&#34;&gt;&lt;/script&gt;&#xA;&#xA;    &lt;link href=&#34;https://vesey.tech/react/linux-wasm/build/bundle.css&#34; rel=&#34;stylesheet&#34;&gt;&#xA;&#xA;&lt;noscript&gt;&#xA;    &lt;div class=&#34;absolute inset-0 w-screen h-screen font-mono flex flex-col justify-center items-center divide-y select-none bg-bg2&#34;&gt;&#xA;        &lt;div class=&#34;flex-0 prose-lg max-w-none p-4 text-fg1&#34;&gt;&#xA;            &lt;h1&gt;---&lt;/h1&gt;&#xA;            &lt;p&gt;Enable Javascript to view this content.&lt;/p&gt;&#xA;        &lt;/div&gt;&#xA;    &lt;/div&gt;&#xA;&lt;/noscript&gt;</description>
     </item>
-    
     <item>
       <title>smarthealthcards</title>
       <link>https://vesey.tech/items/smarthealthcards/</link>
       <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/smarthealthcards/</guid>
-      <description>--- Enable Javascript to view this content.</description>
+      <description>&lt;div id=&#34;react-app&#34; class=&#34;overscroll-none&#34;&gt;&lt;/div&gt;&#xA;&lt;script src=&#34;https://vesey.tech/react/smarthealthcards/build/bundle.js&#34;&gt;&lt;/script&gt;&#xA;&#xA;&lt;noscript&gt;&#xA;    &lt;div class=&#34;absolute inset-0 w-screen h-screen font-mono flex flex-col justify-center items-center divide-y select-none bg-bg2&#34;&gt;&#xA;        &lt;div class=&#34;flex-0 prose-lg max-w-none p-4 text-fg1&#34;&gt;&#xA;            &lt;h1&gt;---&lt;/h1&gt;&#xA;            &lt;p&gt;Enable Javascript to view this content.&lt;/p&gt;&#xA;        &lt;/div&gt;&#xA;    &lt;/div&gt;&#xA;&lt;/noscript&gt;</description>
     </item>
-    
     <item>
       <title>Sibdee</title>
       <link>https://vesey.tech/items/sibdee/</link>
       <pubDate>Tue, 21 Dec 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/sibdee/</guid>
-      <description>--- Enable Javascript to view this content.</description>
+      <description>&lt;div id=&#34;react-app&#34; class=&#34;overscroll-none&#34;&gt;&lt;/div&gt;&#xA;&lt;script src=&#34;https://vesey.tech/react/sibdee/build/bundle.js&#34;&gt;&lt;/script&gt;&#xA;&#xA;&lt;noscript&gt;&#xA;    &lt;div class=&#34;absolute inset-0 w-screen h-screen font-mono flex flex-col justify-center items-center divide-y select-none bg-bg2&#34;&gt;&#xA;        &lt;div class=&#34;flex-0 prose-lg max-w-none p-4 text-fg1&#34;&gt;&#xA;            &lt;h1&gt;---&lt;/h1&gt;&#xA;            &lt;p&gt;Enable Javascript to view this content.&lt;/p&gt;&#xA;        &lt;/div&gt;&#xA;    &lt;/div&gt;&#xA;&lt;/noscript&gt;</description>
     </item>
-    
     <item>
       <title>Color</title>
       <link>https://vesey.tech/items/color/</link>
       <pubDate>Sun, 19 Dec 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/color/</guid>
-      <description>--- Enable Javascript to view this content.</description>
+      <description>&lt;div id=&#34;react-app&#34; class=&#34;overscroll-none&#34;&gt;&lt;/div&gt;&#xA;&lt;script src=&#34;https://vesey.tech/react/color/build/bundle.js&#34;&gt;&lt;/script&gt;&#xA;&#xA;&lt;noscript&gt;&#xA;    &lt;div class=&#34;absolute inset-0 w-screen h-screen font-mono flex flex-col justify-center items-center divide-y select-none bg-bg2&#34;&gt;&#xA;        &lt;div class=&#34;flex-0 prose-lg max-w-none p-4 text-fg1&#34;&gt;&#xA;            &lt;h1&gt;---&lt;/h1&gt;&#xA;            &lt;p&gt;Enable Javascript to view this content.&lt;/p&gt;&#xA;        &lt;/div&gt;&#xA;    &lt;/div&gt;&#xA;&lt;/noscript&gt;</description>
     </item>
-    
     <item>
       <title>Earth</title>
       <link>https://vesey.tech/items/earth/</link>
       <pubDate>Thu, 16 Dec 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/earth/</guid>
-      <description>--- Enable Javascript to view this content.</description>
+      <description>&lt;div id=&#34;react-app&#34; class=&#34;overscroll-none&#34;&gt;&lt;/div&gt;&#xA;&lt;script src=&#34;https://vesey.tech/react/earth/build/bundle.js&#34;&gt;&lt;/script&gt;&#xA;&#xA;&lt;noscript&gt;&#xA;    &lt;div class=&#34;absolute inset-0 w-screen h-screen font-mono flex flex-col justify-center items-center divide-y select-none bg-bg2&#34;&gt;&#xA;        &lt;div class=&#34;flex-0 prose-lg max-w-none p-4 text-fg1&#34;&gt;&#xA;            &lt;h1&gt;---&lt;/h1&gt;&#xA;            &lt;p&gt;Enable Javascript to view this content.&lt;/p&gt;&#xA;        &lt;/div&gt;&#xA;    &lt;/div&gt;&#xA;&lt;/noscript&gt;</description>
     </item>
-    
     <item>
       <title>Messenger Analytics</title>
       <link>https://vesey.tech/items/messenger-analytics/</link>
       <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/messenger-analytics/</guid>
-      <description>I am part of a group chat that receives quite a bit of activity every day - given the hundreds of thousands of messages sent, I figured there must be some interesting trends that have become apparent. The following is a brief analysis.
-Do note that names have been reduced to initials for privacy&amp;rsquo;s sake. You can probably still figure out that WV is yours truly 🙂
-Reaction likelihood The first metric I was interested in viewing was a heatmap of the likelihood that one user will react to another user with a given emoji.</description>
+      <description>&lt;p&gt;I am part of a group chat that receives quite a bit of activity every day - given the hundreds of thousands of messages&#xA;sent, I figured there must be some interesting trends that have become apparent. The following is a brief analysis.&lt;/p&gt;&#xA;&lt;p&gt;Do note that names have been reduced to initials for privacy&amp;rsquo;s sake. You can probably still figure out that WV is yours truly 🙂&lt;/p&gt;&#xA;&lt;h2 id=&#34;reaction-likelihood&#34;&gt;Reaction likelihood&lt;/h2&gt;&#xA;&lt;p&gt;The first metric I was interested in viewing was a heatmap of the likelihood that one user will react to another user with a given emoji. But it&amp;rsquo;s not quite that simple.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Adobe Lightroom as a hosted service?</title>
       <link>https://vesey.tech/items/lightroom/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/lightroom/</guid>
-      <description>Background As someone with a significant photo library, I often find myself wishing I could access old photos from the road.
-Although remote file access softwares can let me dive through the basic directories, I often wish I could use my Adobe Lightroom Classic instance to sort and filter the photos so I can find the ones I am looking for without searching.
-The problem is, however, most of the time I only have my phone on me - and Lightroom Classic is a Windows-only product.</description>
+      <description>&lt;h1 id=&#34;background&#34;&gt;Background&lt;/h1&gt;&#xA;&lt;p&gt;As someone with a significant photo library, I often find myself wishing I could access old photos from the road.&lt;/p&gt;&#xA;&lt;p&gt;Although remote file access softwares can let me dive through the basic directories, I often wish I could use my Adobe Lightroom Classic instance to sort and filter the photos so I can find the ones I am looking for without searching.&lt;/p&gt;&#xA;&lt;p&gt;The problem is, however, most of the time I only have my phone on me - and Lightroom Classic is a Windows-only product.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>versefind</title>
       <link>https://vesey.tech/items/versefind/</link>
       <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/versefind/</guid>
-      <description>Ever remember a snatch of lyrics from a song you know you have saved in your Spotify library?
-Ever search for that brief phrase in Google but find only unrelated tracks?
-That can be enough to drive a person crazy. I wrote a tool that lets you search through your library to find these earworms.
-https://versefind.vesey.tech</description>
+      <description>&lt;p&gt;Ever remember a snatch of lyrics from a song you &lt;em&gt;know&lt;/em&gt; you have saved in your Spotify library?&lt;/p&gt;&#xA;&lt;p&gt;Ever search for that brief phrase in Google but find only unrelated tracks?&lt;/p&gt;&#xA;&lt;p&gt;That can be enough to drive a person crazy. I wrote a tool that lets you search through your library to find these earworms.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://versefind.vesey.tech&#34;&gt;https://versefind.vesey.tech&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://git.vesey.tech/will/versefind&#34;&gt;[source]&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>hddcheap</title>
       <link>https://vesey.tech/items/hddcheap/</link>
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/hddcheap/</guid>
-      <description>For homelabbers, locating cheap, shuckable hard drives is an occasional necessity. Amazon doesn&amp;rsquo;t expose an easy API to allow us to scrape drive data. Hddcheap gives you that live data in an easy-to-read grid format.
-(I&amp;rsquo;ve noticed the camelcamelcamel images will not load if you are on a VPN - they are likely blocking known VPN IPs)
-https://hddcheap.vesey.tech</description>
+      <description>&lt;p&gt;For homelabbers, locating cheap, shuckable hard drives is an occasional necessity. Amazon doesn&amp;rsquo;t expose an easy API to allow us to scrape drive data. Hddcheap gives you that live data in an easy-to-read grid format.&lt;/p&gt;&#xA;&lt;p&gt;(I&amp;rsquo;ve noticed the camelcamelcamel images will not load if you are on a VPN - they are likely blocking known VPN IPs)&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://git.vesey.tech/will/hddcheap&#34;&gt;[source]&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fisher</title>
       <link>https://vesey.tech/items/fisher/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/fisher/</guid>
-      <description>In university, I lived with some like-minded developers, and we managed to build a pretty useful environment for ourselves.
-We ended up with two server racks totalling about 12 Us of equipment, with high-speed data links, high-density storage, and plenty of blinkenlights.
-Here&amp;rsquo;s a diagram of what we built:</description>
+      <description>&lt;p&gt;In university, I lived with some like-minded developers, and we managed to build a pretty useful environment for ourselves.&lt;/p&gt;&#xA;&lt;p&gt;We ended up with two server racks totalling about 12 Us of equipment, with high-speed data links, high-density storage, and plenty of blinkenlights.&lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s a diagram of what we built:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vesey.tech/items/fisher/fishnet.svg&#34; alt=&#34;Network diagram&#34;&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>MarkBot</title>
       <link>https://vesey.tech/items/markbot/</link>
       <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/markbot/</guid>
-      <description>I&amp;rsquo;ve always had a love for large datasets and the interesting things one can do with them, so when my roommate sent me his entire Google Hangouts and Facebook chat history, I knew what I had to do.
-Enter MarkBot Goals In the past, I&amp;rsquo;ve implemented plenty of basic character-level RNNs and trained them on all sorts of text corpora, but this time I wanted to try something different, and utilize word embeddings to try and produce a more coherent Mark-based chatbot.</description>
+      <description>&lt;p&gt;I&amp;rsquo;ve always had a love for large datasets and the interesting things one can do with them, so when my roommate sent me his entire Google Hangouts and Facebook chat history, I knew what I had to do.&lt;/p&gt;&#xA;&lt;h1 id=&#34;enter-markbot&#34;&gt;Enter MarkBot&lt;/h1&gt;&#xA;&lt;h2 id=&#34;goals&#34;&gt;Goals&lt;/h2&gt;&#xA;&lt;p&gt;In the past, I&amp;rsquo;ve implemented plenty of basic character-level RNNs and trained them on all sorts of text corpora, but this time I wanted to try something different, and utilize word embeddings to try and produce a more coherent Mark-based chatbot. My thought process goes like so:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>test post please ignore</title>
       <link>https://vesey.tech/items/testpostpleaseignore/</link>
       <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/testpostpleaseignore/</guid>
-      <description>I&amp;rsquo;m no good at writing sample / filler text
-((MathJax))
-(not MathJax)
-$$MORE\ MathJax$$
-$NO MathJax$
-Look, a list!
-foo bar baz And here&amp;rsquo;s some code! 👍
-$(function(){ $(&amp;#39;div&amp;#39;).html(&amp;#39;I am a div.&amp;#39;); }); &amp;hellip;Smaller and smaller and smaller</description>
+      <description>&lt;p&gt;I&amp;rsquo;m no good at writing sample / filler text&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;((MathJax))&lt;/p&gt;&#xA;&lt;p&gt;(not MathJax)&lt;/p&gt;&#xA;&lt;p&gt;$$MORE\ MathJax$$&lt;/p&gt;&#xA;&lt;p&gt;$NO MathJax$&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Look, a list!&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;foo&lt;/li&gt;&#xA;&lt;li&gt;bar&lt;/li&gt;&#xA;&lt;li&gt;baz&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;And here&amp;rsquo;s some code! 👍&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$(&lt;span style=&#34;font-weight:bold;font-style:italic;text-decoration:underline&#34;&gt;function&lt;/span&gt;(){&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  $(&lt;span style=&#34;color:#666;font-style:italic&#34;&gt;&amp;#39;div&amp;#39;&lt;/span&gt;).html(&lt;span style=&#34;color:#666;font-style:italic&#34;&gt;&amp;#39;I am a div.&amp;#39;&lt;/span&gt;);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;&amp;hellip;Smaller &lt;sup&gt; and &lt;sup&gt; smaller &lt;sup&gt; and &lt;sup&gt; smaller&lt;/em&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

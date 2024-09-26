@@ -4,197 +4,156 @@
     <title>Tags on vesey.tech</title>
     <link>https://vesey.tech/tags/</link>
     <description>Recent content in Tags on vesey.tech</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://vesey.tech/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>python</title>
+      <title>Python</title>
       <link>https://vesey.tech/tags/python/</link>
       <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/python/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>statistics</title>
+      <title>Statistics</title>
       <link>https://vesey.tech/tags/statistics/</link>
       <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/statistics/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>adobe</title>
+      <title>Adobe</title>
       <link>https://vesey.tech/tags/adobe/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/adobe/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>docker</title>
+      <title>Docker</title>
       <link>https://vesey.tech/tags/docker/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/docker/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>linux</title>
+      <title>Linux</title>
       <link>https://vesey.tech/tags/linux/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/linux/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>vnc</title>
+      <title>Vnc</title>
       <link>https://vesey.tech/tags/vnc/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/vnc/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>windows</title>
+      <title>Windows</title>
       <link>https://vesey.tech/tags/windows/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/windows/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>elasticsearch</title>
+      <title>Elasticsearch</title>
       <link>https://vesey.tech/tags/elasticsearch/</link>
       <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/elasticsearch/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>go</title>
+      <title>Go</title>
       <link>https://vesey.tech/tags/go/</link>
       <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/go/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>kubernetes</title>
+      <title>Kubernetes</title>
       <link>https://vesey.tech/tags/kubernetes/</link>
       <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/kubernetes/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>react</title>
+      <title>React</title>
       <link>https://vesey.tech/tags/react/</link>
       <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/react/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>spotify</title>
+      <title>Spotify</title>
       <link>https://vesey.tech/tags/spotify/</link>
       <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/spotify/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>websockets</title>
+      <title>Websockets</title>
       <link>https://vesey.tech/tags/websockets/</link>
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/websockets/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>esxi</title>
+      <title>Esxi</title>
       <link>https://vesey.tech/tags/esxi/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/esxi/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>hardware</title>
+      <title>Hardware</title>
       <link>https://vesey.tech/tags/hardware/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/hardware/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>vcenter</title>
+      <title>Vcenter</title>
       <link>https://vesey.tech/tags/vcenter/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/vcenter/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ML</title>
       <link>https://vesey.tech/tags/ml/</link>
       <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/ml/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>NLP</title>
       <link>https://vesey.tech/tags/nlp/</link>
       <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/nlp/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>markdown</title>
+      <title>Markdown</title>
       <link>https://vesey.tech/tags/markdown/</link>
       <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/markdown/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>mathjax</title>
+      <title>Mathjax</title>
       <link>https://vesey.tech/tags/mathjax/</link>
       <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/mathjax/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>test</title>
+      <title>Test</title>
       <link>https://vesey.tech/tags/test/</link>
       <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/tags/test/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

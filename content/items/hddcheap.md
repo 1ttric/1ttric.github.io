@@ -9,4 +9,4 @@ For homelabbers, locating cheap, shuckable hard drives is an occasional necessit
 
 (I've noticed the camelcamelcamel images will not load if you are on a VPN - they are likely blocking known VPN IPs)
 
-[https://hddcheap.vesey.tech](https://hddcheap.vesey.tech)
+[[source]](https://git.vesey.tech/will/hddcheap)

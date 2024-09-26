@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>websockets on vesey.tech</title>
+    <title>Websockets on vesey.tech</title>
     <link>https://vesey.tech/tags/websockets/</link>
-    <description>Recent content in websockets on vesey.tech</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Websockets on vesey.tech</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/websockets/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://vesey.tech/tags/websockets/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>hddcheap</title>
       <link>https://vesey.tech/items/hddcheap/</link>
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/hddcheap/</guid>
-      <description>For homelabbers, locating cheap, shuckable hard drives is an occasional necessity. Amazon doesn&amp;rsquo;t expose an easy API to allow us to scrape drive data. Hddcheap gives you that live data in an easy-to-read grid format.
-(I&amp;rsquo;ve noticed the camelcamelcamel images will not load if you are on a VPN - they are likely blocking known VPN IPs)
-https://hddcheap.vesey.tech</description>
+      <description>&lt;p&gt;For homelabbers, locating cheap, shuckable hard drives is an occasional necessity. Amazon doesn&amp;rsquo;t expose an easy API to allow us to scrape drive data. Hddcheap gives you that live data in an easy-to-read grid format.&lt;/p&gt;&#xA;&lt;p&gt;(I&amp;rsquo;ve noticed the camelcamelcamel images will not load if you are on a VPN - they are likely blocking known VPN IPs)&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://git.vesey.tech/will/hddcheap&#34;&gt;[source]&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

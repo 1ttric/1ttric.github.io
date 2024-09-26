@@ -1,34 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>go on vesey.tech</title>
+    <title>Go on vesey.tech</title>
     <link>https://vesey.tech/tags/go/</link>
-    <description>Recent content in go on vesey.tech</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Go on vesey.tech</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 13 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://vesey.tech/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://vesey.tech/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>versefind</title>
       <link>https://vesey.tech/items/versefind/</link>
       <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/versefind/</guid>
-      <description>Ever remember a snatch of lyrics from a song you know you have saved in your Spotify library?
-Ever search for that brief phrase in Google but find only unrelated tracks?
-That can be enough to drive a person crazy. I wrote a tool that lets you search through your library to find these earworms.
-https://versefind.vesey.tech</description>
+      <description>&lt;p&gt;Ever remember a snatch of lyrics from a song you &lt;em&gt;know&lt;/em&gt; you have saved in your Spotify library?&lt;/p&gt;&#xA;&lt;p&gt;Ever search for that brief phrase in Google but find only unrelated tracks?&lt;/p&gt;&#xA;&lt;p&gt;That can be enough to drive a person crazy. I wrote a tool that lets you search through your library to find these earworms.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://versefind.vesey.tech&#34;&gt;https://versefind.vesey.tech&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://git.vesey.tech/will/versefind&#34;&gt;[source]&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>hddcheap</title>
       <link>https://vesey.tech/items/hddcheap/</link>
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://vesey.tech/items/hddcheap/</guid>
-      <description>For homelabbers, locating cheap, shuckable hard drives is an occasional necessity. Amazon doesn&amp;rsquo;t expose an easy API to allow us to scrape drive data. Hddcheap gives you that live data in an easy-to-read grid format.
-(I&amp;rsquo;ve noticed the camelcamelcamel images will not load if you are on a VPN - they are likely blocking known VPN IPs)
-https://hddcheap.vesey.tech</description>
+      <description>&lt;p&gt;For homelabbers, locating cheap, shuckable hard drives is an occasional necessity. Amazon doesn&amp;rsquo;t expose an easy API to allow us to scrape drive data. Hddcheap gives you that live data in an easy-to-read grid format.&lt;/p&gt;&#xA;&lt;p&gt;(I&amp;rsquo;ve noticed the camelcamelcamel images will not load if you are on a VPN - they are likely blocking known VPN IPs)&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://git.vesey.tech/will/hddcheap&#34;&gt;[source]&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
